@@ -1,0 +1,11 @@
+{
+  "auditor_sha256": "a66c4c57a7c8ea7af3e34a0c8f6d7ebf8ffbe19d99fc568a7b2ae3328a14bb65",
+  "manifest_sha256": "8dce44e6c99d709e4949ff7efb90db9df055a8a2a2c37ee4b4a6a0bce7b2337c",
+  "public_metadata_only": true,
+  "recomputed": true,
+  "records": 1536,
+  "records_sha256": "9ca3735df9ef93cf999843b26d189a2e27e30c3dbf0898c9b3ca957b6b943807",
+  "run": "artifacts/20260829T203748Z-document-pilot-reproduction-qwen25-15b-to-3b",
+  "source_files_verified": 39,
+  "summary_sha256": "68eb521a02f5c4b76e02b390ec6d0b332ba9fa40ff17cdc3aeee8b9906ce63f7"
+}

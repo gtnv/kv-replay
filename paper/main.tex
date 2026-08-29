@@ -1,0 +1,865 @@
+\documentclass[10pt,twocolumn]{article}
+
+\usepackage[margin=0.72in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[round,authoryear]{natbib}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+
+\newcommand{\method}{\textsc{LocalReplay}}
+\newcommand{\result}[1]{\textcolor{magenta}{\texttt{[[#1]]}}}
+\newcommand{\js}{\operatorname{JS}}
+\newcommand{\risk}{\operatorname{Risk}}
+\newcommand{\coverage}{\operatorname{Cov}}
+
+\title{Commutation Is Not Certification}
+\author{Anonymous workshop submission}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Cross-model key--value (KV) cache translation can avoid recomputing a long
+context when an inference workflow switches language models.  Existing work
+primarily characterizes whether a translator and model pair work on average;
+it does not by itself tell a serving system whether one particular translated
+cache should be trusted.  We formulate \emph{selective cross-model cache
+reuse}: using only source-model state, translated state, and bounded
+target-model computation, decide whether to accept a handoff or fall back to
+native target prefill.  We study a diagnostic that compares two local routes:
+translate an old prefix before target-side suffix replay, or process that
+suffix with the source before translation.  Their discrepancy is a
+translation--transition commutator.  We prove that zero commutator is not a
+certificate of native-state fidelity: it measures how translation error
+evolves under the probed transition and can miss harmful error shared by both
+routes.  We evaluate this diagnostic on a pinned Qwen2.5 1.5B-to-3B case study
+using document-disjoint translator, calibration, and test partitions,
+numerical cache controls, online-confidence and target-token-matched baselines,
+risk--coverage metrics, and complete batch-one H100 policy timing.  In the
+confirmatory run, direct transfer changes the native target's next-token
+decision on \result{DIRECT-HARM-PREVALENCE} of test articles; the primary
+commutator obtains average precision \result{PRIMARY-COMMUTATOR-AP} versus
+\result{PRIMARY-NEGATIVE-MARGIN-AP} for transferred negative margin, while the calibrated
+policy reaches coverage \result{PRIMARY-COVERAGE}, risk
+\result{PRIMARY-RISK}, and one-sided 95\% Clopper--Pearson upper bound
+\result{PRIMARY-RISK-UPPER}.  Its complete expected latency is
+\result{PRIMARY-POLICY-LATENCY-MS} ms versus
+\result{NATIVE-PREFILL-LATENCY-MS} ms for native prefill.  The predeclared
+decision is \result{PRIMARY-DECISION}.  These results concern greedy
+next-token compatibility on one model direction; they are not a claim of
+agent-action correctness or a distribution-free safety guarantee.
+\end{abstract}
+
+\section{Introduction}
+
+Long-running language-model applications increasingly route a conversation
+between models of different sizes or specializations.  At a switch, the
+receiving model ordinarily prefills the complete accumulated history because
+the source model's KV cache lives in a model-specific representation space.
+Recent work shows that learned or closed-form mappings can translate caches
+across models and, for some pairs, make translation substantially cheaper than
+native prefill \citep{fu2026c2c,heo2026crossmodel,lee2026mot}.  The same work
+also exposes large variation across model pairs, tasks, and mapper families.
+Average benchmark retention therefore does not answer the online systems
+question: \emph{is this individual handoff safe to reuse?}
+
+The unavailable counterfactual makes this question difficult.  At handoff
+time, a system has the source cache and can translate it.  It does not have the
+target model's native cache for the same history; constructing that cache is
+the full prefill the transfer is intended to avoid.  Reconstruction error,
+attention-output similarity to native state, and native-target logit distance
+are useful offline diagnostics but cannot be used as an admission signal on
+the serving path.
+
+We investigate whether a short recent suffix can act as a target-native probe.
+There are two orders in which translation and suffix processing can be
+composed.  First translate the cache of the old prefix and allow the target to
+replay the suffix.  Alternatively, allow the source to process the suffix and
+then translate the resulting cache.  If the translator preserves the local
+state dynamics, these routes should agree.  We call their discrepancy the
+\emph{local replay commutator} and ask whether it ranks handoffs for which
+direct transfer changes the target's next-token decision.
+
+The distinction between ranking and certification is central.  The
+commutator observes a failure of equivariance, not distance to the unknown
+native target state.  We give a constructive counterexample in which the
+translator commutes exactly with every probed transition while reversing the
+target's action.  Thus a positive empirical correlation can support selective
+prediction on a frozen distribution, but no result in this paper turns local
+commutation into a universal certificate.
+
+Our contributions are:
+
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+  \item We formulate cross-model KV handoff as a per-instance selective
+  prediction problem with explicit acceptance coverage, conditional behavior
+  risk, fallback cost, and an offline native-target counterfactual.
+  \item We define a deployable translation--transition commutator using
+  bounded target-side replay, and separate detection of unsafe direct
+  transfer from the fidelity of replay as a repair action.
+  \item We derive what the commutator measures and prove that even exact
+  commutation is insufficient for behavioral fidelity.
+  \item We provide a control-heavy experiment that separates online from
+  oracle-only quantities, uses one article per example and hash-disjoint
+  partitions, and measures complete policy latency rather than component-only
+  timing.
+  \item We report an evidence-calibrated case study whose empirical outcome is
+  \result{PRIMARY-DECISION}; the affine translator is a test instrument, not a
+  claimed translation contribution.
+\end{enumerate}
+
+\section{Problem formulation}
+
+\subsection{State, transitions, and observable routes}
+
+Let $S$ and $T$ denote source and target autoregressive language models with a
+shared tokenizer.  For a token sequence $x$, let $C_m(x)$ be model $m$'s KV
+cache after processing $x$.  Let $F_m^r(C)$ append a suffix $r$ to an existing
+cache using model $m$, and let $M$ translate a source cache to the target cache
+geometry.  Split one fixed-length example into an old prefix $p$, a recent
+suffix $r$, and a final anchor token $q$.
+
+The native target logits, used only as an offline oracle, are
+\begin{equation}
+  \ell_N = G_T(C_T(pr),q),
+  \label{eq:native}
+\end{equation}
+where $G_T(C,q)$ is the target next-token logit vector after consuming anchor
+$q$ from cache $C$.  Direct translated-cache inference is
+\begin{equation}
+  \ell_D = G_T(M(C_S(pr)),q).
+  \label{eq:direct}
+\end{equation}
+The target-replay route translates only the old prefix and processes $r$ with
+the target:
+\begin{equation}
+  \ell_R = G_T(F_T^r(M(C_S(p))),q).
+  \label{eq:replay}
+\end{equation}
+Both $\ell_D$ and $\ell_R$ are online-observable.  Equation~\ref{eq:native} is
+not.
+
+The primary harm label is direct-transfer top-one disagreement,
+\begin{equation}
+  Y_D = \mathbb{1}\!\left[\arg\max \ell_D \ne \arg\max \ell_N\right].
+  \label{eq:direct-label}
+\end{equation}
+We separately define replay disagreement
+\begin{equation}
+  Y_R = \mathbb{1}\!\left[\arg\max \ell_R \ne \arg\max \ell_N\right].
+  \label{eq:replay-label}
+\end{equation}
+This separation prevents a repaired replay action from being credited with
+the fidelity of the direct transfer it is meant to diagnose.
+
+\subsection{Selective reuse}
+
+An online score $s(x)$ induces acceptance rule
+$A_\tau(x)=\mathbb{1}[s(x)\leq\tau]$.  Lower scores represent greater
+confidence in transfer.  Its acceptance coverage and selective risk are
+\begin{align}
+  \coverage(\tau) &= \Pr(A_\tau=1), \\
+  \risk_D(\tau) &= \Pr(Y_D=1\mid A_\tau=1).
+\end{align}
+On rejection, the system performs native target prefill.  The intended
+operating point is at least 50\% coverage, at most 5\% direct-transfer
+disagreement, and at least 30\% measured latency reduction relative to always
+prefilling.  These are falsifiable engineering targets, not consequences of
+the method definition.
+
+\section{What the commutator can observe}
+
+\subsection{Local translation--transition discrepancy}
+
+At the cache level, the two online routes differ by
+\begin{equation}
+  \mathcal{K}_r(C_S(p)) =
+  F_T^r(M(C_S(p))) - M(F_S^r(C_S(p))).
+  \label{eq:commutator}
+\end{equation}
+The implementation records normalized mean-squared error over the cache
+positions written by $r$ and $q$.  Its primary behavioral score is the
+Jensen--Shannon divergence between the categorical distributions induced by
+$\ell_R$ and $\ell_D$:
+\begin{equation}
+  s_{\mathrm{JS}}(x)=
+  \js\!\left(\operatorname{softmax}(\ell_R),
+             \operatorname{softmax}(\ell_D)\right).
+  \label{eq:js-score}
+\end{equation}
+
+If $M$ were an exact state translation over the probed trajectory, then
+$F_T^r\circ M=M\circ F_S^r$ and Equation~\ref{eq:commutator} would vanish.
+The converse is false.
+
+\subsection{Error-transport interpretation}
+
+Define the unknown translation error
+\begin{equation}
+  e(x)=M(C_S(x))-C_T(x).
+\end{equation}
+Because native target state obeys $F_T^r(C_T(p))=C_T(pr)$, a first-order
+expansion of the replay route around $C_T(p)$ gives
+\begin{align}
+F_T^r(M(C_S(p)))
+  &= F_T^r(C_T(p)+e(p)) \\
+  &\approx C_T(pr)+J_{F_T^r}e(p).
+\end{align}
+Meanwhile, direct translation is $M(C_S(pr))=C_T(pr)+e(pr)$.  Therefore
+\begin{equation}
+  \mathcal{K}_r(C_S(p))
+  \approx J_{F_T^r}e(p)-e(pr).
+  \label{eq:linearized}
+\end{equation}
+Direct behavioral harm, however, is governed locally by the target readout,
+\begin{equation}
+  \ell_D-\ell_N \approx J_{G_T}e(pr).
+  \label{eq:behavior-error}
+\end{equation}
+Equations~\ref{eq:linearized} and~\ref{eq:behavior-error} need not be aligned.
+The commutator detects an error-transport residual.  It can miss an error that
+is propagated consistently, and it can react strongly to an error direction
+that the target output ignores.
+
+\subsection{Exact commutation is not certification}
+
+\paragraph{Proposition 1.}
+There exist source state, target state, translator, replay transition, and
+target decision functions for which the translation--transition commutator is
+zero for every replay probe but direct translated-state behavior differs from
+native target behavior.
+
+\paragraph{Proof.}
+Let source and target states lie in $\mathbb{R}^2$ and coincide natively:
+$C_S(p)=C_T(p)=z=(0,1)$.  Let every source and target replay transition be the
+identity, $F_S^r=F_T^r=I$, and let
+$M=\operatorname{diag}(1,-1)$.  Then
+\[
+  F_T^r(Mz)=Mz=M(F_S^r z)
+\]
+for every $r$, so the commutator is exactly zero.  Let the target decision be
+$a(z)=\mathbb{1}[z_2>0]$.  The native decision is $a(z)=1$, while the
+translated-state decision is $a(Mz)=0$.  Thus exact commutation does not imply
+behavioral fidelity. \hfill$\square$
+
+The proposition rules out a distribution-free certification claim based on
+commutation alone.  It does not rule out predictive value on a specified
+model pair and input distribution, which is the empirical question tested
+below.
+
+\section{Method}
+
+\subsection{Affine cache translators}
+
+The study intentionally uses a small, closed-form translator so that the
+verification mechanism remains inspectable.  Qwen2.5 1.5B Instruct is the
+source and Qwen2.5 3B Instruct is the target \citep{qwen2024qwen25}.  For
+target layer $j$, the depth-aligned source anchor is
+\begin{equation}
+  a(j)=\operatorname{round}\!\left(
+  j\frac{L_S-1}{L_T-1}\right).
+  \label{eq:layer-map}
+\end{equation}
+The primary translator uses a contiguous group of four source layers for each
+target layer.  Its start index is
+\begin{equation}
+  b(j)=\min\!\left(\max(a(j)-1,0),L_S-4\right),
+\end{equation}
+and its group is $g_4(j)=\{b(j),\ldots,b(j)+3\}$.  Away from the boundaries,
+this assigns one layer shallower than the anchor and two deeper, resolving the
+even-width tie toward deeper layers.  All KV heads from the four layers are
+flattened and concatenated into one feature vector.  A separate affine ridge
+map is fit for target keys and values at every target layer with
+$\lambda=0.01$.  Sufficient statistics are accumulated in FP64; solved maps
+are stored in FP32 and injected into the BF16 target cache.
+
+Rotary position encoding is removed from source and target keys before fitting
+and target RoPE is reapplied after mapping \citep{su2024roformer}.  Values are
+mapped directly.  This resembles the content-space factorization of
+\citet{heo2026crossmodel}, but it is materially weaker than that paper's
+production translator: the four layers are fixed by depth and contiguity
+rather than selected for predictive utility.  We consequently treat it as a
+low-capacity test instrument, not as a representative state-of-the-art
+transfer method.  A paired secondary ablation repeats the complete
+confirmatory protocol with $g_1(j)=\{a(j)\}$.  The primary claim is always the
+contiguous $k=4$ condition; $k=1$ measures dependence on translator capacity.
+
+\subsection{Online scores and actions}
+
+For each replay budget $|r|\in\{8,32,64\}$, we record six scores:
+
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+  \item \textbf{Commutator JS}: Equation~\ref{eq:js-score}, the primary
+  behavioral score.
+  \item \textbf{Commutator cache NMSE}: normalized cache discrepancy between
+  direct and replay routes over the replayed suffix and anchor positions.
+  \item \textbf{Transferred negative margin}: the negative difference between
+  the largest and second-largest direct-transfer logits.  This is the frozen
+  primary baseline.
+  \item \textbf{Transferred negative maximum probability}: negative maximum
+  softmax probability of the direct-transfer distribution.
+  \item \textbf{Transferred entropy}: entropy of the direct-transfer next-token
+  distribution.
+  \item \textbf{Random}: a deterministic hash of article identity and replay
+  length, used as a random-ranking control.
+\end{enumerate}
+
+For the direct-transfer label $Y_D$, an accepted policy returns the already
+computed direct-transfer action.  For the replay label $Y_R$, it returns the
+replay action.  A rejected policy performs fresh native target prefill.  We
+also evaluate unconditional replay; if it is both more faithful and cheaper
+than selective routing, the proposed policy is dominated.  Replay length 65
+is reserved for a target-token-matched control.  At the primary $R=64$, the
+commutator computes one direct anchor token plus 65 target tokens on the probe
+route, for 66 target-token forwards.  Unconditional replay at $R=65$ also
+computes 66 target tokens.  It does not match translation calls, memory work,
+or wall time, so the comparison is only target-token-matched.
+
+\section{Experimental protocol}
+
+\subsection{Data and separation}
+
+We use WikiText-103 raw text \citep{merity2017pointer}.  Contiguous dataset rows
+are grouped into articles using title markers.  Each article contributes at
+most its first 256-token window, so no article contributes multiple correlated
+examples.  An SHA-256 digest of article text is reduced modulo three to assign
+translator, calibration, and test folds.  The confirmatory run uses the train
+split, excludes source rows below 1000, and contains 32 translator articles,
+128 calibration articles, and 256 test articles.  Article hashes, raw source
+rows, fold identifiers, and token hashes are persisted and audited for
+overlap.
+
+Before the confirmatory run, a separate integration preflight uses the
+validation split, 128-token windows, and 16/8/16 translator/calibration/test
+articles with replay lengths 8 and 32.  Preflight results are not pooled with
+the confirmatory estimate.  All sampling is deterministic under seed 1729.
+Model and dataset branch names in configuration are resolved to immutable
+revisions and stored in the run manifest.
+
+\subsection{Evaluation routes and labels}
+
+Each 256-token example contains 255 context tokens and one anchor token.  The
+source processes the 255-token context.  The direct route translates that
+cache and lets the target consume only the anchor.  For replay length $R$, the
+source cache is sliced after $255-R$ tokens, that prefix is translated, and the
+target consumes the last $R$ context tokens plus the anchor.  Native target
+prefill over all 256 tokens supplies offline labels and is inaccessible to
+online scoring code.
+
+The primary estimand is top-one disagreement in
+Equation~\ref{eq:direct-label}.  We additionally retain logit JS divergence,
+native top-one margin, replay disagreement, and translated-to-native cache
+NMSE as oracle-only diagnostics.  Top-one equality is intentionally a strict
+trajectory-fidelity measure: it is neither semantic correctness nor task
+success.
+
+\subsection{Calibration and statistics}
+
+For each score and replay length, the threshold is the calibration-score
+median.  Calibration labels are not used; the threshold targets 50\% coverage
+without adapting to observed errors.  On the untouched test fold we report:
+
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+  \item harm prevalence and harm average precision;
+  \item risk at 25\%, 50\%, and 75\% descriptive test coverage;
+  \item area under the empirical risk--coverage curve;
+  \item achieved coverage, conditional risk, and a one-sided exact 95\%
+  Clopper--Pearson upper bound at the calibration threshold
+  \citep{clopper1934fiducial};
+  \item paired bootstrap differences between commutator JS and transferred
+  negative margin, using 2000 repetitions and seed 2718.
+\end{itemize}
+
+The Clopper--Pearson quantity is an exact binomial test-set summary, not
+conformal or distribution-free risk control for future handoffs.  If a strict
+deployment guarantee is claimed later, the threshold and risk test should be
+replaced with an explicit risk-controlling calibration procedure
+\citep{angelopoulos2024conformal}.  The implementation evaluates three replay
+budgets and several scores.  The frozen primary condition is commutator JS at
+$R=64$ for the full-transfer top-one label, compared with transferred negative
+margin by paired bootstrap.  All other score, label, and replay combinations
+are secondary or exploratory.
+
+\subsection{Hard controls}
+
+The source and target models independently run the following controls at
+sequence lengths 128, 256, and 512 and replay lengths 1, 8, 32, 64, and 65:
+
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+  \item native full prefill versus native prefix cache plus suffix replay;
+  \item native cache extraction and reconstruction plus replay;
+  \item key de-RoPE/re-RoPE round trip;
+  \item same-model identity-cache translation and injection;
+  \item SDPA bulk execution versus eager-attention correctness execution.
+\end{enumerate}
+
+Native chunking must remain at or below a cache-NMSE limit of $10^{-3}$.
+Native full-prefill versus native chunked top-one differences are reported as
+the action-noise floor of the two valid execution paths; they do not by
+themselves invalidate a run.  Cache reconstruction must be exact.  RoPE and
+identity translation are gated against a BF16-derived numerical bound.
+Additionally, native full prefill is compared with native chunked replay on
+every calibration and test article for every replay length.  Exceeding the
+cache-NMSE gate or failing another numerical/evidence control makes the run
+invalid and stops performance timing.
+
+\subsection{Timing and evidence}
+
+All timings are batch one on one NVIDIA H100, after explicit warm-up and CUDA
+synchronization.  Both wall-clock and CUDA-event durations are stored.  The
+confirmatory configuration uses four timing examples per accepted/rejected
+stratum, two warm-up executions, and five measured repetitions.  Translation,
+cache slicing, online scoring, accepted-action work, and fallback target
+prefill are included.  Complete accepted and rejected branches are measured
+separately, then weighted by achieved test coverage.  Component timings are
+reported only as diagnostics.
+
+The source cache and both models are assumed resident at handoff.  Cache
+transport across machines, queueing, batching interactions, and model-loading
+latency are outside the measurement boundary.  Each run stores raw JSONL
+records before summaries, source/configuration snapshots, environment and
+revision metadata, SHA-256 hashes, and an independently recomputed evidence
+audit.  Control artifacts are cryptographically bound into the pilot manifest.
+
+\section{Predeclared hypotheses and decisions}
+
+\paragraph{H1: ranking.}
+Commutator JS should have higher harm average precision and lower
+risk--coverage area than transferred negative margin.  The primary paired
+bootstrap interval for AP improvement over negative margin must exclude zero.
+Entropy, negative maximum probability, cache NMSE, and random ranking are
+secondary comparisons.
+
+\paragraph{H2: operating point.}
+The calibration-median policy should attain test coverage of at least 0.5 and
+a one-sided 95\% Clopper--Pearson risk upper bound no greater than 0.05.
+
+\paragraph{H3: probe budget.}
+Increasing replay from 8 to 32 to 64 tokens should expose more harmful
+dynamical mismatch.  Flat or worsening ranking falsifies a simple
+more-target-compute explanation.
+
+\paragraph{H4: systems utility.}
+The complete coverage-weighted policy should reduce latency by at least 30\%
+relative to native target prefill.  Token-equivalent accounting alone cannot
+satisfy this hypothesis.
+
+\paragraph{H5: non-domination.}
+The selective policy should improve the fidelity--latency frontier over
+unconditional replay at the same $R=64$ and over the $R=65$
+target-token-matched control.
+
+Runs are classified as \emph{invalid} if a control, partition, or evidence
+audit fails; \emph{accept} if the mechanism beats the strongest matched
+baseline and reproduces; \emph{revise} if a valid failure isolates one next
+intervention; and \emph{reject} if the mechanism is falsified or dominated.
+
+\section{Results}
+
+This section is deliberately machine-fillable.  Bracketed magenta tokens must
+be replaced from audited numerical artifacts; they are not estimates.
+
+\subsection{Validity and reproduction}
+
+\begin{table}[t]
+\centering
+\caption{Artifact identity and validity gates.}
+\label{tab:validity}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lll}
+\toprule
+Item & Primary run & Reproduction \\
+\midrule
+Artifact ID & \result{PRIMARY-RUN-ID} & \result{REPRO-RUN-ID} \\
+Source control & \result{SOURCE-CONTROL-ID} & \result{SOURCE-CONTROL-REPRO-ID} \\
+Target control & \result{TARGET-CONTROL-ID} & \result{TARGET-CONTROL-REPRO-ID} \\
+Evidence audit & \result{PRIMARY-AUDIT-STATUS} & \result{REPRO-AUDIT-STATUS} \\
+Native chunk top-one floor & \result{PRIMARY-NATIVE-CHUNK-TOP1-FLOOR} & \result{REPRO-NATIVE-CHUNK-TOP1-FLOOR} \\
+Maximum native chunk NMSE & \result{PRIMARY-NATIVE-CHUNK-NMSE} & \result{REPRO-NATIVE-CHUNK-NMSE} \\
+Record digest match & --- & \result{REPRO-RECORD-MATCH} \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+The source control's maximum native chunk JS is
+\result{SOURCE-MAX-NATIVE-JS}, and maximum cache NMSE is
+\result{SOURCE-MAX-NATIVE-CACHE-NMSE}.  The target values are
+\result{TARGET-MAX-NATIVE-JS} and
+\result{TARGET-MAX-NATIVE-CACHE-NMSE}.  Across confirmatory calibration and
+test routes, native chunking changes top one on
+\result{CONFIRMATORY-NATIVE-CHUNK-TOP1-FLOOR} of comparisons; this is the
+reported action-noise floor.  Its maximum cache NMSE is
+\result{CONFIRMATORY-MAX-NATIVE-CHUNK-NMSE}, which is
+\result{CONFIRMATORY-NMSE-GATE-STATUS} the $10^{-3}$ hard gate.  The
+confirmatory run is therefore \result{RUN-VALIDITY-DECISION}.  If this token
+is not ``valid,'' all remaining tables are diagnostic only.
+
+\subsection{Natural transfer harm and ranking}
+
+Direct transfer disagrees with native target top-one on
+\result{DIRECT-HARM-COUNT} of \result{TEST-ARTICLE-COUNT} test articles
+(\result{DIRECT-HARM-PREVALENCE}).  Table~\ref{tab:ranking} reports ranking
+metrics by replay budget.  The frozen primary comparison is commutator JS
+versus transferred negative margin at $R=64$ for the full-transfer label.
+
+\begin{table}[t]
+\centering
+\caption{Test ranking of direct-transfer harm.  AP is harm average precision;
+lower AURC is better.}
+\label{tab:ranking}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{rrrrrrr}
+\toprule
+$R$ & Comm. AP & Neg.-margin AP & Entropy AP & Random AP & Comm. AURC & Margin AURC \\
+\midrule
+8  & \result{R8-COMM-AP}  & \result{R8-MARGIN-AP}  & \result{R8-ENTROPY-AP}  & \result{R8-RANDOM-AP}  & \result{R8-COMM-AURC}  & \result{R8-MARGIN-AURC} \\
+32 & \result{R32-COMM-AP} & \result{R32-MARGIN-AP} & \result{R32-ENTROPY-AP} & \result{R32-RANDOM-AP} & \result{R32-COMM-AURC} & \result{R32-MARGIN-AURC} \\
+64 & \result{R64-COMM-AP} & \result{R64-MARGIN-AP} & \result{R64-ENTROPY-AP} & \result{R64-RANDOM-AP} & \result{R64-COMM-AURC} & \result{R64-MARGIN-AURC} \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+At the primary condition, the paired AP difference
+$(\mathrm{commutator}-\mathrm{negative\ margin})$ is
+\result{PRIMARY-AP-DELTA-MEAN}, with 95\% bootstrap interval
+[\result{PRIMARY-AP-DELTA-LOW}, \result{PRIMARY-AP-DELTA-HIGH}].  H1 is
+\result{H1-DECISION}.  The replay-budget trend is
+\result{REPLAY-BUDGET-TREND}; H3 is \result{H3-DECISION}.
+
+\subsection{Frozen-threshold selective risk}
+
+\begin{table}[t]
+\centering
+\caption{Policies at calibration-median thresholds.  Upper is the one-sided
+exact 95\% Clopper--Pearson bound on conditional top-one disagreement.}
+\label{tab:policy}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{rrrrrr}
+\toprule
+$R$ & Score & Accepted & Coverage & Risk & Upper \\
+\midrule
+8  & Comm. JS & \result{R8-COMM-ACCEPTED}  & \result{R8-COMM-COVERAGE}  & \result{R8-COMM-RISK}  & \result{R8-COMM-UPPER} \\
+8  & Neg. margin & \result{R8-MARGIN-ACCEPTED}   & \result{R8-MARGIN-COVERAGE}   & \result{R8-MARGIN-RISK}   & \result{R8-MARGIN-UPPER} \\
+32 & Comm. JS & \result{R32-COMM-ACCEPTED} & \result{R32-COMM-COVERAGE} & \result{R32-COMM-RISK} & \result{R32-COMM-UPPER} \\
+32 & Neg. margin & \result{R32-MARGIN-ACCEPTED}  & \result{R32-MARGIN-COVERAGE}  & \result{R32-MARGIN-RISK}  & \result{R32-MARGIN-UPPER} \\
+64 & Comm. JS & \result{R64-COMM-ACCEPTED} & \result{R64-COMM-COVERAGE} & \result{R64-COMM-RISK} & \result{R64-COMM-UPPER} \\
+64 & Neg. margin & \result{R64-MARGIN-ACCEPTED}  & \result{R64-MARGIN-COVERAGE}  & \result{R64-MARGIN-RISK}  & \result{R64-MARGIN-UPPER} \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+At the primary condition, the median-calibrated policy accepts
+\result{PRIMARY-ACCEPTED-COUNT} examples.  It achieves coverage
+\result{PRIMARY-COVERAGE}, risk \result{PRIMARY-RISK}, and upper bound
+\result{PRIMARY-RISK-UPPER}.  H2 is \result{H2-DECISION}.  The descriptive
+maximum test coverage whose one-sided bound is at most 5\% is
+\result{DESCRIPTIVE-SAFE-COVERAGE}; because it uses test labels to select an
+operating point, it is not a deployable result.
+
+\subsection{Replay repair and complete cost}
+
+\begin{table}[t]
+\centering
+\caption{Fidelity and complete batch-one timing.  Policy time is weighted by
+full-test accepted coverage using separately measured accepted/rejected
+branches.}
+\label{tab:timing}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrr}
+\toprule
+Path & Risk & Wall ms & Savings vs. native \\
+\midrule
+Native target prefill & 0 & \result{NATIVE-PREFILL-LATENCY-MS} & 0 \\
+Direct full transfer & \result{DIRECT-HARM-PREVALENCE} & \result{DIRECT-LATENCY-MS} & \result{DIRECT-LATENCY-SAVINGS} \\
+Replay, $R=8$ & \result{R8-REPLAY-RISK} & \result{R8-REPLAY-LATENCY-MS} & \result{R8-REPLAY-LATENCY-SAVINGS} \\
+Replay, $R=32$ & \result{R32-REPLAY-RISK} & \result{R32-REPLAY-LATENCY-MS} & \result{R32-REPLAY-LATENCY-SAVINGS} \\
+Replay, $R=64$ & \result{R64-REPLAY-RISK} & \result{R64-REPLAY-LATENCY-MS} & \result{R64-REPLAY-LATENCY-SAVINGS} \\
+Replay, $R=65$ (target-token-matched) & \result{R65-REPLAY-RISK} & \result{R65-REPLAY-LATENCY-MS} & \result{R65-REPLAY-LATENCY-SAVINGS} \\
+Primary selective policy & \result{PRIMARY-RISK} & \result{PRIMARY-POLICY-LATENCY-MS} & \result{PRIMARY-POLICY-LATENCY-SAVINGS} \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Unconditional replay changes the target top-one on
+\result{PRIMARY-REPLAY-RISK} of examples at the primary replay length.  The
+selective policy is \result{SAME-R64-DOMINATION-STATUS} relative to this
+same-length repair baseline and \result{R65-DOMINATION-STATUS} relative to the
+$R=65$ target-token-matched control.  The latter matches 66 target-token
+forwards but not total work.  H4 is \result{H4-DECISION}, and H5 is
+\result{H5-DECISION}.  CUDA-event results lead to
+\result{CUDA-TIMING-CONSISTENCY} the wall-clock conclusion.
+
+\subsection{Error structure}
+
+Among direct-transfer failures, the primary score's false-accept set contains
+\result{FALSE-ACCEPT-COUNT} articles.  Their median native margin is
+\result{FALSE-ACCEPT-NATIVE-MARGIN}, versus
+\result{TRUE-REJECT-NATIVE-MARGIN} for correctly rejected harmful transfers.
+Replay repairs \result{REPLAY-REPAIR-COUNT} direct failures and introduces
+\result{REPLAY-INTRODUCED-ERROR-COUNT} errors among otherwise faithful direct
+transfers.  The observed pattern is \result{ERROR-STRUCTURE-SUMMARY}.  This
+analysis is descriptive and does not alter the frozen score or threshold.
+
+\subsection{Paired translator-capacity ablation}
+
+The secondary $k=1$ run uses the same resolved models, article identities,
+partitions, replay budgets, seed, ridge penalty, scores, labels, and timing
+procedure as the primary $k=4$ run.  Only the number of contiguous source
+layers supplied to each target-layer regression changes.  Table~\ref{tab:k-ablation}
+therefore tests whether the primary conclusion is specific to translator
+capacity; it is not a second confirmatory hypothesis.
+
+\begin{table}[t]
+\centering
+\caption{Paired translator-capacity ablation at the frozen $R=64$ condition.
+Upper is the one-sided 95\% Clopper--Pearson bound.}
+\label{tab:k-ablation}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{rrrrrr}
+\toprule
+Source layers & Transfer harm & Comm. AP & Margin AP & Coverage & Risk / Upper \\
+\midrule
+$k=4$ & \result{K4-TRANSFER-HARM} & \result{K4-COMM-AP} & \result{K4-MARGIN-AP} & \result{K4-COVERAGE} & \result{K4-RISK}~/~\result{K4-CP-UPPER} \\
+$k=1$ & \result{K1-TRANSFER-HARM} & \result{K1-COMM-AP} & \result{K1-MARGIN-AP} & \result{K1-COVERAGE} & \result{K1-RISK}~/~\result{K1-CP-UPPER} \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Moving from $k=4$ to $k=1$ changes commutator AP by
+\result{K1-MINUS-K4-COMM-AP}, transfer-harm prevalence by
+\result{K1-MINUS-K4-HARM}, and complete policy latency by
+\result{K1-MINUS-K4-POLICY-LATENCY-MS} ms.  The capacity dependence is
+\result{TRANSLATOR-CAPACITY-INTERPRETATION}.
+
+\subsection{Decision}
+
+The confirmatory trial decision is \textbf{\result{PRIMARY-DECISION}} because
+\result{DECISION-RATIONALE}.  A fresh-process reproduction is
+\result{REPRODUCTION-DECISION}.  Accordingly, the evidence
+\result{SUPPORTS-OR-DOES-NOT-SUPPORT} the claim that one bounded local replay
+probe is sufficient for the target operating point.  Regardless of this
+empirical decision, Proposition~1 establishes that commutation alone cannot be
+a universal certificate.
+
+\section{Related work}
+
+\paragraph{Cross-model cache translation.}
+Cache-to-Cache learns neural projectors and fusers for latent semantic
+communication between heterogeneous models \citep{fu2026c2c}.  Latent Cache
+Flow compresses translated cache summaries and permits sender and receiver to
+hold different contexts \citep{rossi2026lcf}.  These methods optimize
+communication utility rather than reproducing the receiver's native prefill.
+\citet{heo2026crossmodel} directly targets prefill reuse with closed-form
+per-head ridge maps, cross-layer source selection, and RoPE-stripped key
+mapping.  It shows substantial pair-level variation and that attention-aligned
+error placement predicts downstream retention better than global
+reconstruction fit.  Those diagnostics compare with native target quantities
+or summarize a model pair; our question is per-handoff admission without the
+native target cache.  Mixture-of-Translators uses token-routed translators and
+a Context Correction Loss that aligns a replayed target trajectory with the
+native target trajectory during training \citep{lee2026mot}.  Our use of
+replay is different: the translator remains fixed, native target state is
+unavailable online, and path disagreement is evaluated as an admission score.
+
+\paragraph{Partial recomputation and cache reuse.}
+DroidSpeak shares KV state across fine-tuned variants with identical
+architecture and selectively recomputes critical layers
+\citep{liu2024droidspeak}.  CacheBlend selectively recomputes tokens to restore
+cross-chunk interactions when combining same-model RAG caches
+\citep{yao2024cacheblend}; ProphetKV makes that selection query-dependent
+\citep{wang2026prophetkv}.  These systems establish recomputation as a useful
+repair budget, but their cached states do not arise from an independently
+trained cross-model translator.  We therefore include unconditional recent
+replay as the strongest direct systems baseline rather than treating replay
+cost as free.
+
+\paragraph{Behavioral consistency under reuse.}
+\citet{liang2026reusefails} show that reuse can preserve aggregate task
+accuracy while substantially changing an LLM judge's selected candidate.
+Their result motivates comparison to dense-prefill decisions rather than task
+averages alone and prevents a broad claim that this is the first risk-aware
+study of cache reuse.  Our narrower contribution concerns online prediction
+of per-instance error from cross-model translated state.
+
+\paragraph{Selective prediction and risk control.}
+Selective classification formalizes the trade-off between conditional error
+and accepted coverage \citep{geifman2019selectivenet}.  Conformal risk control
+provides finite-sample control for suitable calibrated losses
+\citep{angelopoulos2024conformal}.  We borrow risk--coverage terminology but do
+not claim conformal validity: the current threshold is an unlabeled median and
+the reported test interval is an exact one-sided binomial interval.
+
+\section{Discussion}
+
+\subsection{How to interpret a positive ranking result}
+
+If H1 succeeds while H2 fails, the commutator contains information but is not
+selective enough at the desired operating point.  That result motivates richer
+probe sets or a learned router; it does not justify deployment.  If H2 succeeds
+but H4 fails at 256 tokens, the verifier may be behaviorally useful yet
+economically misplaced.  Translation and replay have fixed overheads, whereas
+target prefill becomes more expensive with context length.  The next systems
+experiment should therefore freeze the fidelity policy and measure its
+latency crossover over longer contexts, not retune the score at each length.
+
+\subsection{How to interpret a negative result}
+
+A failed commutator score has at least three possible causes.  First, harmful
+translation error may be a shared mode visible to neither route, as in
+Proposition~1.  Second, the replay suffix may not excite an error direction
+relevant to the anchor decision.  Third, even the primary contiguous
+four-layer affine translator may place the experiment in a regime where almost
+every state is damaged and ranking is statistically or operationally
+unhelpful.  The paired $k=1$ ablation can reveal capacity sensitivity, but it
+cannot establish behavior under a stronger learned translator.  Distinguishing
+the remaining explanations requires stronger translator-quality regimes and
+multiple, frozen probes.  It cannot be resolved by selecting the best
+test-set threshold after the fact.
+
+\subsection{Required next evidence}
+
+A claim about agent handoffs requires a structured action dataset.  The native
+and transferred outputs should be decoded deterministically into a canonical
+pair of tool name and arguments, with failures grouped by full trajectory so
+that related calls cannot cross partitions.  A claim about general cross-model
+reuse additionally requires several source--target directions, at least one
+strong multi-source or nonlinear translator, and a long-context timing sweep.
+These are extensions, not claims of the present case study.
+
+\section{Limitations}
+
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+  \item \textbf{One direction.}  The empirical study covers only Qwen2.5
+  1.5B Instruct to 3B Instruct.  Models share a tokenizer, family, compatible
+  rotary structure, and KV geometry.  Results do not establish cross-family or
+  mismatched-KV behavior.
+  \item \textbf{Restricted translators.}  The primary translator concatenates
+  four fixed contiguous depth-aligned source layers; the secondary ablation
+  uses one.  Neither selects source layers for predictive utility nor trains a
+  nonlinear mapper.  Failure here cannot establish failure for a
+  state-of-the-art translator \citep{heo2026crossmodel}.
+  \item \textbf{Text-only, one-step label.}  WikiText next-token top-one
+  agreement is a trajectory-fidelity canary, not semantic quality, agent
+  success, or tool-action equality.  Equal first tokens can lead to different
+  later trajectories, while a near-tie flip can be semantically harmless.
+  \item \textbf{Short context.}  The confirmatory context length is 256.
+  Fixed translation and probe overhead may dominate in this regime.  No
+  long-context speedup is implied without a measured crossover sweep.
+  \item \textbf{Distribution dependence.}  Calibration and test articles are
+  independent under a deterministic WikiText partition but share a domain.
+  No robustness to domain or temporal shift is measured.
+  \item \textbf{No formal risk guarantee.}  A calibration median targets
+  coverage, not error.  The one-sided Clopper--Pearson bound summarizes an
+  untouched test sample; it is not a distribution-free admission guarantee.
+  \item \textbf{Systems boundary.}  Timing assumes resident source cache and
+  resident models on one H100 and excludes inter-node transfer, serving-engine
+  scheduling, batching, and cache serialization.
+  \item \textbf{Multiplicity.}  Three replay budgets and multiple scores are
+  computed.  Only a condition fixed before confirmatory test inspection can
+  support a primary inferential claim.
+\end{enumerate}
+
+\section{Conclusion}
+
+Cross-model KV translation creates a selective-computation problem: the target
+should reuse a translated state only when the saved prefill is worth its
+behavioral risk.  Local replay supplies a natural online self-consistency
+signal because a faithful translator should approximately intertwine source
+and target transitions.  Yet commutation and correctness are different
+properties.  The formal counterexample shows that even perfect local
+commutation can coexist with a changed target decision.  The audited case
+study yields decision \result{PRIMARY-DECISION}: \result{CONCLUSION-SENTENCE}.
+The appropriate conclusion is therefore bounded to instance-level next-token
+prediction on the tested pair.  Stronger claims require stronger translators,
+structured actions, multiple model directions, explicit risk calibration, and
+long-context end-to-end timing.
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\appendix
+
+\section{Exact confirmatory configuration}
+
+\begin{table}[h]
+\centering
+\caption{Frozen experiment configuration.  Immutable revisions are populated
+from the audited manifest.}
+\label{tab:config}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{ll}
+\toprule
+Field & Value \\
+\midrule
+Source & Qwen/Qwen2.5-1.5B-Instruct @ \result{SOURCE-REVISION-SHA} \\
+Target & Qwen/Qwen2.5-3B-Instruct @ \result{TARGET-REVISION-SHA} \\
+Attention backend & SDPA; eager correctness control \\
+Precision & BF16 model/cache; FP64 ridge statistics; FP32 map \\
+Dataset & Salesforce/wikitext, wikitext-103-raw-v1 @ \result{DATASET-REVISION-SHA} \\
+Dataset split & train \\
+Window length & 256 tokens (255 context + 1 anchor) \\
+Translator/calibration/test & 32 / 128 / 256 articles \\
+Article folds & SHA-256 modulo 3: 0 / 1 / 2 \\
+Minimum raw row & 1000 for every partition \\
+Replay lengths & 8, 32, 64; control 65 \\
+Primary translator & $k=4$ contiguous anchored groups \\
+Secondary translator & paired $k=1$ depth-aligned ablation \\
+Primary analysis & commutator JS, $R=64$, full-transfer label \\
+Primary comparator & transferred negative margin \\
+Target-token-matched control & unconditional replay, $R=65$ \\
+Ridge penalty & 0.01 \\
+Target coverage / risk target & 0.50 / 0.05 \\
+Bootstrap & 2000 repetitions, seed 2718 \\
+Sampling seed & 1729 \\
+Timing & 4 examples/stratum, 2 warm-up, 5 repeats \\
+Hardware & \result{GPU-IDENTITY} \\
+Software manifest & \result{ENVIRONMENT-ARTIFACT-SHA} \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+The integration preflight uses the validation split, length 128, 16/8/16
+articles, replay lengths 8 and 32, 200 bootstrap repetitions, two timing
+examples, one warm-up, and two measured repeats.  It validates plumbing only
+and contributes no observations to Tables~\ref{tab:ranking}--\ref{tab:timing}.
+
+\section{Evidence contract}
+
+A valid paper result must be traceable to the following artifact fields:
+
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+  \item resolved model and dataset revisions;
+  \item configuration, source snapshot, environment, data, translator, raw
+  record, timing-record, and summary SHA-256 digests;
+  \item source and target control artifact IDs and their recomputed summaries;
+  \item one raw record for every partition/article/replay-length Cartesian
+  product expected by configuration;
+  \item disjoint document hashes, token hashes, and source rows across
+  translator, calibration, and test;
+  \item exact recomputation of summary metrics from JSONL records;
+  \item complete timing records for native, direct, replay, score overhead,
+  accepted policy branches, and rejected policy branches;
+  \item a fresh-process reproduction whose deterministic raw-record digest is
+  \result{REPRO-RECORD-MATCH} the primary run.
+\end{itemize}
+
+No plot or number copied from an interactive notebook is authoritative unless
+it can be regenerated from these artifacts.
+
+\section{Reporting boundaries}
+
+The following language is permitted if supported by filled artifacts:
+``on the pinned Qwen2.5 direction and WikiText partition, the online score
+ranked next-token disagreement with metric X.''  The following language is not
+supported: ``the verifier makes cross-model agent handoffs safe,'' ``the method
+guarantees at most 5\% errors,'' or ``the system accelerates long-context
+serving.''  Native-target fidelity is a counterfactual-consistency target, not
+ground-truth answer correctness.
+
+\end{document}

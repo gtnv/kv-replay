@@ -1,0 +1,1507 @@
+{
+  "bootstrap_repetitions": 200,
+  "bootstrap_seed": 2718,
+  "conditions": {
+    "32": {
+      "baselines": {
+        "full_transfer": {
+          "clopper_pearson_upper_95": 0.5483470808487474,
+          "errors": 5,
+          "risk": 0.3125,
+          "wilson_upper_95": 0.5179738146383297
+        },
+        "unconditional_replay": {
+          "clopper_pearson_upper_95": 0.4165722807061528,
+          "errors": 3,
+          "risk": 0.1875,
+          "wilson_upper_95": 0.38786974244785427
+        }
+      },
+      "calibration_count": 8,
+      "full_transfer_risk": 0.3125,
+      "native_chunk_control": {
+        "calibration_top1_errors": 0,
+        "commutator_cache_above_native_floor_fraction": 1.0,
+        "commutator_js_above_native_floor_fraction": 1.0,
+        "max_cache_nmse": 4.553445617367007e-05,
+        "max_js": 0.000463834818219766,
+        "median_cache_nmse": 3.287734805310847e-05,
+        "median_js": 0.0003513692499836907,
+        "passed": true,
+        "test_top1_errors": 0
+      },
+      "paired_bootstrap": {
+        "full_transfer_top1_diff": {
+          "commutator_js_vs_transfer_entropy": {
+            "ap_difference": {
+              "lower_95": 0.0,
+              "mean": 0.20778469436760896,
+              "upper_95": 0.6414377289377284
+            },
+            "baseline_score": "transfer_entropy",
+            "defined": true,
+            "fixed_threshold_risk_difference": {
+              "defined": true,
+              "defined_repetitions": 200,
+              "lower_95": -0.6260416666666666,
+              "mean": -0.2844069125319125,
+              "upper_95": 0.0
+            },
+            "label": "full_transfer_top1_diff",
+            "primary_score": "commutator_js",
+            "repetitions": 200
+          },
+          "commutator_js_vs_transfer_negative_margin": {
+            "ap_difference": {
+              "lower_95": 0.0,
+              "mean": 0.3020576031021648,
+              "upper_95": 0.6253472222222223
+            },
+            "baseline_score": "transfer_negative_margin",
+            "defined": true,
+            "fixed_threshold_risk_difference": {
+              "defined": true,
+              "defined_repetitions": 200,
+              "lower_95": -0.4,
+              "mean": -0.16063032106782107,
+              "upper_95": 0.0
+            },
+            "label": "full_transfer_top1_diff",
+            "primary_score": "commutator_js",
+            "repetitions": 200
+          },
+          "commutator_js_vs_transfer_negative_max_probability": {
+            "ap_difference": {
+              "lower_95": 0.0,
+              "mean": 0.3026228711599247,
+              "upper_95": 0.7010606060606063
+            },
+            "baseline_score": "transfer_negative_max_probability",
+            "defined": true,
+            "fixed_threshold_risk_difference": {
+              "defined": true,
+              "defined_repetitions": 200,
+              "lower_95": -0.45454545454545453,
+              "mean": -0.17453035853035853,
+              "upper_95": 0.0
+            },
+            "label": "full_transfer_top1_diff",
+            "primary_score": "commutator_js",
+            "repetitions": 200
+          }
+        },
+        "replay_top1_diff": {
+          "commutator_js_vs_transfer_entropy": {
+            "ap_difference": {
+              "lower_95": -0.5188988095238095,
+              "mean": -0.006291259741186112,
+              "upper_95": 0.34132692307692286
+            },
+            "baseline_score": "transfer_entropy",
+            "defined": true,
+            "fixed_threshold_risk_difference": {
+              "defined": true,
+              "defined_repetitions": 200,
+              "lower_95": -0.42857142857142855,
+              "mean": -0.14633423520923522,
+              "upper_95": 0.0
+            },
+            "label": "replay_top1_diff",
+            "primary_score": "commutator_js",
+            "repetitions": 200
+          },
+          "commutator_js_vs_transfer_negative_margin": {
+            "ap_difference": {
+              "lower_95": -0.4015277777777777,
+              "mean": -0.06342451262188104,
+              "upper_95": 0.2099702380952381
+            },
+            "baseline_score": "transfer_negative_margin",
+            "defined": true,
+            "fixed_threshold_risk_difference": {
+              "defined": true,
+              "defined_repetitions": 200,
+              "lower_95": -0.25089285714285714,
+              "mean": -0.08688545482295482,
+              "upper_95": 0.0
+            },
+            "label": "replay_top1_diff",
+            "primary_score": "commutator_js",
+            "repetitions": 200
+          },
+          "commutator_js_vs_transfer_negative_max_probability": {
+            "ap_difference": {
+              "lower_95": -0.5870833333333334,
+              "mean": -0.1207574082043948,
+              "upper_95": 0.2484615384615384
+            },
+            "baseline_score": "transfer_negative_max_probability",
+            "defined": true,
+            "fixed_threshold_risk_difference": {
+              "defined": true,
+              "defined_repetitions": 200,
+              "lower_95": -0.25,
+              "mean": -0.0860194388944389,
+              "upper_95": 0.0
+            },
+            "label": "replay_top1_diff",
+            "primary_score": "commutator_js",
+            "repetitions": 200
+          }
+        }
+      },
+      "replay_repair_risk": 0.1875,
+      "scores": {
+        "commutator_cache_nmse": {
+          "full_transfer_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 0.12663639203833066
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 5,
+              "clopper_pearson_upper_95": 0.6574083180011386,
+              "coverage": 0.3125,
+              "risk": 0.2,
+              "wilson_upper_95": 0.5647074465784568
+            },
+            "test_ranking": {
+              "aurc": 0.1726741140803641,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.696923076923077,
+              "harm_positive_count": 5,
+              "harm_prevalence": 0.3125,
+              "label": "full_transfer_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.7513953742698181,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.6438319914014936
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.47067940860113155,
+                  "risk": 0.125,
+                  "wilson_upper_95": 0.41114337433001213
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.5273266035603434,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.4873380318032493
+                }
+              },
+              "score": "commutator_cache_nmse"
+            }
+          },
+          "replay_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 0.12663639203833066
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 5,
+              "clopper_pearson_upper_95": 0.45071972834694096,
+              "coverage": 0.3125,
+              "risk": 0.0,
+              "wilson_upper_95": 0.3511165007651012
+            },
+            "test_ranking": {
+              "aurc": 0.14450176559551559,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.22186147186147184,
+              "harm_positive_count": 3,
+              "harm_prevalence": 0.1875,
+              "label": "replay_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.47067940860113155,
+                  "risk": 0.125,
+                  "wilson_upper_95": 0.41114337433001213
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.5273266035603434,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.4873380318032493
+                }
+              },
+              "score": "commutator_cache_nmse"
+            }
+          }
+        },
+        "commutator_js": {
+          "full_transfer_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 0.09710925072431564
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 9,
+              "clopper_pearson_upper_95": 0.28312883556311347,
+              "coverage": 0.5625,
+              "risk": 0.0,
+              "wilson_upper_95": 0.23113351931975665
+            },
+            "test_ranking": {
+              "aurc": 0.07009630994005994,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.9666666666666667,
+              "harm_positive_count": 5,
+              "harm_prevalence": 0.3125,
+              "label": "full_transfer_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.3123439780663678,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.25272359742376327
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.3386806684340324,
+                  "risk": 0.08333333333333333,
+                  "wilson_upper_95": 0.30116827943986896
+                }
+              },
+              "score": "commutator_js"
+            }
+          },
+          "replay_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 0.09710925072431564
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 9,
+              "clopper_pearson_upper_95": 0.28312883556311347,
+              "coverage": 0.5625,
+              "risk": 0.0,
+              "wilson_upper_95": 0.23113351931975665
+            },
+            "test_ranking": {
+              "aurc": 0.0743831689144189,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.3595238095238095,
+              "harm_positive_count": 3,
+              "harm_prevalence": 0.1875,
+              "label": "replay_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.3123439780663678,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.25272359742376327
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.43810543511531136,
+                  "risk": 0.16666666666666666,
+                  "wilson_upper_95": 0.39920691041554024
+                }
+              },
+              "score": "commutator_js"
+            }
+          }
+        },
+        "random_score": {
+          "full_transfer_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 0.48790594825711836
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 7,
+              "clopper_pearson_upper_95": 0.658738563844664,
+              "coverage": 0.4375,
+              "risk": 0.2857142857142857,
+              "wilson_upper_95": 0.5913324544888025
+            },
+            "test_ranking": {
+              "aurc": 0.20588187853812856,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.40424242424242424,
+              "harm_positive_count": 5,
+              "harm_prevalence": 0.3125,
+              "label": "full_transfer_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.7107591834981906,
+                  "risk": 0.375,
+                  "wilson_upper_95": 0.6520085615952674
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.5273266035603434,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.4873380318032493
+                }
+              },
+              "score": "random_score"
+            }
+          },
+          "replay_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 0.48790594825711836
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 7,
+              "clopper_pearson_upper_95": 0.658738563844664,
+              "coverage": 0.4375,
+              "risk": 0.2857142857142857,
+              "wilson_upper_95": 0.5913324544888025
+            },
+            "test_ranking": {
+              "aurc": 0.1935345036907537,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.19308469308469312,
+              "harm_positive_count": 3,
+              "harm_prevalence": 0.1875,
+              "label": "replay_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.7513953742698181,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.6438319914014936
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.5996893891908329,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.5398469545128194
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.5273266035603434,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.4873380318032493
+                }
+              },
+              "score": "random_score"
+            }
+          }
+        },
+        "transfer_entropy": {
+          "full_transfer_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 2.92022442817688
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 7,
+              "clopper_pearson_upper_95": 0.658738563844664,
+              "coverage": 0.4375,
+              "risk": 0.2857142857142857,
+              "wilson_upper_95": 0.5913324544888025
+            },
+            "test_ranking": {
+              "aurc": 0.17939915986790989,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.7569230769230768,
+              "harm_positive_count": 5,
+              "harm_prevalence": 0.3125,
+              "label": "full_transfer_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.7513953742698181,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.6438319914014936
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.5996893891908329,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.5398469545128194
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.43810543511531136,
+                  "risk": 0.16666666666666666,
+                  "wilson_upper_95": 0.39920691041554024
+                }
+              },
+              "score": "transfer_entropy"
+            }
+          },
+          "replay_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 2.92022442817688
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 7,
+              "clopper_pearson_upper_95": 0.5207029735913071,
+              "coverage": 0.4375,
+              "risk": 0.14285714285714285,
+              "wilson_upper_95": 0.4522866946970292
+            },
+            "test_ranking": {
+              "aurc": 0.13058963605838605,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.3333333333333333,
+              "harm_positive_count": 3,
+              "harm_prevalence": 0.1875,
+              "label": "replay_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.47067940860113155,
+                  "risk": 0.125,
+                  "wilson_upper_95": 0.41114337433001213
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.43810543511531136,
+                  "risk": 0.16666666666666666,
+                  "wilson_upper_95": 0.39920691041554024
+                }
+              },
+              "score": "transfer_entropy"
+            }
+          }
+        },
+        "transfer_negative_margin": {
+          "full_transfer_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": -0.625
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 12,
+              "clopper_pearson_upper_95": 0.43810543511531136,
+              "coverage": 0.75,
+              "risk": 0.16666666666666666,
+              "wilson_upper_95": 0.39920691041554024
+            },
+            "test_ranking": {
+              "aurc": 0.12644395535020533,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.5976190476190476,
+              "harm_positive_count": 5,
+              "harm_prevalence": 0.3125,
+              "label": "full_transfer_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.47067940860113155,
+                  "risk": 0.125,
+                  "wilson_upper_95": 0.41114337433001213
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.43810543511531136,
+                  "risk": 0.16666666666666666,
+                  "wilson_upper_95": 0.39920691041554024
+                }
+              },
+              "score": "transfer_negative_margin"
+            }
+          },
+          "replay_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": -0.625
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 12,
+              "clopper_pearson_upper_95": 0.3386806684340324,
+              "coverage": 0.75,
+              "risk": 0.08333333333333333,
+              "wilson_upper_95": 0.30116827943986896
+            },
+            "test_ranking": {
+              "aurc": 0.1221300400987901,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.40476190476190477,
+              "harm_positive_count": 3,
+              "harm_prevalence": 0.1875,
+              "label": "replay_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.7513953742698181,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.6438319914014936
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.47067940860113155,
+                  "risk": 0.125,
+                  "wilson_upper_95": 0.41114337433001213
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.3386806684340324,
+                  "risk": 0.08333333333333333,
+                  "wilson_upper_95": 0.30116827943986896
+                }
+              },
+              "score": "transfer_negative_margin"
+            }
+          }
+        },
+        "transfer_negative_max_probability": {
+          "full_transfer_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": -0.2286807894706726
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 11,
+              "clopper_pearson_upper_95": 0.47008679927917624,
+              "coverage": 0.6875,
+              "risk": 0.18181818181818182,
+              "wilson_upper_95": 0.427142504865978
+            },
+            "test_ranking": {
+              "aurc": 0.18867113788988787,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.6402564102564102,
+              "harm_positive_count": 5,
+              "harm_prevalence": 0.3125,
+              "label": "full_transfer_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.7513953742698181,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.6438319914014936
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.5996893891908329,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.5398469545128194
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.43810543511531136,
+                  "risk": 0.16666666666666666,
+                  "wilson_upper_95": 0.39920691041554024
+                }
+              },
+              "score": "transfer_negative_max_probability"
+            }
+          },
+          "replay_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": -0.2286807894706726
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 11,
+              "clopper_pearson_upper_95": 0.3643594892472425,
+              "coverage": 0.6875,
+              "risk": 0.09090909090909091,
+              "wilson_upper_95": 0.32278187113308937
+            },
+            "test_ranking": {
+              "aurc": 0.10169734779109779,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.4722222222222222,
+              "harm_positive_count": 3,
+              "harm_prevalence": 0.1875,
+              "label": "replay_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.47067940860113155,
+                  "risk": 0.125,
+                  "wilson_upper_95": 0.41114337433001213
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.3386806684340324,
+                  "risk": 0.08333333333333333,
+                  "wilson_upper_95": 0.30116827943986896
+                }
+              },
+              "score": "transfer_negative_max_probability"
+            }
+          }
+        }
+      },
+      "test_count": 16
+    },
+    "8": {
+      "baselines": {
+        "full_transfer": {
+          "clopper_pearson_upper_95": 0.5483470808487474,
+          "errors": 5,
+          "risk": 0.3125,
+          "wilson_upper_95": 0.5179738146383297
+        },
+        "unconditional_replay": {
+          "clopper_pearson_upper_95": 0.4843964210936691,
+          "errors": 4,
+          "risk": 0.25,
+          "wilson_upper_95": 0.4547634911684676
+        }
+      },
+      "calibration_count": 8,
+      "full_transfer_risk": 0.3125,
+      "native_chunk_control": {
+        "calibration_top1_errors": 1,
+        "commutator_cache_above_native_floor_fraction": 1.0,
+        "commutator_js_above_native_floor_fraction": 1.0,
+        "max_cache_nmse": 4.5308791063881745e-05,
+        "max_js": 0.0005818187491968274,
+        "median_cache_nmse": 3.343184900878199e-05,
+        "median_js": 0.00021181067859288305,
+        "passed": false,
+        "test_top1_errors": 0
+      },
+      "paired_bootstrap": {
+        "full_transfer_top1_diff": {
+          "commutator_js_vs_transfer_entropy": {
+            "ap_difference": {
+              "lower_95": 0.0,
+              "mean": 0.2622378757877681,
+              "upper_95": 0.8107142857142853
+            },
+            "baseline_score": "transfer_entropy",
+            "defined": true,
+            "fixed_threshold_risk_difference": {
+              "defined": true,
+              "defined_repetitions": 200,
+              "lower_95": -0.625,
+              "mean": -0.2723722943722944,
+              "upper_95": 0.0
+            },
+            "label": "full_transfer_top1_diff",
+            "primary_score": "commutator_js",
+            "repetitions": 200
+          },
+          "commutator_js_vs_transfer_negative_margin": {
+            "ap_difference": {
+              "lower_95": 0.0,
+              "mean": 0.3557963239334381,
+              "upper_95": 0.7578754578754574
+            },
+            "baseline_score": "transfer_negative_margin",
+            "defined": true,
+            "fixed_threshold_risk_difference": {
+              "defined": true,
+              "defined_repetitions": 200,
+              "lower_95": -0.3333333333333333,
+              "mean": -0.16859746503496503,
+              "upper_95": 0.0
+            },
+            "label": "full_transfer_top1_diff",
+            "primary_score": "commutator_js",
+            "repetitions": 200
+          },
+          "commutator_js_vs_transfer_negative_max_probability": {
+            "ap_difference": {
+              "lower_95": 0.0,
+              "mean": 0.3312328937046199,
+              "upper_95": 0.7516369047619051
+            },
+            "baseline_score": "transfer_negative_max_probability",
+            "defined": true,
+            "fixed_threshold_risk_difference": {
+              "defined": true,
+              "defined_repetitions": 200,
+              "lower_95": -0.4444444444444444,
+              "mean": -0.18730927405927406,
+              "upper_95": 0.0
+            },
+            "label": "full_transfer_top1_diff",
+            "primary_score": "commutator_js",
+            "repetitions": 200
+          }
+        },
+        "replay_top1_diff": {
+          "commutator_js_vs_transfer_entropy": {
+            "ap_difference": {
+              "lower_95": -0.4208333333333332,
+              "mean": 0.07866487332029329,
+              "upper_95": 0.4969155844155843
+            },
+            "baseline_score": "transfer_entropy",
+            "defined": true,
+            "fixed_threshold_risk_difference": {
+              "defined": true,
+              "defined_repetitions": 200,
+              "lower_95": -0.4,
+              "mean": -0.145902528027528,
+              "upper_95": 0.0
+            },
+            "label": "replay_top1_diff",
+            "primary_score": "commutator_js",
+            "repetitions": 200
+          },
+          "commutator_js_vs_transfer_negative_margin": {
+            "ap_difference": {
+              "lower_95": -0.4508333333333333,
+              "mean": -0.06201318814922549,
+              "upper_95": 0.29940476190476123
+            },
+            "baseline_score": "transfer_negative_margin",
+            "defined": true,
+            "fixed_threshold_risk_difference": {
+              "defined": true,
+              "defined_repetitions": 200,
+              "lower_95": -0.26666666666666666,
+              "mean": -0.07673230935730936,
+              "upper_95": 0.0
+            },
+            "label": "replay_top1_diff",
+            "primary_score": "commutator_js",
+            "repetitions": 200
+          },
+          "commutator_js_vs_transfer_negative_max_probability": {
+            "ap_difference": {
+              "lower_95": -0.48888888888888893,
+              "mean": 0.00825655672712551,
+              "upper_95": 0.41666666666666674
+            },
+            "baseline_score": "transfer_negative_max_probability",
+            "defined": true,
+            "fixed_threshold_risk_difference": {
+              "defined": true,
+              "defined_repetitions": 200,
+              "lower_95": -0.3339285714285714,
+              "mean": -0.10563002275502276,
+              "upper_95": 0.0
+            },
+            "label": "replay_top1_diff",
+            "primary_score": "commutator_js",
+            "repetitions": 200
+          }
+        }
+      },
+      "replay_repair_risk": 0.25,
+      "scores": {
+        "commutator_cache_nmse": {
+          "full_transfer_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 0.1314026573788826
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 10,
+              "clopper_pearson_upper_95": 0.5069013010632024,
+              "coverage": 0.625,
+              "risk": 0.2,
+              "wilson_upper_95": 0.4592071943125122
+            },
+            "test_ranking": {
+              "aurc": 0.19908780455655456,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.632983682983683,
+              "harm_positive_count": 5,
+              "harm_prevalence": 0.3125,
+              "label": "full_transfer_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.7513953742698181,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.6438319914014936
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.5996893891908329,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.5398469545128194
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.43810543511531136,
+                  "risk": 0.16666666666666666,
+                  "wilson_upper_95": 0.39920691041554024
+                }
+              },
+              "score": "commutator_cache_nmse"
+            }
+          },
+          "replay_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 0.1314026573788826
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 10,
+              "clopper_pearson_upper_95": 0.6066242161054123,
+              "coverage": 0.625,
+              "risk": 0.3,
+              "wilson_upper_95": 0.5583002041301649
+            },
+            "test_ranking": {
+              "aurc": 0.28675126956376956,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.4245754245754246,
+              "harm_positive_count": 4,
+              "harm_prevalence": 0.25,
+              "label": "replay_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.9023885371135856,
+                  "risk": 0.5,
+                  "wilson_upper_95": 0.8175998367453551
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.7107591834981906,
+                  "risk": 0.375,
+                  "wilson_upper_95": 0.6520085615952674
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.5273266035603434,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.4873380318032493
+                }
+              },
+              "score": "commutator_cache_nmse"
+            }
+          }
+        },
+        "commutator_js": {
+          "full_transfer_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 0.08818523585796356
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 10,
+              "clopper_pearson_upper_95": 0.2588655508930522,
+              "coverage": 0.625,
+              "risk": 0.0,
+              "wilson_upper_95": 0.21294197008340698
+            },
+            "test_ranking": {
+              "aurc": 0.06441449175824175,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 1.0,
+              "harm_positive_count": 5,
+              "harm_prevalence": 0.3125,
+              "label": "full_transfer_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.3123439780663678,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.25272359742376327
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.3386806684340324,
+                  "risk": 0.08333333333333333,
+                  "wilson_upper_95": 0.30116827943986896
+                }
+              },
+              "score": "commutator_js"
+            }
+          },
+          "replay_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 0.08818523585796356
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 10,
+              "clopper_pearson_upper_95": 0.2588655508930522,
+              "coverage": 0.625,
+              "risk": 0.0,
+              "wilson_upper_95": 0.21294197008340698
+            },
+            "test_ranking": {
+              "aurc": 0.07620608558108558,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.5666666666666667,
+              "harm_positive_count": 4,
+              "harm_prevalence": 0.25,
+              "label": "replay_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.3123439780663678,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.25272359742376327
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.43810543511531136,
+                  "risk": 0.16666666666666666,
+                  "wilson_upper_95": 0.39920691041554024
+                }
+              },
+              "score": "commutator_js"
+            }
+          }
+        },
+        "random_score": {
+          "full_transfer_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 0.4863409819733937
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 10,
+              "clopper_pearson_upper_95": 0.5069013010632024,
+              "coverage": 0.625,
+              "risk": 0.2,
+              "wilson_upper_95": 0.4592071943125122
+            },
+            "test_ranking": {
+              "aurc": 0.30436898171273175,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.4082051282051282,
+              "harm_positive_count": 5,
+              "harm_prevalence": 0.3125,
+              "label": "full_transfer_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.9023885371135856,
+                  "risk": 0.5,
+                  "wilson_upper_95": 0.8175998367453551
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.5996893891908329,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.5398469545128194
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.6091376982290366,
+                  "risk": 0.3333333333333333,
+                  "wilson_upper_95": 0.5685083866566518
+                }
+              },
+              "score": "random_score"
+            }
+          },
+          "replay_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 0.4863409819733937
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 10,
+              "clopper_pearson_upper_95": 0.5069013010632024,
+              "coverage": 0.625,
+              "risk": 0.2,
+              "wilson_upper_95": 0.4592071943125122
+            },
+            "test_ranking": {
+              "aurc": 0.2650460650460651,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.26245421245421247,
+              "harm_positive_count": 4,
+              "harm_prevalence": 0.25,
+              "label": "replay_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.9023885371135856,
+                  "risk": 0.5,
+                  "wilson_upper_95": 0.8175998367453551
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.5996893891908329,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.5398469545128194
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.6091376982290366,
+                  "risk": 0.3333333333333333,
+                  "wilson_upper_95": 0.5685083866566518
+                }
+              },
+              "score": "random_score"
+            }
+          }
+        },
+        "transfer_entropy": {
+          "full_transfer_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 2.92022442817688
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 7,
+              "clopper_pearson_upper_95": 0.658738563844664,
+              "coverage": 0.4375,
+              "risk": 0.2857142857142857,
+              "wilson_upper_95": 0.5913324544888025
+            },
+            "test_ranking": {
+              "aurc": 0.17939915986790989,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.7569230769230768,
+              "harm_positive_count": 5,
+              "harm_prevalence": 0.3125,
+              "label": "full_transfer_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.7513953742698181,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.6438319914014936
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.5996893891908329,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.5398469545128194
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.43810543511531136,
+                  "risk": 0.16666666666666666,
+                  "wilson_upper_95": 0.39920691041554024
+                }
+              },
+              "score": "transfer_entropy"
+            }
+          },
+          "replay_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 2.92022442817688
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 7,
+              "clopper_pearson_upper_95": 0.5207029735913071,
+              "coverage": 0.4375,
+              "risk": 0.14285714285714285,
+              "wilson_upper_95": 0.4522866946970292
+            },
+            "test_ranking": {
+              "aurc": 0.12021017177267176,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.48541666666666666,
+              "harm_positive_count": 4,
+              "harm_prevalence": 0.25,
+              "label": "replay_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.47067940860113155,
+                  "risk": 0.125,
+                  "wilson_upper_95": 0.41114337433001213
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.43810543511531136,
+                  "risk": 0.16666666666666666,
+                  "wilson_upper_95": 0.39920691041554024
+                }
+              },
+              "score": "transfer_entropy"
+            }
+          }
+        },
+        "transfer_negative_margin": {
+          "full_transfer_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": -0.625
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 12,
+              "clopper_pearson_upper_95": 0.43810543511531136,
+              "coverage": 0.75,
+              "risk": 0.16666666666666666,
+              "wilson_upper_95": 0.39920691041554024
+            },
+            "test_ranking": {
+              "aurc": 0.12644395535020533,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.5976190476190476,
+              "harm_positive_count": 5,
+              "harm_prevalence": 0.3125,
+              "label": "full_transfer_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.47067940860113155,
+                  "risk": 0.125,
+                  "wilson_upper_95": 0.41114337433001213
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.43810543511531136,
+                  "risk": 0.16666666666666666,
+                  "wilson_upper_95": 0.39920691041554024
+                }
+              },
+              "score": "transfer_negative_margin"
+            }
+          },
+          "replay_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": -0.625
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 12,
+              "clopper_pearson_upper_95": 0.3386806684340324,
+              "coverage": 0.75,
+              "risk": 0.08333333333333333,
+              "wilson_upper_95": 0.30116827943986896
+            },
+            "test_ranking": {
+              "aurc": 0.07244005994005995,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.6428571428571428,
+              "harm_positive_count": 4,
+              "harm_prevalence": 0.25,
+              "label": "replay_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.3123439780663678,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.25272359742376327
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.3386806684340324,
+                  "risk": 0.08333333333333333,
+                  "wilson_upper_95": 0.30116827943986896
+                }
+              },
+              "score": "transfer_negative_margin"
+            }
+          }
+        },
+        "transfer_negative_max_probability": {
+          "full_transfer_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": -0.2286807894706726
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 11,
+              "clopper_pearson_upper_95": 0.47008679927917624,
+              "coverage": 0.6875,
+              "risk": 0.18181818181818182,
+              "wilson_upper_95": 0.427142504865978
+            },
+            "test_ranking": {
+              "aurc": 0.18867113788988787,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.6402564102564102,
+              "harm_positive_count": 5,
+              "harm_prevalence": 0.3125,
+              "label": "full_transfer_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.7513953742698181,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.6438319914014936
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.5996893891908329,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.5398469545128194
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.43810543511531136,
+                  "risk": 0.16666666666666666,
+                  "wilson_upper_95": 0.39920691041554024
+                }
+              },
+              "score": "transfer_negative_max_probability"
+            }
+          },
+          "replay_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": -0.2286807894706726
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 11,
+              "clopper_pearson_upper_95": 0.3643594892472425,
+              "coverage": 0.6875,
+              "risk": 0.09090909090909091,
+              "wilson_upper_95": 0.32278187113308937
+            },
+            "test_ranking": {
+              "aurc": 0.0961255758130758,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.5791666666666666,
+              "harm_positive_count": 4,
+              "harm_prevalence": 0.25,
+              "label": "replay_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.47067940860113155,
+                  "risk": 0.125,
+                  "wilson_upper_95": 0.41114337433001213
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.3386806684340324,
+                  "risk": 0.08333333333333333,
+                  "wilson_upper_95": 0.30116827943986896
+                }
+              },
+              "score": "transfer_negative_max_probability"
+            }
+          }
+        }
+      },
+      "test_count": 16
+    }
+  },
+  "native_controls_passed": false,
+  "primary_analysis": {
+    "baseline_score": "transfer_negative_margin",
+    "equal_compute_replay_length": null,
+    "label": "full_transfer_top1_diff",
+    "replay_length": 32,
+    "score": "commutator_js",
+    "statistic": "integration_only"
+  },
+  "risk_limit": 0.05,
+  "score_names": [
+    "commutator_js",
+    "commutator_cache_nmse",
+    "transfer_negative_margin",
+    "transfer_negative_max_probability",
+    "transfer_entropy",
+    "random_score"
+  ],
+  "target_coverage": 0.5
+}

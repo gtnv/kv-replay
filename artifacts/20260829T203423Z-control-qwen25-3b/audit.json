@@ -1,0 +1,11 @@
+{
+  "auditor_sha256": "a66c4c57a7c8ea7af3e34a0c8f6d7ebf8ffbe19d99fc568a7b2ae3328a14bb65",
+  "manifest_sha256": "502c19d9f0d2c3c11e0ffa8ef22c8c467f3b94cdcdcc3fc470faf42a42511d11",
+  "public_metadata_only": true,
+  "recomputed": true,
+  "records": 15,
+  "records_sha256": "520781c9adc17ce4513ecaecabdd0fc558d6918189518332be991e3cc794ec2f",
+  "run": "artifacts/20260829T203423Z-control-qwen25-3b",
+  "source_files_verified": 36,
+  "summary_sha256": "0413834ca1c844a1ed9e2e4f79b0eba9e711dc5e69209a79934a48a5f01a98d7"
+}

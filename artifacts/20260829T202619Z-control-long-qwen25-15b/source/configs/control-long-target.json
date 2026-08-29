@@ -1,0 +1,13 @@
+{
+  "model_id": "Qwen/Qwen2.5-3B-Instruct",
+  "revision": "main",
+  "attention_backend": "sdpa",
+  "native_cache_nmse_limit": 0.001,
+  "identity_continuation_bound": "native_execution_dominance",
+  "control_text_variant": 2,
+  "identity_layers_per_target": [1, 4],
+  "lengths": [1024, 2048, 4096],
+  "replay_lengths": [64, 65],
+  "seed": 1729,
+  "run_name": "control-long-qwen25-3b"
+}

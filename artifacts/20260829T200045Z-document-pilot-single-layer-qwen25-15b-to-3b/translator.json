@@ -1,0 +1,414 @@
+{
+  "diagnostics": [
+    {
+      "key_fit_nmse": 0.0007838064929272577,
+      "key_map_frobenius": 867.8864833571583,
+      "layer": 0,
+      "value_fit_nmse": 0.17042046767666466,
+      "value_map_frobenius": 9.989577444976137
+    },
+    {
+      "key_fit_nmse": 0.003935888661538295,
+      "key_map_frobenius": 107.55191773642703,
+      "layer": 1,
+      "value_fit_nmse": 0.17782188132786195,
+      "value_map_frobenius": 6.774760193382188
+    },
+    {
+      "key_fit_nmse": 0.012966258473066416,
+      "key_map_frobenius": 51.47407809884517,
+      "layer": 2,
+      "value_fit_nmse": 0.3249824327059683,
+      "value_map_frobenius": 5.1569304306081944
+    },
+    {
+      "key_fit_nmse": 0.16500201382003307,
+      "key_map_frobenius": 42.83273320616356,
+      "layer": 3,
+      "value_fit_nmse": 0.3002069848852853,
+      "value_map_frobenius": 8.884674174737492
+    },
+    {
+      "key_fit_nmse": 0.10500100706038129,
+      "key_map_frobenius": 17.990529310367055,
+      "layer": 4,
+      "value_fit_nmse": 0.3605225919319368,
+      "value_map_frobenius": 8.898098729676347
+    },
+    {
+      "key_fit_nmse": 0.2484799965217147,
+      "key_map_frobenius": 20.137471778535417,
+      "layer": 5,
+      "value_fit_nmse": 0.43013601837313525,
+      "value_map_frobenius": 7.281626020192096
+    },
+    {
+      "key_fit_nmse": 0.10805203820974632,
+      "key_map_frobenius": 18.153367420658647,
+      "layer": 6,
+      "value_fit_nmse": 0.5642521979133562,
+      "value_map_frobenius": 8.713061257075754
+    },
+    {
+      "key_fit_nmse": 0.15037523798510335,
+      "key_map_frobenius": 17.525448589712255,
+      "layer": 7,
+      "value_fit_nmse": 0.5595991783946547,
+      "value_map_frobenius": 9.704581561106082
+    },
+    {
+      "key_fit_nmse": 0.14149139339064362,
+      "key_map_frobenius": 15.278389155182873,
+      "layer": 8,
+      "value_fit_nmse": 0.6253230906535069,
+      "value_map_frobenius": 11.043638332837446
+    },
+    {
+      "key_fit_nmse": 0.13002842674472187,
+      "key_map_frobenius": 45.163860253781365,
+      "layer": 9,
+      "value_fit_nmse": 0.6027834180442735,
+      "value_map_frobenius": 9.980926993763694
+    },
+    {
+      "key_fit_nmse": 0.13575549995843472,
+      "key_map_frobenius": 16.338006080508606,
+      "layer": 10,
+      "value_fit_nmse": 0.5277503906104416,
+      "value_map_frobenius": 9.7456632284826
+    },
+    {
+      "key_fit_nmse": 0.09273455393012775,
+      "key_map_frobenius": 15.210969673556402,
+      "layer": 11,
+      "value_fit_nmse": 0.5366143544612804,
+      "value_map_frobenius": 9.230450887110313
+    },
+    {
+      "key_fit_nmse": 0.1141972114334705,
+      "key_map_frobenius": 13.871014308670992,
+      "layer": 12,
+      "value_fit_nmse": 0.5397329383031918,
+      "value_map_frobenius": 10.116986031892631
+    },
+    {
+      "key_fit_nmse": 0.1468419615362921,
+      "key_map_frobenius": 16.29478345818284,
+      "layer": 13,
+      "value_fit_nmse": 0.4054881859202806,
+      "value_map_frobenius": 8.85587083528448
+    },
+    {
+      "key_fit_nmse": 0.09302299033549641,
+      "key_map_frobenius": 16.17622365649983,
+      "layer": 14,
+      "value_fit_nmse": 0.4278135096472345,
+      "value_map_frobenius": 9.60991257783142
+    },
+    {
+      "key_fit_nmse": 0.09482066481072254,
+      "key_map_frobenius": 17.21021006539705,
+      "layer": 15,
+      "value_fit_nmse": 0.3425311460306809,
+      "value_map_frobenius": 10.745716666959003
+    },
+    {
+      "key_fit_nmse": 0.08395554688343776,
+      "key_map_frobenius": 20.835017058271315,
+      "layer": 16,
+      "value_fit_nmse": 0.5252144603651661,
+      "value_map_frobenius": 9.527633895920333
+    },
+    {
+      "key_fit_nmse": 0.17673056603662096,
+      "key_map_frobenius": 20.172445657395574,
+      "layer": 17,
+      "value_fit_nmse": 0.3707904843438466,
+      "value_map_frobenius": 11.010998529120958
+    },
+    {
+      "key_fit_nmse": 0.04744845696783147,
+      "key_map_frobenius": 42.43622987852611,
+      "layer": 18,
+      "value_fit_nmse": 0.47982988675726307,
+      "value_map_frobenius": 10.485805590938606
+    },
+    {
+      "key_fit_nmse": 0.1183171434116549,
+      "key_map_frobenius": 108.07555267151749,
+      "layer": 19,
+      "value_fit_nmse": 0.4408081872120986,
+      "value_map_frobenius": 10.261038239686567
+    },
+    {
+      "key_fit_nmse": 0.11698308025080388,
+      "key_map_frobenius": 126.17677732553231,
+      "layer": 20,
+      "value_fit_nmse": 0.5665211327350875,
+      "value_map_frobenius": 10.33901880654448
+    },
+    {
+      "key_fit_nmse": 0.12078128414310482,
+      "key_map_frobenius": 28.512325460768743,
+      "layer": 21,
+      "value_fit_nmse": 0.39883630048380514,
+      "value_map_frobenius": 10.856391451679876
+    },
+    {
+      "key_fit_nmse": 0.1745932609710514,
+      "key_map_frobenius": 22.383884283135757,
+      "layer": 22,
+      "value_fit_nmse": 0.5264688161021338,
+      "value_map_frobenius": 9.924044981667507
+    },
+    {
+      "key_fit_nmse": 0.12759180550185997,
+      "key_map_frobenius": 30.78323379691432,
+      "layer": 23,
+      "value_fit_nmse": 0.38605546020042,
+      "value_map_frobenius": 8.940607772495378
+    },
+    {
+      "key_fit_nmse": 0.10792417498870431,
+      "key_map_frobenius": 19.940914148353624,
+      "layer": 24,
+      "value_fit_nmse": 0.48529221401811984,
+      "value_map_frobenius": 7.739363952753629
+    },
+    {
+      "key_fit_nmse": 0.11596048724815698,
+      "key_map_frobenius": 23.30072173287717,
+      "layer": 25,
+      "value_fit_nmse": 0.4405800400254198,
+      "value_map_frobenius": 10.878910305022476
+    },
+    {
+      "key_fit_nmse": 0.10936376120352351,
+      "key_map_frobenius": 18.528285888912865,
+      "layer": 26,
+      "value_fit_nmse": 0.5070646296630277,
+      "value_map_frobenius": 8.951685481264922
+    },
+    {
+      "key_fit_nmse": 0.01655860727046009,
+      "key_map_frobenius": 71.61939035629406,
+      "layer": 27,
+      "value_fit_nmse": 0.40579422289286254,
+      "value_map_frobenius": 11.389269657273953
+    },
+    {
+      "key_fit_nmse": 0.11779148446895445,
+      "key_map_frobenius": 18.33202629201659,
+      "layer": 28,
+      "value_fit_nmse": 0.5486420118959672,
+      "value_map_frobenius": 8.717750308979024
+    },
+    {
+      "key_fit_nmse": 0.07661950257400794,
+      "key_map_frobenius": 33.346420690141514,
+      "layer": 29,
+      "value_fit_nmse": 0.5564332560784793,
+      "value_map_frobenius": 9.825618258098856
+    },
+    {
+      "key_fit_nmse": 0.12811639213755974,
+      "key_map_frobenius": 17.247825982527434,
+      "layer": 30,
+      "value_fit_nmse": 0.4567557150236723,
+      "value_map_frobenius": 16.192182207952985
+    },
+    {
+      "key_fit_nmse": 0.11159725805491999,
+      "key_map_frobenius": 23.156006006530944,
+      "layer": 31,
+      "value_fit_nmse": 0.49071836331376234,
+      "value_map_frobenius": 16.494244932647238
+    },
+    {
+      "key_fit_nmse": 0.1524156738878587,
+      "key_map_frobenius": 22.661082922740935,
+      "layer": 32,
+      "value_fit_nmse": 0.496775166823712,
+      "value_map_frobenius": 29.758877723795276
+    },
+    {
+      "key_fit_nmse": 0.15878493453369538,
+      "key_map_frobenius": 18.96644307436364,
+      "layer": 33,
+      "value_fit_nmse": 0.519317750580997,
+      "value_map_frobenius": 47.46614991518254
+    },
+    {
+      "key_fit_nmse": 0.1659109655332076,
+      "key_map_frobenius": 26.691422565420826,
+      "layer": 34,
+      "value_fit_nmse": 0.626279857513316,
+      "value_map_frobenius": 23.183082562544556
+    },
+    {
+      "key_fit_nmse": 0.09642652320423888,
+      "key_map_frobenius": 35.56415184008963,
+      "layer": 35,
+      "value_fit_nmse": 0.6347513104677246,
+      "value_map_frobenius": 31.086479569117007
+    }
+  ],
+  "layer_group_policy": "contiguous_anchor_deeper_tie_v1",
+  "layer_groups": [
+    [
+      0
+    ],
+    [
+      1
+    ],
+    [
+      2
+    ],
+    [
+      2
+    ],
+    [
+      3
+    ],
+    [
+      4
+    ],
+    [
+      5
+    ],
+    [
+      5
+    ],
+    [
+      6
+    ],
+    [
+      7
+    ],
+    [
+      8
+    ],
+    [
+      8
+    ],
+    [
+      9
+    ],
+    [
+      10
+    ],
+    [
+      11
+    ],
+    [
+      12
+    ],
+    [
+      12
+    ],
+    [
+      13
+    ],
+    [
+      14
+    ],
+    [
+      15
+    ],
+    [
+      15
+    ],
+    [
+      16
+    ],
+    [
+      17
+    ],
+    [
+      18
+    ],
+    [
+      19
+    ],
+    [
+      19
+    ],
+    [
+      20
+    ],
+    [
+      21
+    ],
+    [
+      22
+    ],
+    [
+      22
+    ],
+    [
+      23
+    ],
+    [
+      24
+    ],
+    [
+      25
+    ],
+    [
+      25
+    ],
+    [
+      26
+    ],
+    [
+      27
+    ]
+  ],
+  "layer_map": [
+    0,
+    1,
+    2,
+    2,
+    3,
+    4,
+    5,
+    5,
+    6,
+    7,
+    8,
+    8,
+    9,
+    10,
+    11,
+    12,
+    12,
+    13,
+    14,
+    15,
+    15,
+    16,
+    17,
+    18,
+    19,
+    19,
+    20,
+    21,
+    22,
+    22,
+    23,
+    24,
+    25,
+    25,
+    26,
+    27
+  ],
+  "ridge": 0.01,
+  "samples": 8192,
+  "source_layers": 28,
+  "source_layers_per_target": 1,
+  "source_width": 256,
+  "source_width_per_layer": 256,
+  "target_layers": 36,
+  "target_width": 256,
+  "translator_schema": 2
+}

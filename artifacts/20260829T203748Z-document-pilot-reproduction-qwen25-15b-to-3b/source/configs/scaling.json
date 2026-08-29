@@ -1,0 +1,15 @@
+{
+  "main_run": "artifacts/20260829T195327Z-document-pilot-qwen25-15b-to-3b",
+  "source_long_control_run": "artifacts/20260829T202619Z-control-long-qwen25-15b",
+  "target_long_control_run": "artifacts/20260829T202740Z-control-long-qwen25-3b",
+  "dataset_split": "test",
+  "sequence_lengths": [256, 1024, 2048, 4096],
+  "replay_length": 64,
+  "sequences": 16,
+  "timing_warmup": 2,
+  "timing_repeats": 3,
+  "bootstrap_repetitions": 2000,
+  "bootstrap_seed": 31415,
+  "seed": 1729,
+  "run_name": "context-scaling-qwen25-15b-to-3b"
+}

@@ -1,0 +1,3341 @@
+{
+  "bootstrap_repetitions": 200,
+  "bootstrap_seed": 2718,
+  "conditions": {
+    "32": {
+      "baselines": {
+        "full_transfer": {
+          "clopper_pearson_upper_95": 0.5483470808487474,
+          "errors": 5,
+          "risk": 0.3125,
+          "timing": {
+            "cuda_savings_vs_native_prefill": -0.4969509724858425,
+            "median_cuda_ms": 23.090192794799805,
+            "median_wall_ms": 23.097391500414233,
+            "path": "full_transfer_action",
+            "target_token_equivalents": 1,
+            "target_token_savings_vs_native_prefill": 0.9921875,
+            "wall_savings_vs_native_prefill": -0.49665067156301923
+          },
+          "wilson_upper_95": 0.5179738146383297
+        },
+        "unconditional_replay": {
+          "clopper_pearson_upper_95": 0.4165722807061528,
+          "errors": 3,
+          "risk": 0.1875,
+          "timing": {
+            "cuda_savings_vs_native_prefill": -0.8710203908516283,
+            "median_cuda_ms": 28.86014461517334,
+            "median_wall_ms": 28.867695499684487,
+            "path": "probe_route:32",
+            "target_token_equivalents": 33,
+            "target_token_savings_vs_native_prefill": 0.7421875,
+            "wall_savings_vs_native_prefill": -0.8705513068566506
+          },
+          "wilson_upper_95": 0.38786974244785427
+        }
+      },
+      "calibration_count": 8,
+      "full_transfer_risk": 0.3125,
+      "native_chunk_control": {
+        "cache_nmse_limit": 0.001,
+        "calibration_max_cache_nmse": 4.017243100665596e-05,
+        "calibration_top1_error_rate": 0.0,
+        "calibration_top1_errors": 0,
+        "commutator_cache_above_native_floor_fraction": 1.0,
+        "commutator_js_above_native_floor_fraction": 1.0,
+        "interpretation": "top1 differences measure the native execution-path action-noise floor; cache NMSE is the hard validity gate",
+        "max_cache_nmse": 4.553445617367007e-05,
+        "max_js": 0.000463834818219766,
+        "median_cache_nmse": 3.287734805310847e-05,
+        "median_js": 0.0003513692499836907,
+        "passed": true,
+        "test_top1_error_rate": 0.0,
+        "test_top1_errors": 0
+      },
+      "paired_bootstrap": {
+        "full_transfer_top1_diff": {
+          "commutator_js_vs_transfer_entropy": {
+            "ap_difference": {
+              "lower_95": 0.0,
+              "mean": 0.20778469436760896,
+              "upper_95": 0.6414377289377284
+            },
+            "baseline_score": "transfer_entropy",
+            "defined": true,
+            "fixed_threshold_risk_difference": {
+              "defined": true,
+              "defined_repetitions": 200,
+              "lower_95": -0.6260416666666666,
+              "mean": -0.2844069125319125,
+              "upper_95": 0.0
+            },
+            "label": "full_transfer_top1_diff",
+            "primary_score": "commutator_js",
+            "repetitions": 200
+          },
+          "commutator_js_vs_transfer_negative_margin": {
+            "ap_difference": {
+              "lower_95": 0.0,
+              "mean": 0.3020576031021648,
+              "upper_95": 0.6253472222222223
+            },
+            "baseline_score": "transfer_negative_margin",
+            "defined": true,
+            "fixed_threshold_risk_difference": {
+              "defined": true,
+              "defined_repetitions": 200,
+              "lower_95": -0.4,
+              "mean": -0.16063032106782107,
+              "upper_95": 0.0
+            },
+            "label": "full_transfer_top1_diff",
+            "primary_score": "commutator_js",
+            "repetitions": 200
+          },
+          "commutator_js_vs_transfer_negative_max_probability": {
+            "ap_difference": {
+              "lower_95": 0.0,
+              "mean": 0.3026228711599247,
+              "upper_95": 0.7010606060606063
+            },
+            "baseline_score": "transfer_negative_max_probability",
+            "defined": true,
+            "fixed_threshold_risk_difference": {
+              "defined": true,
+              "defined_repetitions": 200,
+              "lower_95": -0.45454545454545453,
+              "mean": -0.17453035853035853,
+              "upper_95": 0.0
+            },
+            "label": "full_transfer_top1_diff",
+            "primary_score": "commutator_js",
+            "repetitions": 200
+          }
+        },
+        "replay_top1_diff": {
+          "commutator_js_vs_transfer_entropy": {
+            "ap_difference": {
+              "lower_95": -0.5188988095238095,
+              "mean": -0.006291259741186112,
+              "upper_95": 0.34132692307692286
+            },
+            "baseline_score": "transfer_entropy",
+            "defined": true,
+            "fixed_threshold_risk_difference": {
+              "defined": true,
+              "defined_repetitions": 200,
+              "lower_95": -0.42857142857142855,
+              "mean": -0.14633423520923522,
+              "upper_95": 0.0
+            },
+            "label": "replay_top1_diff",
+            "primary_score": "commutator_js",
+            "repetitions": 200
+          },
+          "commutator_js_vs_transfer_negative_margin": {
+            "ap_difference": {
+              "lower_95": -0.4015277777777777,
+              "mean": -0.06342451262188104,
+              "upper_95": 0.2099702380952381
+            },
+            "baseline_score": "transfer_negative_margin",
+            "defined": true,
+            "fixed_threshold_risk_difference": {
+              "defined": true,
+              "defined_repetitions": 200,
+              "lower_95": -0.25089285714285714,
+              "mean": -0.08688545482295482,
+              "upper_95": 0.0
+            },
+            "label": "replay_top1_diff",
+            "primary_score": "commutator_js",
+            "repetitions": 200
+          },
+          "commutator_js_vs_transfer_negative_max_probability": {
+            "ap_difference": {
+              "lower_95": -0.5870833333333334,
+              "mean": -0.1207574082043948,
+              "upper_95": 0.2484615384615384
+            },
+            "baseline_score": "transfer_negative_max_probability",
+            "defined": true,
+            "fixed_threshold_risk_difference": {
+              "defined": true,
+              "defined_repetitions": 200,
+              "lower_95": -0.25,
+              "mean": -0.0860194388944389,
+              "upper_95": 0.0
+            },
+            "label": "replay_top1_diff",
+            "primary_score": "commutator_js",
+            "repetitions": 200
+          }
+        }
+      },
+      "replay_repair_risk": 0.1875,
+      "scores": {
+        "commutator_cache_nmse": {
+          "full_transfer_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 0.12663639203833066
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 5,
+              "clopper_pearson_upper_95": 0.6574083180011386,
+              "coverage": 0.3125,
+              "risk": 0.2,
+              "wilson_upper_95": 0.5647074465784568
+            },
+            "test_policy_timing": {
+              "accepted_coverage": 0.3125,
+              "candidate_already_computed_by_score": true,
+              "candidate_path": "full_transfer_action",
+              "complete_policy_measurement": {
+                "branches": {
+                  "accepted": {
+                    "mean_cuda_ms": 54.5954475402832,
+                    "mean_wall_ms": 54.61063800021293,
+                    "median_cuda_ms": 54.4007511138916,
+                    "median_wall_ms": 54.41604600036953,
+                    "samples": 4
+                  },
+                  "rejected": {
+                    "mean_cuda_ms": 73.8188304901123,
+                    "mean_wall_ms": 73.82725875004326,
+                    "median_cuda_ms": 72.84519958496094,
+                    "median_wall_ms": 72.85386500007007,
+                    "samples": 4
+                  }
+                },
+                "cuda_savings_vs_native_prefill": -3.3819096422284476,
+                "path": "policy__commutator_cache_nmse__full_transfer_top1_diff:32",
+                "samples": 8,
+                "test_coverage_weighted_mean_cuda_ms": 67.81152331829071,
+                "test_coverage_weighted_mean_wall_ms": 67.82206476572128,
+                "timing_sample_accepted_fraction": 0.5,
+                "wall_savings_vs_native_prefill": -3.3803900818700345
+              },
+              "component_model_expected_cuda_ms": 66.59467402100563,
+              "component_model_expected_wall_ms": 66.62351784336806,
+              "cuda_savings_vs_native_prefill": -3.317372441367109,
+              "expected_target_token_equivalents_with_fallback": 122.0,
+              "score_components": [
+                "commutator_cache_nmse_overhead:32",
+                "full_transfer_action",
+                "probe_route:32"
+              ],
+              "target_token_savings_vs_native_prefill": 0.046875,
+              "wall_savings_vs_native_prefill": -3.317030030009205
+            },
+            "test_ranking": {
+              "aurc": 0.1726741140803641,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.696923076923077,
+              "harm_positive_count": 5,
+              "harm_prevalence": 0.3125,
+              "label": "full_transfer_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.7513953742698181,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.6438319914014936
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.47067940860113155,
+                  "risk": 0.125,
+                  "wilson_upper_95": 0.41114337433001213
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.5273266035603434,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.4873380318032493
+                }
+              },
+              "score": "commutator_cache_nmse"
+            }
+          },
+          "replay_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 0.12663639203833066
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 5,
+              "clopper_pearson_upper_95": 0.45071972834694096,
+              "coverage": 0.3125,
+              "risk": 0.0,
+              "wilson_upper_95": 0.3511165007651012
+            },
+            "test_policy_timing": {
+              "accepted_coverage": 0.3125,
+              "candidate_already_computed_by_score": true,
+              "candidate_path": "probe_route:32",
+              "complete_policy_measurement": {
+                "branches": {
+                  "accepted": {
+                    "mean_cuda_ms": 54.71540832519531,
+                    "mean_wall_ms": 54.732427750423085,
+                    "median_cuda_ms": 54.66815948486328,
+                    "median_wall_ms": 54.683315500369645,
+                    "samples": 4
+                  },
+                  "rejected": {
+                    "mean_cuda_ms": 70.88894271850586,
+                    "mean_wall_ms": 70.8973222504028,
+                    "median_cuda_ms": 70.13159942626953,
+                    "median_wall_ms": 70.14086650042373,
+                    "samples": 4
+                  }
+                },
+                "cuda_savings_vs_native_prefill": -3.2541702433170947,
+                "path": "policy__commutator_cache_nmse__replay_top1_diff:32",
+                "samples": 8,
+                "test_coverage_weighted_mean_cuda_ms": 65.83471322059631,
+                "test_coverage_weighted_mean_wall_ms": 65.84579271915914,
+                "timing_sample_accepted_fraction": 0.5,
+                "wall_savings_vs_native_prefill": -3.252749578713116
+              },
+              "component_model_expected_cuda_ms": 66.59467402100563,
+              "component_model_expected_wall_ms": 66.62351784336806,
+              "cuda_savings_vs_native_prefill": -3.317372441367109,
+              "expected_target_token_equivalents_with_fallback": 122.0,
+              "score_components": [
+                "commutator_cache_nmse_overhead:32",
+                "full_transfer_action",
+                "probe_route:32"
+              ],
+              "target_token_savings_vs_native_prefill": 0.046875,
+              "wall_savings_vs_native_prefill": -3.317030030009205
+            },
+            "test_ranking": {
+              "aurc": 0.14450176559551559,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.22186147186147184,
+              "harm_positive_count": 3,
+              "harm_prevalence": 0.1875,
+              "label": "replay_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.47067940860113155,
+                  "risk": 0.125,
+                  "wilson_upper_95": 0.41114337433001213
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.5273266035603434,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.4873380318032493
+                }
+              },
+              "score": "commutator_cache_nmse"
+            }
+          }
+        },
+        "commutator_js": {
+          "full_transfer_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 0.09710925072431564
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 9,
+              "clopper_pearson_upper_95": 0.28312883556311347,
+              "coverage": 0.5625,
+              "risk": 0.0,
+              "wilson_upper_95": 0.23113351931975665
+            },
+            "test_policy_timing": {
+              "accepted_coverage": 0.5625,
+              "candidate_already_computed_by_score": true,
+              "candidate_path": "full_transfer_action",
+              "complete_policy_measurement": {
+                "branches": {
+                  "accepted": {
+                    "mean_cuda_ms": 50.74533748626709,
+                    "mean_wall_ms": 50.76359074996617,
+                    "median_cuda_ms": 50.70270538330078,
+                    "median_wall_ms": 50.723845999982586,
+                    "samples": 4
+                  },
+                  "rejected": {
+                    "mean_cuda_ms": 66.27960205078125,
+                    "mean_wall_ms": 66.28808275013398,
+                    "median_cuda_ms": 66.05814743041992,
+                    "median_wall_ms": 66.06641250027678,
+                    "samples": 4
+                  }
+                },
+                "cuda_savings_vs_native_prefill": -2.718276542849406,
+                "path": "policy__commutator_js__full_transfer_top1_diff:32",
+                "samples": 8,
+                "test_coverage_weighted_mean_cuda_ms": 57.541578233242035,
+                "test_coverage_weighted_mean_wall_ms": 57.55555600003959,
+                "timing_sample_accepted_fraction": 0.5,
+                "wall_savings_vs_native_prefill": -2.71731216868693
+              },
+              "component_model_expected_cuda_ms": 58.87000625580549,
+              "component_model_expected_wall_ms": 58.895354719084025,
+              "cuda_savings_vs_native_prefill": -2.8165776222848438,
+              "expected_target_token_equivalents_with_fallback": 90.0,
+              "score_components": [
+                "commutator_js_overhead:32",
+                "full_transfer_action",
+                "probe_route:32"
+              ],
+              "target_token_savings_vs_native_prefill": 0.296875,
+              "wall_savings_vs_native_prefill": -2.8162652345689563
+            },
+            "test_ranking": {
+              "aurc": 0.07009630994005994,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.9666666666666667,
+              "harm_positive_count": 5,
+              "harm_prevalence": 0.3125,
+              "label": "full_transfer_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.3123439780663678,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.25272359742376327
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.3386806684340324,
+                  "risk": 0.08333333333333333,
+                  "wilson_upper_95": 0.30116827943986896
+                }
+              },
+              "score": "commutator_js"
+            }
+          },
+          "replay_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 0.09710925072431564
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 9,
+              "clopper_pearson_upper_95": 0.28312883556311347,
+              "coverage": 0.5625,
+              "risk": 0.0,
+              "wilson_upper_95": 0.23113351931975665
+            },
+            "test_policy_timing": {
+              "accepted_coverage": 0.5625,
+              "candidate_already_computed_by_score": true,
+              "candidate_path": "probe_route:32",
+              "complete_policy_measurement": {
+                "branches": {
+                  "accepted": {
+                    "mean_cuda_ms": 52.211055755615234,
+                    "mean_wall_ms": 52.22727325008236,
+                    "median_cuda_ms": 51.832719802856445,
+                    "median_wall_ms": 51.84967049990519,
+                    "samples": 4
+                  },
+                  "rejected": {
+                    "mean_cuda_ms": 66.20966529846191,
+                    "mean_wall_ms": 66.21804774999873,
+                    "median_cuda_ms": 66.24494552612305,
+                    "median_wall_ms": 66.25320750026731,
+                    "samples": 4
+                  }
+                },
+                "cuda_savings_vs_native_prefill": -2.76957553924991,
+                "path": "policy__commutator_js__replay_top1_diff:32",
+                "samples": 8,
+                "test_coverage_weighted_mean_cuda_ms": 58.33544743061066,
+                "test_coverage_weighted_mean_wall_ms": 58.348237093795774,
+                "timing_sample_accepted_fraction": 0.5,
+                "wall_savings_vs_native_prefill": -2.768508669606944
+              },
+              "component_model_expected_cuda_ms": 58.87000625580549,
+              "component_model_expected_wall_ms": 58.895354719084025,
+              "cuda_savings_vs_native_prefill": -2.8165776222848438,
+              "expected_target_token_equivalents_with_fallback": 90.0,
+              "score_components": [
+                "commutator_js_overhead:32",
+                "full_transfer_action",
+                "probe_route:32"
+              ],
+              "target_token_savings_vs_native_prefill": 0.296875,
+              "wall_savings_vs_native_prefill": -2.8162652345689563
+            },
+            "test_ranking": {
+              "aurc": 0.0743831689144189,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.3595238095238095,
+              "harm_positive_count": 3,
+              "harm_prevalence": 0.1875,
+              "label": "replay_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.3123439780663678,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.25272359742376327
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.43810543511531136,
+                  "risk": 0.16666666666666666,
+                  "wilson_upper_95": 0.39920691041554024
+                }
+              },
+              "score": "commutator_js"
+            }
+          }
+        },
+        "random_score": {
+          "full_transfer_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 0.48790594825711836
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 7,
+              "clopper_pearson_upper_95": 0.658738563844664,
+              "coverage": 0.4375,
+              "risk": 0.2857142857142857,
+              "wilson_upper_95": 0.5913324544888025
+            },
+            "test_policy_timing": {
+              "accepted_coverage": 0.4375,
+              "candidate_already_computed_by_score": false,
+              "candidate_path": "full_transfer_action",
+              "complete_policy_measurement": {
+                "branches": {
+                  "accepted": {
+                    "mean_cuda_ms": 23.045495986938477,
+                    "mean_wall_ms": 23.05313774991191,
+                    "median_cuda_ms": 23.055312156677246,
+                    "median_wall_ms": 23.062938500061136,
+                    "samples": 4
+                  },
+                  "rejected": {
+                    "mean_cuda_ms": 15.143968105316162,
+                    "mean_wall_ms": 15.154597999980979,
+                    "median_cuda_ms": 15.121088027954102,
+                    "median_wall_ms": 15.134163500079012,
+                    "samples": 4
+                  }
+                },
+                "cuda_savings_vs_native_prefill": -0.2019698150757785,
+                "path": "policy__random_score__full_transfer_top1_diff:32",
+                "samples": 8,
+                "test_coverage_weighted_mean_cuda_ms": 18.600886553525925,
+                "test_coverage_weighted_mean_wall_ms": 18.610209140575762,
+                "timing_sample_accepted_fraction": 0.5,
+                "wall_savings_vs_native_prefill": -0.20196835384621137
+              },
+              "component_model_expected_cuda_ms": 18.7784181535244,
+              "component_model_expected_wall_ms": 18.786014062698086,
+              "cuda_savings_vs_native_prefill": -0.2174160504625562,
+              "expected_target_token_equivalents_with_fallback": 72.4375,
+              "score_components": [],
+              "target_token_savings_vs_native_prefill": 0.43408203125,
+              "wall_savings_vs_native_prefill": -0.21728466880882102
+            },
+            "test_ranking": {
+              "aurc": 0.20588187853812856,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.40424242424242424,
+              "harm_positive_count": 5,
+              "harm_prevalence": 0.3125,
+              "label": "full_transfer_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.7107591834981906,
+                  "risk": 0.375,
+                  "wilson_upper_95": 0.6520085615952674
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.5273266035603434,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.4873380318032493
+                }
+              },
+              "score": "random_score"
+            }
+          },
+          "replay_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 0.48790594825711836
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 7,
+              "clopper_pearson_upper_95": 0.658738563844664,
+              "coverage": 0.4375,
+              "risk": 0.2857142857142857,
+              "wilson_upper_95": 0.5913324544888025
+            },
+            "test_policy_timing": {
+              "accepted_coverage": 0.4375,
+              "candidate_already_computed_by_score": false,
+              "candidate_path": "probe_route:32",
+              "complete_policy_measurement": {
+                "branches": {
+                  "accepted": {
+                    "mean_cuda_ms": 30.001248359680176,
+                    "mean_wall_ms": 30.009466000137763,
+                    "median_cuda_ms": 29.463552474975586,
+                    "median_wall_ms": 29.47172199992565,
+                    "samples": 4
+                  },
+                  "rejected": {
+                    "mean_cuda_ms": 15.392584085464478,
+                    "mean_wall_ms": 15.400668250094895,
+                    "median_cuda_ms": 15.178864002227783,
+                    "median_wall_ms": 15.187284499916132,
+                    "samples": 4
+                  }
+                },
+                "cuda_savings_vs_native_prefill": -0.407651177054299,
+                "path": "policy__random_score__replay_top1_diff:32",
+                "samples": 8,
+                "test_coverage_weighted_mean_cuda_ms": 21.783874705433846,
+                "test_coverage_weighted_mean_wall_ms": 21.79201726573865,
+                "timing_sample_accepted_fraction": 0.5,
+                "wall_savings_vs_native_prefill": -0.40747021820291773
+              },
+              "component_model_expected_cuda_ms": 21.30277207493782,
+              "component_model_expected_wall_ms": 21.310522062378823,
+              "cuda_savings_vs_native_prefill": -0.3810714209975874,
+              "expected_target_token_equivalents_with_fallback": 86.4375,
+              "score_components": [],
+              "target_token_savings_vs_native_prefill": 0.32470703125,
+              "wall_savings_vs_native_prefill": -0.3808661967497846
+            },
+            "test_ranking": {
+              "aurc": 0.1935345036907537,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.19308469308469312,
+              "harm_positive_count": 3,
+              "harm_prevalence": 0.1875,
+              "label": "replay_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.7513953742698181,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.6438319914014936
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.5996893891908329,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.5398469545128194
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.5273266035603434,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.4873380318032493
+                }
+              },
+              "score": "random_score"
+            }
+          }
+        },
+        "transfer_entropy": {
+          "full_transfer_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 2.92022442817688
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 7,
+              "clopper_pearson_upper_95": 0.658738563844664,
+              "coverage": 0.4375,
+              "risk": 0.2857142857142857,
+              "wilson_upper_95": 0.5913324544888025
+            },
+            "test_policy_timing": {
+              "accepted_coverage": 0.4375,
+              "candidate_already_computed_by_score": true,
+              "candidate_path": "full_transfer_action",
+              "complete_policy_measurement": {
+                "branches": {
+                  "accepted": {
+                    "mean_cuda_ms": 23.414512157440186,
+                    "mean_wall_ms": 23.42893200011531,
+                    "median_cuda_ms": 23.21737575531006,
+                    "median_wall_ms": 23.231831500197586,
+                    "samples": 4
+                  },
+                  "rejected": {
+                    "mean_cuda_ms": 39.429359436035156,
+                    "mean_wall_ms": 39.43751824999708,
+                    "median_cuda_ms": 38.85315132141113,
+                    "median_wall_ms": 38.86108750020867,
+                    "samples": 4
+                  }
+                },
+                "cuda_savings_vs_native_prefill": -1.0951315108370716,
+                "path": "policy__transfer_entropy__full_transfer_top1_diff:32",
+                "samples": 8,
+                "test_coverage_weighted_mean_cuda_ms": 32.42286375164986,
+                "test_coverage_weighted_mean_wall_ms": 32.43376176567381,
+                "timing_sample_accepted_fraction": 0.5,
+                "wall_savings_vs_native_prefill": -1.0947832957733779
+              },
+              "component_model_expected_cuda_ms": 31.864043600857258,
+              "component_model_expected_wall_ms": 31.882296781873265,
+              "cuda_savings_vs_native_prefill": -1.0657649539581557,
+              "expected_target_token_equivalents_with_fallback": 73.0,
+              "score_components": [
+                "full_transfer_action",
+                "transfer_entropy_overhead"
+              ],
+              "target_token_savings_vs_native_prefill": 0.4296875,
+              "wall_savings_vs_native_prefill": -1.0658896000748115
+            },
+            "test_ranking": {
+              "aurc": 0.17939915986790989,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.7569230769230768,
+              "harm_positive_count": 5,
+              "harm_prevalence": 0.3125,
+              "label": "full_transfer_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.7513953742698181,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.6438319914014936
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.5996893891908329,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.5398469545128194
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.43810543511531136,
+                  "risk": 0.16666666666666666,
+                  "wilson_upper_95": 0.39920691041554024
+                }
+              },
+              "score": "transfer_entropy"
+            }
+          },
+          "replay_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 2.92022442817688
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 7,
+              "clopper_pearson_upper_95": 0.5207029735913071,
+              "coverage": 0.4375,
+              "risk": 0.14285714285714285,
+              "wilson_upper_95": 0.4522866946970292
+            },
+            "test_policy_timing": {
+              "accepted_coverage": 0.4375,
+              "candidate_already_computed_by_score": false,
+              "candidate_path": "probe_route:32",
+              "complete_policy_measurement": {
+                "branches": {
+                  "accepted": {
+                    "mean_cuda_ms": 51.01589584350586,
+                    "mean_wall_ms": 51.02400574992316,
+                    "median_cuda_ms": 50.938751220703125,
+                    "median_wall_ms": 50.9458954998081,
+                    "samples": 4
+                  },
+                  "rejected": {
+                    "mean_cuda_ms": 39.13361644744873,
+                    "mean_wall_ms": 39.14155699976618,
+                    "median_cuda_ms": 38.38008117675781,
+                    "median_wall_ms": 38.38802399968699,
+                    "samples": 4
+                  }
+                },
+                "cuda_savings_vs_native_prefill": -1.8646947731446764,
+                "path": "policy__transfer_entropy__replay_top1_diff:32",
+                "samples": 8,
+                "test_coverage_weighted_mean_cuda_ms": 44.332113683223724,
+                "test_coverage_weighted_mean_wall_ms": 44.34012832795986,
+                "timing_sample_accepted_fraction": 0.5,
+                "wall_savings_vs_native_prefill": -1.863773891690871
+              },
+              "component_model_expected_cuda_ms": 44.490356869995594,
+              "component_model_expected_wall_ms": 44.51191356298523,
+              "cuda_savings_vs_native_prefill": -1.8843363749557431,
+              "expected_target_token_equivalents_with_fallback": 87.4375,
+              "score_components": [
+                "full_transfer_action",
+                "transfer_entropy_overhead"
+              ],
+              "target_token_savings_vs_native_prefill": 0.31689453125,
+              "wall_savings_vs_native_prefill": -1.884255796824596
+            },
+            "test_ranking": {
+              "aurc": 0.13058963605838605,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.3333333333333333,
+              "harm_positive_count": 3,
+              "harm_prevalence": 0.1875,
+              "label": "replay_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.47067940860113155,
+                  "risk": 0.125,
+                  "wilson_upper_95": 0.41114337433001213
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.43810543511531136,
+                  "risk": 0.16666666666666666,
+                  "wilson_upper_95": 0.39920691041554024
+                }
+              },
+              "score": "transfer_entropy"
+            }
+          }
+        },
+        "transfer_negative_margin": {
+          "full_transfer_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": -0.625
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 12,
+              "clopper_pearson_upper_95": 0.43810543511531136,
+              "coverage": 0.75,
+              "risk": 0.16666666666666666,
+              "wilson_upper_95": 0.39920691041554024
+            },
+            "test_policy_timing": {
+              "accepted_coverage": 0.75,
+              "candidate_already_computed_by_score": true,
+              "candidate_path": "full_transfer_action",
+              "complete_policy_measurement": {
+                "branches": {
+                  "accepted": {
+                    "mean_cuda_ms": 23.336935997009277,
+                    "mean_wall_ms": 23.350812999979098,
+                    "median_cuda_ms": 23.18443202972412,
+                    "median_wall_ms": 23.198263500034955,
+                    "samples": 4
+                  },
+                  "rejected": {
+                    "mean_cuda_ms": 39.005319595336914,
+                    "mean_wall_ms": 39.013696750089366,
+                    "median_cuda_ms": 38.2313117980957,
+                    "median_wall_ms": 38.23909550010285,
+                    "samples": 4
+                  }
+                },
+                "cuda_savings_vs_native_prefill": -0.7611270078202523,
+                "path": "policy__transfer_negative_margin__full_transfer_top1_diff:32",
+                "samples": 8,
+                "test_coverage_weighted_mean_cuda_ms": 27.254031896591187,
+                "test_coverage_weighted_mean_wall_ms": 27.266533937506665,
+                "timing_sample_accepted_fraction": 0.5,
+                "wall_savings_vs_native_prefill": -0.7610501131070466
+              },
+              "component_model_expected_cuda_ms": 27.077756710350513,
+              "component_model_expected_wall_ms": 27.09510412569216,
+              "cuda_savings_vs_native_prefill": -0.7554671197645011,
+              "expected_target_token_equivalents_with_fallback": 33.0,
+              "score_components": [
+                "full_transfer_action",
+                "transfer_margin_overhead"
+              ],
+              "target_token_savings_vs_native_prefill": 0.7421875,
+              "wall_savings_vs_native_prefill": -0.7556920133193326
+            },
+            "test_ranking": {
+              "aurc": 0.12644395535020533,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.5976190476190476,
+              "harm_positive_count": 5,
+              "harm_prevalence": 0.3125,
+              "label": "full_transfer_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.47067940860113155,
+                  "risk": 0.125,
+                  "wilson_upper_95": 0.41114337433001213
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.43810543511531136,
+                  "risk": 0.16666666666666666,
+                  "wilson_upper_95": 0.39920691041554024
+                }
+              },
+              "score": "transfer_negative_margin"
+            }
+          },
+          "replay_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": -0.625
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 12,
+              "clopper_pearson_upper_95": 0.3386806684340324,
+              "coverage": 0.75,
+              "risk": 0.08333333333333333,
+              "wilson_upper_95": 0.30116827943986896
+            },
+            "test_policy_timing": {
+              "accepted_coverage": 0.75,
+              "candidate_already_computed_by_score": false,
+              "candidate_path": "probe_route:32",
+              "complete_policy_measurement": {
+                "branches": {
+                  "accepted": {
+                    "mean_cuda_ms": 53.069647789001465,
+                    "mean_wall_ms": 53.0778922495756,
+                    "median_cuda_ms": 51.001712799072266,
+                    "median_wall_ms": 51.009516999783955,
+                    "samples": 4
+                  },
+                  "rejected": {
+                    "mean_cuda_ms": 40.097519874572754,
+                    "mean_wall_ms": 40.10550475004493,
+                    "median_cuda_ms": 38.78211212158203,
+                    "median_wall_ms": 38.79068100013683,
+                    "samples": 4
+                  }
+                },
+                "cuda_savings_vs_native_prefill": -2.2197437481881157,
+                "path": "policy__transfer_negative_margin__replay_top1_diff:32",
+                "samples": 8,
+                "test_coverage_weighted_mean_cuda_ms": 49.82661581039429,
+                "test_coverage_weighted_mean_wall_ms": 49.83479537469293,
+                "timing_sample_accepted_fraction": 0.5,
+                "wall_savings_vs_native_prefill": -2.2186552288755883
+              },
+              "component_model_expected_cuda_ms": 48.72286517173052,
+              "component_model_expected_wall_ms": 48.745875750455525,
+              "cuda_savings_vs_native_prefill": -2.1587324129032224,
+              "expected_target_token_equivalents_with_fallback": 57.75,
+              "score_components": [
+                "full_transfer_action",
+                "transfer_margin_overhead"
+              ],
+              "target_token_savings_vs_native_prefill": 0.548828125,
+              "wall_savings_vs_native_prefill": -2.1586054934618204
+            },
+            "test_ranking": {
+              "aurc": 0.1221300400987901,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.40476190476190477,
+              "harm_positive_count": 3,
+              "harm_prevalence": 0.1875,
+              "label": "replay_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.7513953742698181,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.6438319914014936
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.47067940860113155,
+                  "risk": 0.125,
+                  "wilson_upper_95": 0.41114337433001213
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.3386806684340324,
+                  "risk": 0.08333333333333333,
+                  "wilson_upper_95": 0.30116827943986896
+                }
+              },
+              "score": "transfer_negative_margin"
+            }
+          }
+        },
+        "transfer_negative_max_probability": {
+          "full_transfer_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": -0.2286807894706726
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 11,
+              "clopper_pearson_upper_95": 0.47008679927917624,
+              "coverage": 0.6875,
+              "risk": 0.18181818181818182,
+              "wilson_upper_95": 0.427142504865978
+            },
+            "test_policy_timing": {
+              "accepted_coverage": 0.6875,
+              "candidate_already_computed_by_score": true,
+              "candidate_path": "full_transfer_action",
+              "complete_policy_measurement": {
+                "branches": {
+                  "accepted": {
+                    "mean_cuda_ms": 23.08726453781128,
+                    "mean_wall_ms": 23.10156225053106,
+                    "median_cuda_ms": 23.07790470123291,
+                    "median_wall_ms": 23.091829000350117,
+                    "samples": 4
+                  },
+                  "rejected": {
+                    "mean_cuda_ms": 39.086960792541504,
+                    "mean_wall_ms": 39.095230750035626,
+                    "median_cuda_ms": 38.9278564453125,
+                    "median_wall_ms": 38.93540850003774,
+                    "samples": 4
+                  }
+                },
+                "cuda_savings_vs_native_prefill": -0.8149634950946076,
+                "path": "policy__transfer_negative_max_probability__full_transfer_top1_diff:32",
+                "samples": 8,
+                "test_coverage_weighted_mean_cuda_ms": 28.087169617414474,
+                "test_coverage_weighted_mean_wall_ms": 28.099583656626237,
+                "timing_sample_accepted_fraction": 0.5,
+                "wall_savings_vs_native_prefill": -0.8148538824252041
+              },
+              "component_model_expected_cuda_ms": 27.999423686414957,
+              "component_model_expected_wall_ms": 28.01514465670607,
+              "cuda_savings_vs_native_prefill": -0.8152193396090439,
+              "expected_target_token_equivalents_with_fallback": 41.0,
+              "score_components": [
+                "full_transfer_action",
+                "transfer_max_probability_overhead"
+              ],
+              "target_token_savings_vs_native_prefill": 0.6796875,
+              "wall_savings_vs_native_prefill": -0.8153082378866163
+            },
+            "test_ranking": {
+              "aurc": 0.18867113788988787,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.6402564102564102,
+              "harm_positive_count": 5,
+              "harm_prevalence": 0.3125,
+              "label": "full_transfer_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.7513953742698181,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.6438319914014936
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.5996893891908329,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.5398469545128194
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.43810543511531136,
+                  "risk": 0.16666666666666666,
+                  "wilson_upper_95": 0.39920691041554024
+                }
+              },
+              "score": "transfer_negative_max_probability"
+            }
+          },
+          "replay_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": -0.2286807894706726
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 11,
+              "clopper_pearson_upper_95": 0.3643594892472425,
+              "coverage": 0.6875,
+              "risk": 0.09090909090909091,
+              "wilson_upper_95": 0.32278187113308937
+            },
+            "test_policy_timing": {
+              "accepted_coverage": 0.6875,
+              "candidate_already_computed_by_score": false,
+              "candidate_path": "probe_route:32",
+              "complete_policy_measurement": {
+                "branches": {
+                  "accepted": {
+                    "mean_cuda_ms": 51.0860481262207,
+                    "mean_wall_ms": 51.094132499883926,
+                    "median_cuda_ms": 51.1232795715332,
+                    "median_wall_ms": 51.13123249975615,
+                    "samples": 4
+                  },
+                  "rejected": {
+                    "mean_cuda_ms": 38.81694316864014,
+                    "mean_wall_ms": 38.824842250051006,
+                    "median_cuda_ms": 38.62076759338379,
+                    "median_wall_ms": 38.62808050007516,
+                    "samples": 4
+                  }
+                },
+                "cuda_savings_vs_native_prefill": -2.0533717217174647,
+                "path": "policy__transfer_negative_max_probability__replay_top1_diff:32",
+                "samples": 8,
+                "test_coverage_weighted_mean_cuda_ms": 47.251952826976776,
+                "test_coverage_weighted_mean_wall_ms": 47.25997929681114,
+                "timing_sample_accepted_fraction": 0.5,
+                "wall_savings_vs_native_prefill": -2.0523568590286505
+              },
+              "component_model_expected_cuda_ms": 47.84077310934663,
+              "component_model_expected_wall_ms": 47.861685312739155,
+              "cuda_savings_vs_native_prefill": -2.1015458583195383,
+              "expected_target_token_equivalents_with_fallback": 63.6875,
+              "score_components": [
+                "full_transfer_action",
+                "transfer_max_probability_overhead"
+              ],
+              "target_token_savings_vs_native_prefill": 0.50244140625,
+              "wall_savings_vs_native_prefill": -2.1013122613505635
+            },
+            "test_ranking": {
+              "aurc": 0.10169734779109779,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.4722222222222222,
+              "harm_positive_count": 3,
+              "harm_prevalence": 0.1875,
+              "label": "replay_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.47067940860113155,
+                  "risk": 0.125,
+                  "wilson_upper_95": 0.41114337433001213
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.3386806684340324,
+                  "risk": 0.08333333333333333,
+                  "wilson_upper_95": 0.30116827943986896
+                }
+              },
+              "score": "transfer_negative_max_probability"
+            }
+          }
+        }
+      },
+      "test_count": 16
+    },
+    "8": {
+      "baselines": {
+        "full_transfer": {
+          "clopper_pearson_upper_95": 0.5483470808487474,
+          "errors": 5,
+          "risk": 0.3125,
+          "timing": {
+            "cuda_savings_vs_native_prefill": -0.4969509724858425,
+            "median_cuda_ms": 23.090192794799805,
+            "median_wall_ms": 23.097391500414233,
+            "path": "full_transfer_action",
+            "target_token_equivalents": 1,
+            "target_token_savings_vs_native_prefill": 0.9921875,
+            "wall_savings_vs_native_prefill": -0.49665067156301923
+          },
+          "wilson_upper_95": 0.5179738146383297
+        },
+        "unconditional_replay": {
+          "clopper_pearson_upper_95": 0.4843964210936691,
+          "errors": 4,
+          "risk": 0.25,
+          "timing": {
+            "cuda_savings_vs_native_prefill": -0.8234979689585655,
+            "median_cuda_ms": 28.12712001800537,
+            "median_wall_ms": 28.135861000009754,
+            "path": "probe_route:8",
+            "target_token_equivalents": 9,
+            "target_token_savings_vs_native_prefill": 0.9296875,
+            "wall_savings_vs_native_prefill": -0.8231303417926288
+          },
+          "wilson_upper_95": 0.4547634911684676
+        }
+      },
+      "calibration_count": 8,
+      "full_transfer_risk": 0.3125,
+      "native_chunk_control": {
+        "cache_nmse_limit": 0.001,
+        "calibration_max_cache_nmse": 4.0726455158239186e-05,
+        "calibration_top1_error_rate": 0.125,
+        "calibration_top1_errors": 1,
+        "commutator_cache_above_native_floor_fraction": 1.0,
+        "commutator_js_above_native_floor_fraction": 1.0,
+        "interpretation": "top1 differences measure the native execution-path action-noise floor; cache NMSE is the hard validity gate",
+        "max_cache_nmse": 4.5308791063881745e-05,
+        "max_js": 0.0005818187491968274,
+        "median_cache_nmse": 3.343184900878199e-05,
+        "median_js": 0.00021181067859288305,
+        "passed": true,
+        "test_top1_error_rate": 0.0,
+        "test_top1_errors": 0
+      },
+      "paired_bootstrap": {
+        "full_transfer_top1_diff": {
+          "commutator_js_vs_transfer_entropy": {
+            "ap_difference": {
+              "lower_95": 0.0,
+              "mean": 0.2622378757877681,
+              "upper_95": 0.8107142857142853
+            },
+            "baseline_score": "transfer_entropy",
+            "defined": true,
+            "fixed_threshold_risk_difference": {
+              "defined": true,
+              "defined_repetitions": 200,
+              "lower_95": -0.625,
+              "mean": -0.2723722943722944,
+              "upper_95": 0.0
+            },
+            "label": "full_transfer_top1_diff",
+            "primary_score": "commutator_js",
+            "repetitions": 200
+          },
+          "commutator_js_vs_transfer_negative_margin": {
+            "ap_difference": {
+              "lower_95": 0.0,
+              "mean": 0.3557963239334381,
+              "upper_95": 0.7578754578754574
+            },
+            "baseline_score": "transfer_negative_margin",
+            "defined": true,
+            "fixed_threshold_risk_difference": {
+              "defined": true,
+              "defined_repetitions": 200,
+              "lower_95": -0.3333333333333333,
+              "mean": -0.16859746503496503,
+              "upper_95": 0.0
+            },
+            "label": "full_transfer_top1_diff",
+            "primary_score": "commutator_js",
+            "repetitions": 200
+          },
+          "commutator_js_vs_transfer_negative_max_probability": {
+            "ap_difference": {
+              "lower_95": 0.0,
+              "mean": 0.3312328937046199,
+              "upper_95": 0.7516369047619051
+            },
+            "baseline_score": "transfer_negative_max_probability",
+            "defined": true,
+            "fixed_threshold_risk_difference": {
+              "defined": true,
+              "defined_repetitions": 200,
+              "lower_95": -0.4444444444444444,
+              "mean": -0.18730927405927406,
+              "upper_95": 0.0
+            },
+            "label": "full_transfer_top1_diff",
+            "primary_score": "commutator_js",
+            "repetitions": 200
+          }
+        },
+        "replay_top1_diff": {
+          "commutator_js_vs_transfer_entropy": {
+            "ap_difference": {
+              "lower_95": -0.4208333333333332,
+              "mean": 0.07866487332029329,
+              "upper_95": 0.4969155844155843
+            },
+            "baseline_score": "transfer_entropy",
+            "defined": true,
+            "fixed_threshold_risk_difference": {
+              "defined": true,
+              "defined_repetitions": 200,
+              "lower_95": -0.4,
+              "mean": -0.145902528027528,
+              "upper_95": 0.0
+            },
+            "label": "replay_top1_diff",
+            "primary_score": "commutator_js",
+            "repetitions": 200
+          },
+          "commutator_js_vs_transfer_negative_margin": {
+            "ap_difference": {
+              "lower_95": -0.4508333333333333,
+              "mean": -0.06201318814922549,
+              "upper_95": 0.29940476190476123
+            },
+            "baseline_score": "transfer_negative_margin",
+            "defined": true,
+            "fixed_threshold_risk_difference": {
+              "defined": true,
+              "defined_repetitions": 200,
+              "lower_95": -0.26666666666666666,
+              "mean": -0.07673230935730936,
+              "upper_95": 0.0
+            },
+            "label": "replay_top1_diff",
+            "primary_score": "commutator_js",
+            "repetitions": 200
+          },
+          "commutator_js_vs_transfer_negative_max_probability": {
+            "ap_difference": {
+              "lower_95": -0.48888888888888893,
+              "mean": 0.00825655672712551,
+              "upper_95": 0.41666666666666674
+            },
+            "baseline_score": "transfer_negative_max_probability",
+            "defined": true,
+            "fixed_threshold_risk_difference": {
+              "defined": true,
+              "defined_repetitions": 200,
+              "lower_95": -0.3339285714285714,
+              "mean": -0.10563002275502276,
+              "upper_95": 0.0
+            },
+            "label": "replay_top1_diff",
+            "primary_score": "commutator_js",
+            "repetitions": 200
+          }
+        }
+      },
+      "replay_repair_risk": 0.25,
+      "scores": {
+        "commutator_cache_nmse": {
+          "full_transfer_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 0.1314026573788826
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 10,
+              "clopper_pearson_upper_95": 0.5069013010632024,
+              "coverage": 0.625,
+              "risk": 0.2,
+              "wilson_upper_95": 0.4592071943125122
+            },
+            "test_policy_timing": {
+              "accepted_coverage": 0.625,
+              "candidate_already_computed_by_score": true,
+              "candidate_path": "full_transfer_action",
+              "complete_policy_measurement": {
+                "branches": {
+                  "accepted": {
+                    "mean_cuda_ms": 54.831111907958984,
+                    "mean_wall_ms": 54.84653774988146,
+                    "median_cuda_ms": 54.73148727416992,
+                    "median_wall_ms": 54.74706999984846,
+                    "samples": 4
+                  },
+                  "rejected": {
+                    "mean_cuda_ms": 70.42411041259766,
+                    "mean_wall_ms": 70.43240600023637,
+                    "median_cuda_ms": 70.173583984375,
+                    "median_wall_ms": 70.18172500011133,
+                    "samples": 4
+                  }
+                },
+                "cuda_savings_vs_native_prefill": -2.9209802610185394,
+                "path": "policy__commutator_cache_nmse__full_transfer_top1_diff:8",
+                "samples": 8,
+                "test_coverage_weighted_mean_cuda_ms": 60.678486347198486,
+                "test_coverage_weighted_mean_wall_ms": 60.69123834376455,
+                "timing_sample_accepted_fraction": 0.5,
+                "wall_savings_vs_native_prefill": -2.9198349300595687
+              },
+              "component_model_expected_cuda_ms": 61.1283865571022,
+              "component_model_expected_wall_ms": 61.156080687624126,
+              "cuda_savings_vs_native_prefill": -2.9629897643710006,
+              "expected_target_token_equivalents_with_fallback": 58.0,
+              "score_components": [
+                "commutator_cache_nmse_overhead:8",
+                "full_transfer_action",
+                "probe_route:8"
+              ],
+              "target_token_savings_vs_native_prefill": 0.546875,
+              "wall_savings_vs_native_prefill": -2.962754375516964
+            },
+            "test_ranking": {
+              "aurc": 0.19908780455655456,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.632983682983683,
+              "harm_positive_count": 5,
+              "harm_prevalence": 0.3125,
+              "label": "full_transfer_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.7513953742698181,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.6438319914014936
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.5996893891908329,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.5398469545128194
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.43810543511531136,
+                  "risk": 0.16666666666666666,
+                  "wilson_upper_95": 0.39920691041554024
+                }
+              },
+              "score": "commutator_cache_nmse"
+            }
+          },
+          "replay_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 0.1314026573788826
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 10,
+              "clopper_pearson_upper_95": 0.6066242161054123,
+              "coverage": 0.625,
+              "risk": 0.3,
+              "wilson_upper_95": 0.5583002041301649
+            },
+            "test_policy_timing": {
+              "accepted_coverage": 0.625,
+              "candidate_already_computed_by_score": true,
+              "candidate_path": "probe_route:8",
+              "complete_policy_measurement": {
+                "branches": {
+                  "accepted": {
+                    "mean_cuda_ms": 55.17016887664795,
+                    "mean_wall_ms": 55.18554224977379,
+                    "median_cuda_ms": 54.68435287475586,
+                    "median_wall_ms": 54.70008699967366,
+                    "samples": 4
+                  },
+                  "rejected": {
+                    "mean_cuda_ms": 69.39541625976562,
+                    "mean_wall_ms": 69.40383800019845,
+                    "median_cuda_ms": 69.39665603637695,
+                    "median_wall_ms": 69.40532600037841,
+                    "samples": 4
+                  }
+                },
+                "cuda_savings_vs_native_prefill": -2.909746275293178,
+                "path": "policy__commutator_cache_nmse__replay_top1_diff:8",
+                "samples": 8,
+                "test_coverage_weighted_mean_cuda_ms": 60.50463664531708,
+                "test_coverage_weighted_mean_wall_ms": 60.517403156183036,
+                "timing_sample_accepted_fraction": 0.5,
+                "wall_savings_vs_native_prefill": -2.9086075229584663
+              },
+              "component_model_expected_cuda_ms": 61.1283865571022,
+              "component_model_expected_wall_ms": 61.156080687624126,
+              "cuda_savings_vs_native_prefill": -2.9629897643710006,
+              "expected_target_token_equivalents_with_fallback": 58.0,
+              "score_components": [
+                "commutator_cache_nmse_overhead:8",
+                "full_transfer_action",
+                "probe_route:8"
+              ],
+              "target_token_savings_vs_native_prefill": 0.546875,
+              "wall_savings_vs_native_prefill": -2.962754375516964
+            },
+            "test_ranking": {
+              "aurc": 0.28675126956376956,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.4245754245754246,
+              "harm_positive_count": 4,
+              "harm_prevalence": 0.25,
+              "label": "replay_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.9023885371135856,
+                  "risk": 0.5,
+                  "wilson_upper_95": 0.8175998367453551
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.7107591834981906,
+                  "risk": 0.375,
+                  "wilson_upper_95": 0.6520085615952674
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.5273266035603434,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.4873380318032493
+                }
+              },
+              "score": "commutator_cache_nmse"
+            }
+          }
+        },
+        "commutator_js": {
+          "full_transfer_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 0.08818523585796356
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 10,
+              "clopper_pearson_upper_95": 0.2588655508930522,
+              "coverage": 0.625,
+              "risk": 0.0,
+              "wilson_upper_95": 0.21294197008340698
+            },
+            "test_policy_timing": {
+              "accepted_coverage": 0.625,
+              "candidate_already_computed_by_score": true,
+              "candidate_path": "full_transfer_action",
+              "complete_policy_measurement": {
+                "branches": {
+                  "accepted": {
+                    "mean_cuda_ms": 51.00236797332764,
+                    "mean_wall_ms": 51.01809950019742,
+                    "median_cuda_ms": 50.980384826660156,
+                    "median_wall_ms": 50.99540600031105,
+                    "samples": 4
+                  },
+                  "rejected": {
+                    "mean_cuda_ms": 72.18802452087402,
+                    "mean_wall_ms": 72.19644824976967,
+                    "median_cuda_ms": 70.88991928100586,
+                    "median_wall_ms": 70.8988104997843,
+                    "samples": 4
+                  }
+                },
+                "cuda_savings_vs_native_prefill": -2.8090927267611523,
+                "path": "policy__commutator_js__full_transfer_top1_diff:8",
+                "samples": 8,
+                "test_coverage_weighted_mean_cuda_ms": 58.94698917865753,
+                "test_coverage_weighted_mean_wall_ms": 58.95998028128702,
+                "timing_sample_accepted_fraction": 0.5,
+                "wall_savings_vs_native_prefill": -2.808019023654622
+              },
+              "component_model_expected_cuda_ms": 57.16981068253517,
+              "component_model_expected_wall_ms": 57.195829687543664,
+              "cuda_savings_vs_native_prefill": -2.7063529290810555,
+              "expected_target_token_equivalents_with_fallback": 58.0,
+              "score_components": [
+                "commutator_js_overhead:8",
+                "full_transfer_action",
+                "probe_route:8"
+              ],
+              "target_token_savings_vs_native_prefill": 0.546875,
+              "wall_savings_vs_native_prefill": -2.7061404492767545
+            },
+            "test_ranking": {
+              "aurc": 0.06441449175824175,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 1.0,
+              "harm_positive_count": 5,
+              "harm_prevalence": 0.3125,
+              "label": "full_transfer_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.3123439780663678,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.25272359742376327
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.3386806684340324,
+                  "risk": 0.08333333333333333,
+                  "wilson_upper_95": 0.30116827943986896
+                }
+              },
+              "score": "commutator_js"
+            }
+          },
+          "replay_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 0.08818523585796356
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 10,
+              "clopper_pearson_upper_95": 0.2588655508930522,
+              "coverage": 0.625,
+              "risk": 0.0,
+              "wilson_upper_95": 0.21294197008340698
+            },
+            "test_policy_timing": {
+              "accepted_coverage": 0.625,
+              "candidate_already_computed_by_score": true,
+              "candidate_path": "probe_route:8",
+              "complete_policy_measurement": {
+                "branches": {
+                  "accepted": {
+                    "mean_cuda_ms": 51.796112060546875,
+                    "mean_wall_ms": 51.81082299986883,
+                    "median_cuda_ms": 51.277809143066406,
+                    "median_wall_ms": 51.29273549982827,
+                    "samples": 4
+                  },
+                  "rejected": {
+                    "mean_cuda_ms": 67.31608200073242,
+                    "mean_wall_ms": 67.32480574987676,
+                    "median_cuda_ms": 66.99766540527344,
+                    "median_wall_ms": 67.00638799975422,
+                    "samples": 4
+                  }
+                },
+                "cuda_savings_vs_native_prefill": -2.7230921123247436,
+                "path": "policy__commutator_js__replay_top1_diff:8",
+                "samples": 8,
+                "test_coverage_weighted_mean_cuda_ms": 57.616100788116455,
+                "test_coverage_weighted_mean_wall_ms": 57.628566531121805,
+                "timing_sample_accepted_fraction": 0.5,
+                "wall_savings_vs_native_prefill": -2.7220276636711853
+              },
+              "component_model_expected_cuda_ms": 57.16981068253517,
+              "component_model_expected_wall_ms": 57.195829687543664,
+              "cuda_savings_vs_native_prefill": -2.7063529290810555,
+              "expected_target_token_equivalents_with_fallback": 58.0,
+              "score_components": [
+                "commutator_js_overhead:8",
+                "full_transfer_action",
+                "probe_route:8"
+              ],
+              "target_token_savings_vs_native_prefill": 0.546875,
+              "wall_savings_vs_native_prefill": -2.7061404492767545
+            },
+            "test_ranking": {
+              "aurc": 0.07620608558108558,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.5666666666666667,
+              "harm_positive_count": 4,
+              "harm_prevalence": 0.25,
+              "label": "replay_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.3123439780663678,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.25272359742376327
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.43810543511531136,
+                  "risk": 0.16666666666666666,
+                  "wilson_upper_95": 0.39920691041554024
+                }
+              },
+              "score": "commutator_js"
+            }
+          }
+        },
+        "random_score": {
+          "full_transfer_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 0.4863409819733937
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 10,
+              "clopper_pearson_upper_95": 0.5069013010632024,
+              "coverage": 0.625,
+              "risk": 0.2,
+              "wilson_upper_95": 0.4592071943125122
+            },
+            "test_policy_timing": {
+              "accepted_coverage": 0.625,
+              "candidate_already_computed_by_score": false,
+              "candidate_path": "full_transfer_action",
+              "complete_policy_measurement": {
+                "branches": {
+                  "accepted": {
+                    "mean_cuda_ms": 23.89622449874878,
+                    "mean_wall_ms": 23.9060647502356,
+                    "median_cuda_ms": 23.54963207244873,
+                    "median_wall_ms": 23.561070000141626,
+                    "samples": 4
+                  },
+                  "rejected": {
+                    "mean_cuda_ms": 15.130039930343628,
+                    "mean_wall_ms": 15.138056499836239,
+                    "median_cuda_ms": 15.149871826171875,
+                    "median_wall_ms": 15.15758999994432,
+                    "samples": 4
+                  }
+                },
+                "cuda_savings_vs_native_prefill": -0.33172588326697316,
+                "path": "policy__random_score__full_transfer_top1_diff:8",
+                "samples": 8,
+                "test_coverage_weighted_mean_cuda_ms": 20.608905285596848,
+                "test_coverage_weighted_mean_wall_ms": 20.61806165633584,
+                "timing_sample_accepted_fraction": 0.5,
+                "wall_savings_vs_native_prefill": -0.33164852911475484
+              },
+              "component_model_expected_cuda_ms": 20.215676367282867,
+              "component_model_expected_wall_ms": 20.223139875270135,
+              "cuda_savings_vs_native_prefill": -0.31059435780365163,
+              "expected_target_token_equivalents_with_fallback": 48.625,
+              "score_components": [],
+              "target_token_savings_vs_native_prefill": 0.6201171875,
+              "wall_savings_vs_native_prefill": -0.310406669726887
+            },
+            "test_ranking": {
+              "aurc": 0.30436898171273175,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.4082051282051282,
+              "harm_positive_count": 5,
+              "harm_prevalence": 0.3125,
+              "label": "full_transfer_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.9023885371135856,
+                  "risk": 0.5,
+                  "wilson_upper_95": 0.8175998367453551
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.5996893891908329,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.5398469545128194
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.6091376982290366,
+                  "risk": 0.3333333333333333,
+                  "wilson_upper_95": 0.5685083866566518
+                }
+              },
+              "score": "random_score"
+            }
+          },
+          "replay_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 0.4863409819733937
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 10,
+              "clopper_pearson_upper_95": 0.5069013010632024,
+              "coverage": 0.625,
+              "risk": 0.2,
+              "wilson_upper_95": 0.4592071943125122
+            },
+            "test_policy_timing": {
+              "accepted_coverage": 0.625,
+              "candidate_already_computed_by_score": false,
+              "candidate_path": "probe_route:8",
+              "complete_policy_measurement": {
+                "branches": {
+                  "accepted": {
+                    "mean_cuda_ms": 28.237016201019287,
+                    "mean_wall_ms": 28.245013249716067,
+                    "median_cuda_ms": 27.876432418823242,
+                    "median_wall_ms": 27.884222499778843,
+                    "samples": 4
+                  },
+                  "rejected": {
+                    "mean_cuda_ms": 15.052527904510498,
+                    "mean_wall_ms": 15.060474999927465,
+                    "median_cuda_ms": 15.057519912719727,
+                    "median_wall_ms": 15.06568349986992,
+                    "samples": 4
+                  }
+                },
+                "cuda_savings_vs_native_prefill": -0.5051584880649171,
+                "path": "policy__random_score__replay_top1_diff:8",
+                "samples": 8,
+                "test_coverage_weighted_mean_cuda_ms": 23.29283308982849,
+                "test_coverage_weighted_mean_wall_ms": 23.30081140604534,
+                "timing_sample_accepted_fraction": 0.5,
+                "wall_savings_vs_native_prefill": -0.5049179575280618
+              },
+              "component_model_expected_cuda_ms": 23.363755881786346,
+              "component_model_expected_wall_ms": 23.372183312517336,
+              "cuda_savings_vs_native_prefill": -0.5146862305991036,
+              "expected_target_token_equivalents_with_fallback": 53.625,
+              "score_components": [],
+              "target_token_savings_vs_native_prefill": 0.5810546875,
+              "wall_savings_vs_native_prefill": -0.514456463620393
+            },
+            "test_ranking": {
+              "aurc": 0.2650460650460651,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.26245421245421247,
+              "harm_positive_count": 4,
+              "harm_prevalence": 0.25,
+              "label": "replay_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.9023885371135856,
+                  "risk": 0.5,
+                  "wilson_upper_95": 0.8175998367453551
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.5996893891908329,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.5398469545128194
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.6091376982290366,
+                  "risk": 0.3333333333333333,
+                  "wilson_upper_95": 0.5685083866566518
+                }
+              },
+              "score": "random_score"
+            }
+          }
+        },
+        "transfer_entropy": {
+          "full_transfer_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 2.92022442817688
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 7,
+              "clopper_pearson_upper_95": 0.658738563844664,
+              "coverage": 0.4375,
+              "risk": 0.2857142857142857,
+              "wilson_upper_95": 0.5913324544888025
+            },
+            "test_policy_timing": {
+              "accepted_coverage": 0.4375,
+              "candidate_already_computed_by_score": true,
+              "candidate_path": "full_transfer_action",
+              "complete_policy_measurement": {
+                "branches": {
+                  "accepted": {
+                    "mean_cuda_ms": 23.059607982635498,
+                    "mean_wall_ms": 23.074003499914397,
+                    "median_cuda_ms": 23.052288055419922,
+                    "median_wall_ms": 23.066481499881775,
+                    "samples": 4
+                  },
+                  "rejected": {
+                    "mean_cuda_ms": 44.12766361236572,
+                    "mean_wall_ms": 44.13613500014435,
+                    "median_cuda_ms": 44.2390079498291,
+                    "median_wall_ms": 44.24729600032151,
+                    "samples": 4
+                  }
+                },
+                "cuda_savings_vs_native_prefill": -1.2558728058244295,
+                "path": "policy__transfer_entropy__full_transfer_top1_diff:8",
+                "samples": 8,
+                "test_coverage_weighted_mean_cuda_ms": 34.91038927435875,
+                "test_coverage_weighted_mean_wall_ms": 34.921452468793746,
+                "timing_sample_accepted_fraction": 0.5,
+                "wall_savings_vs_native_prefill": -1.2554545422231684
+              },
+              "component_model_expected_cuda_ms": 31.864043600857258,
+              "component_model_expected_wall_ms": 31.882296781873265,
+              "cuda_savings_vs_native_prefill": -1.0657649539581557,
+              "expected_target_token_equivalents_with_fallback": 73.0,
+              "score_components": [
+                "full_transfer_action",
+                "transfer_entropy_overhead"
+              ],
+              "target_token_savings_vs_native_prefill": 0.4296875,
+              "wall_savings_vs_native_prefill": -1.0658896000748115
+            },
+            "test_ranking": {
+              "aurc": 0.17939915986790989,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.7569230769230768,
+              "harm_positive_count": 5,
+              "harm_prevalence": 0.3125,
+              "label": "full_transfer_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.7513953742698181,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.6438319914014936
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.5996893891908329,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.5398469545128194
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.43810543511531136,
+                  "risk": 0.16666666666666666,
+                  "wilson_upper_95": 0.39920691041554024
+                }
+              },
+              "score": "transfer_entropy"
+            }
+          },
+          "replay_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": 2.92022442817688
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 7,
+              "clopper_pearson_upper_95": 0.5207029735913071,
+              "coverage": 0.4375,
+              "risk": 0.14285714285714285,
+              "wilson_upper_95": 0.4522866946970292
+            },
+            "test_policy_timing": {
+              "accepted_coverage": 0.4375,
+              "candidate_already_computed_by_score": false,
+              "candidate_path": "probe_route:8",
+              "complete_policy_measurement": {
+                "branches": {
+                  "accepted": {
+                    "mean_cuda_ms": 51.36429500579834,
+                    "mean_wall_ms": 51.37411424993843,
+                    "median_cuda_ms": 51.02916717529297,
+                    "median_wall_ms": 51.036900999861246,
+                    "samples": 4
+                  },
+                  "rejected": {
+                    "mean_cuda_ms": 38.31337642669678,
+                    "mean_wall_ms": 38.32161175000692,
+                    "median_cuda_ms": 38.21769714355469,
+                    "median_wall_ms": 38.22540999999546,
+                    "samples": 4
+                  }
+                },
+                "cuda_savings_vs_native_prefill": -1.8447300769703237,
+                "path": "policy__transfer_entropy__replay_top1_diff:8",
+                "samples": 8,
+                "test_coverage_weighted_mean_cuda_ms": 44.02315330505371,
+                "test_coverage_weighted_mean_wall_ms": 44.03208159372696,
+                "timing_sample_accepted_fraction": 0.5,
+                "wall_savings_vs_native_prefill": -1.8438782299464611
+              },
+              "component_model_expected_cuda_ms": 44.16965860873461,
+              "component_model_expected_wall_ms": 44.19173596937753,
+              "cuda_savings_vs_native_prefill": -1.8635453153775283,
+              "expected_target_token_equivalents_with_fallback": 76.9375,
+              "score_components": [
+                "full_transfer_action",
+                "transfer_entropy_overhead"
+              ],
+              "target_token_savings_vs_native_prefill": 0.39892578125,
+              "wall_savings_vs_native_prefill": -1.8635091246090867
+            },
+            "test_ranking": {
+              "aurc": 0.12021017177267176,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.48541666666666666,
+              "harm_positive_count": 4,
+              "harm_prevalence": 0.25,
+              "label": "replay_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.47067940860113155,
+                  "risk": 0.125,
+                  "wilson_upper_95": 0.41114337433001213
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.43810543511531136,
+                  "risk": 0.16666666666666666,
+                  "wilson_upper_95": 0.39920691041554024
+                }
+              },
+              "score": "transfer_entropy"
+            }
+          }
+        },
+        "transfer_negative_margin": {
+          "full_transfer_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": -0.625
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 12,
+              "clopper_pearson_upper_95": 0.43810543511531136,
+              "coverage": 0.75,
+              "risk": 0.16666666666666666,
+              "wilson_upper_95": 0.39920691041554024
+            },
+            "test_policy_timing": {
+              "accepted_coverage": 0.75,
+              "candidate_already_computed_by_score": true,
+              "candidate_path": "full_transfer_action",
+              "complete_policy_measurement": {
+                "branches": {
+                  "accepted": {
+                    "mean_cuda_ms": 23.320096015930176,
+                    "mean_wall_ms": 23.334451749633445,
+                    "median_cuda_ms": 23.289600372314453,
+                    "median_wall_ms": 23.30451049920157,
+                    "samples": 4
+                  },
+                  "rejected": {
+                    "mean_cuda_ms": 38.62265586853027,
+                    "mean_wall_ms": 38.631204499779415,
+                    "median_cuda_ms": 38.33827209472656,
+                    "median_wall_ms": 38.34675949929078,
+                    "samples": 4
+                  }
+                },
+                "cuda_savings_vs_native_prefill": -0.7541290390100255,
+                "path": "policy__transfer_negative_margin__full_transfer_top1_diff:8",
+                "samples": 8,
+                "test_coverage_weighted_mean_cuda_ms": 27.1457359790802,
+                "test_coverage_weighted_mean_wall_ms": 27.158639937169937,
+                "timing_sample_accepted_fraction": 0.5,
+                "wall_savings_vs_native_prefill": -0.7540816167836031
+              },
+              "component_model_expected_cuda_ms": 27.077756710350513,
+              "component_model_expected_wall_ms": 27.09510412569216,
+              "cuda_savings_vs_native_prefill": -0.7554671197645011,
+              "expected_target_token_equivalents_with_fallback": 33.0,
+              "score_components": [
+                "full_transfer_action",
+                "transfer_margin_overhead"
+              ],
+              "target_token_savings_vs_native_prefill": 0.7421875,
+              "wall_savings_vs_native_prefill": -0.7556920133193326
+            },
+            "test_ranking": {
+              "aurc": 0.12644395535020533,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.5976190476190476,
+              "harm_positive_count": 5,
+              "harm_prevalence": 0.3125,
+              "label": "full_transfer_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.47067940860113155,
+                  "risk": 0.125,
+                  "wilson_upper_95": 0.41114337433001213
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.43810543511531136,
+                  "risk": 0.16666666666666666,
+                  "wilson_upper_95": 0.39920691041554024
+                }
+              },
+              "score": "transfer_negative_margin"
+            }
+          },
+          "replay_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": -0.625
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 12,
+              "clopper_pearson_upper_95": 0.3386806684340324,
+              "coverage": 0.75,
+              "risk": 0.08333333333333333,
+              "wilson_upper_95": 0.30116827943986896
+            },
+            "test_policy_timing": {
+              "accepted_coverage": 0.75,
+              "candidate_already_computed_by_score": false,
+              "candidate_path": "probe_route:8",
+              "complete_policy_measurement": {
+                "branches": {
+                  "accepted": {
+                    "mean_cuda_ms": 50.885104179382324,
+                    "mean_wall_ms": 50.89005575018746,
+                    "median_cuda_ms": 50.84867286682129,
+                    "median_wall_ms": 50.855838500410755,
+                    "samples": 4
+                  },
+                  "rejected": {
+                    "mean_cuda_ms": 38.441304206848145,
+                    "mean_wall_ms": 38.44933274967843,
+                    "median_cuda_ms": 38.43646430969238,
+                    "median_wall_ms": 38.44480899988412,
+                    "samples": 4
+                  }
+                },
+                "cuda_savings_vs_native_prefill": -2.087115826840105,
+                "path": "policy__transfer_negative_margin__replay_top1_diff:8",
+                "samples": 8,
+                "test_coverage_weighted_mean_cuda_ms": 47.77415418624878,
+                "test_coverage_weighted_mean_wall_ms": 47.7798750000602,
+                "timing_sample_accepted_fraction": 0.5,
+                "wall_savings_vs_native_prefill": -2.0859351051346295
+              },
+              "component_model_expected_cuda_ms": 48.17309672385454,
+              "component_model_expected_wall_ms": 48.196999875699476,
+              "cuda_savings_vs_native_prefill": -2.1230905964834252,
+              "expected_target_token_equivalents_with_fallback": 39.75,
+              "score_components": [
+                "full_transfer_action",
+                "transfer_margin_overhead"
+              ],
+              "target_token_savings_vs_native_prefill": 0.689453125,
+              "wall_savings_vs_native_prefill": -2.123039769663804
+            },
+            "test_ranking": {
+              "aurc": 0.07244005994005995,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.6428571428571428,
+              "harm_positive_count": 4,
+              "harm_prevalence": 0.25,
+              "label": "replay_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.3123439780663678,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.25272359742376327
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.3386806684340324,
+                  "risk": 0.08333333333333333,
+                  "wilson_upper_95": 0.30116827943986896
+                }
+              },
+              "score": "transfer_negative_margin"
+            }
+          }
+        },
+        "transfer_negative_max_probability": {
+          "full_transfer_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": -0.2286807894706726
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 11,
+              "clopper_pearson_upper_95": 0.47008679927917624,
+              "coverage": 0.6875,
+              "risk": 0.18181818181818182,
+              "wilson_upper_95": 0.427142504865978
+            },
+            "test_policy_timing": {
+              "accepted_coverage": 0.6875,
+              "candidate_already_computed_by_score": true,
+              "candidate_path": "full_transfer_action",
+              "complete_policy_measurement": {
+                "branches": {
+                  "accepted": {
+                    "mean_cuda_ms": 23.234536170959473,
+                    "mean_wall_ms": 23.24864100000923,
+                    "median_cuda_ms": 23.15385627746582,
+                    "median_wall_ms": 23.167862500031333,
+                    "samples": 4
+                  },
+                  "rejected": {
+                    "mean_cuda_ms": 38.92683124542236,
+                    "mean_wall_ms": 38.93500699996366,
+                    "median_cuda_ms": 38.47764778137207,
+                    "median_wall_ms": 38.48591399992074,
+                    "samples": 4
+                  }
+                },
+                "cuda_savings_vs_native_prefill": -0.8182725518321141,
+                "path": "policy__transfer_negative_max_probability__full_transfer_top1_diff:8",
+                "samples": 8,
+                "test_coverage_weighted_mean_cuda_ms": 28.138378381729126,
+                "test_coverage_weighted_mean_wall_ms": 28.15063037499499,
+                "timing_sample_accepted_fraction": 0.5,
+                "wall_savings_vs_native_prefill": -0.8181508115238225
+              },
+              "component_model_expected_cuda_ms": 27.999423686414957,
+              "component_model_expected_wall_ms": 28.01514465670607,
+              "cuda_savings_vs_native_prefill": -0.8152193396090439,
+              "expected_target_token_equivalents_with_fallback": 41.0,
+              "score_components": [
+                "full_transfer_action",
+                "transfer_max_probability_overhead"
+              ],
+              "target_token_savings_vs_native_prefill": 0.6796875,
+              "wall_savings_vs_native_prefill": -0.8153082378866163
+            },
+            "test_ranking": {
+              "aurc": 0.18867113788988787,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.6402564102564102,
+              "harm_positive_count": 5,
+              "harm_prevalence": 0.3125,
+              "label": "full_transfer_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.7513953742698181,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.6438319914014936
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.5996893891908329,
+                  "risk": 0.25,
+                  "wilson_upper_95": 0.5398469545128194
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.43810543511531136,
+                  "risk": 0.16666666666666666,
+                  "wilson_upper_95": 0.39920691041554024
+                }
+              },
+              "score": "transfer_negative_max_probability"
+            }
+          },
+          "replay_top1_diff": {
+            "calibration": {
+              "accepted": 4,
+              "coverage": 0.5,
+              "labels_used": false,
+              "target_coverage": 0.5,
+              "threshold": -0.2286807894706726
+            },
+            "test_at_calibrated_threshold": {
+              "accepted": 11,
+              "clopper_pearson_upper_95": 0.3643594892472425,
+              "coverage": 0.6875,
+              "risk": 0.09090909090909091,
+              "wilson_upper_95": 0.32278187113308937
+            },
+            "test_policy_timing": {
+              "accepted_coverage": 0.6875,
+              "candidate_already_computed_by_score": false,
+              "candidate_path": "probe_route:8",
+              "complete_policy_measurement": {
+                "branches": {
+                  "accepted": {
+                    "mean_cuda_ms": 50.97484016418457,
+                    "mean_wall_ms": 50.98281249956926,
+                    "median_cuda_ms": 50.93561553955078,
+                    "median_wall_ms": 50.94358549968092,
+                    "samples": 4
+                  },
+                  "rejected": {
+                    "mean_cuda_ms": 38.17683982849121,
+                    "mean_wall_ms": 38.1849742502709,
+                    "median_cuda_ms": 38.1789608001709,
+                    "median_wall_ms": 38.18742600014957,
+                    "samples": 4
+                  }
+                },
+                "cuda_savings_vs_native_prefill": -2.035505371635041,
+                "path": "policy__transfer_negative_max_probability__replay_top1_diff:8",
+                "samples": 8,
+                "test_coverage_weighted_mean_cuda_ms": 46.975465059280396,
+                "test_coverage_weighted_mean_wall_ms": 46.983488046663524,
+                "timing_sample_accepted_fraction": 0.5,
+                "wall_savings_vs_native_prefill": -2.034499255694778
+              },
+              "component_model_expected_cuda_ms": 47.33681869879365,
+              "component_model_expected_wall_ms": 47.358549094212776,
+              "cuda_savings_vs_native_prefill": -2.0688741932680577,
+              "expected_target_token_equivalents_with_fallback": 47.1875,
+              "score_components": [
+                "full_transfer_action",
+                "transfer_max_probability_overhead"
+              ],
+              "target_token_savings_vs_native_prefill": 0.63134765625,
+              "wall_savings_vs_native_prefill": -2.0687103478690485
+            },
+            "test_ranking": {
+              "aurc": 0.0961255758130758,
+              "count": 16,
+              "descriptive_test_accepted_at_5pct_wilson": 0,
+              "descriptive_test_coverage_at_5pct_wilson": 0.0,
+              "harm_average_precision": 0.5791666666666666,
+              "harm_positive_count": 4,
+              "harm_prevalence": 0.25,
+              "label": "replay_top1_diff",
+              "ranking_defined": true,
+              "risk_at_coverage": {
+                "0.25": {
+                  "accepted": 4,
+                  "clopper_pearson_upper_95": 0.527129195498412,
+                  "risk": 0.0,
+                  "wilson_upper_95": 0.4034786252027047
+                },
+                "0.5": {
+                  "accepted": 8,
+                  "clopper_pearson_upper_95": 0.47067940860113155,
+                  "risk": 0.125,
+                  "wilson_upper_95": 0.41114337433001213
+                },
+                "0.75": {
+                  "accepted": 12,
+                  "clopper_pearson_upper_95": 0.3386806684340324,
+                  "risk": 0.08333333333333333,
+                  "wilson_upper_95": 0.30116827943986896
+                }
+              },
+              "score": "transfer_negative_max_probability"
+            }
+          }
+        }
+      },
+      "test_count": 16
+    }
+  },
+  "native_controls_passed": true,
+  "primary_analysis": {
+    "baseline_score": "transfer_negative_margin",
+    "equal_compute_replay_length": null,
+    "label": "full_transfer_top1_diff",
+    "replay_length": 32,
+    "score": "commutator_js",
+    "statistic": "integration_only"
+  },
+  "primary_result": {
+    "baseline_score": "transfer_negative_margin",
+    "calibrated_test_point": {
+      "accepted": 9,
+      "clopper_pearson_upper_95": 0.28312883556311347,
+      "coverage": 0.5625,
+      "risk": 0.0,
+      "wilson_upper_95": 0.23113351931975665
+    },
+    "complete_policy_timing": {
+      "branches": {
+        "accepted": {
+          "mean_cuda_ms": 50.74533748626709,
+          "mean_wall_ms": 50.76359074996617,
+          "median_cuda_ms": 50.70270538330078,
+          "median_wall_ms": 50.723845999982586,
+          "samples": 4
+        },
+        "rejected": {
+          "mean_cuda_ms": 66.27960205078125,
+          "mean_wall_ms": 66.28808275013398,
+          "median_cuda_ms": 66.05814743041992,
+          "median_wall_ms": 66.06641250027678,
+          "samples": 4
+        }
+      },
+      "cuda_savings_vs_native_prefill": -2.718276542849406,
+      "path": "policy__commutator_js__full_transfer_top1_diff:32",
+      "samples": 8,
+      "test_coverage_weighted_mean_cuda_ms": 57.541578233242035,
+      "test_coverage_weighted_mean_wall_ms": 57.55555600003959,
+      "timing_sample_accepted_fraction": 0.5,
+      "wall_savings_vs_native_prefill": -2.71731216868693
+    },
+    "label": "full_transfer_top1_diff",
+    "paired_bootstrap": {
+      "ap_difference": {
+        "lower_95": 0.0,
+        "mean": 0.3020576031021648,
+        "upper_95": 0.6253472222222223
+      },
+      "baseline_score": "transfer_negative_margin",
+      "defined": true,
+      "fixed_threshold_risk_difference": {
+        "defined": true,
+        "defined_repetitions": 200,
+        "lower_95": -0.4,
+        "mean": -0.16063032106782107,
+        "upper_95": 0.0
+      },
+      "label": "full_transfer_top1_diff",
+      "primary_score": "commutator_js",
+      "repetitions": 200
+    },
+    "ranking": {
+      "aurc": 0.07009630994005994,
+      "count": 16,
+      "descriptive_test_accepted_at_5pct_wilson": 0,
+      "descriptive_test_coverage_at_5pct_wilson": 0.0,
+      "harm_average_precision": 0.9666666666666667,
+      "harm_positive_count": 5,
+      "harm_prevalence": 0.3125,
+      "label": "full_transfer_top1_diff",
+      "ranking_defined": true,
+      "risk_at_coverage": {
+        "0.25": {
+          "accepted": 4,
+          "clopper_pearson_upper_95": 0.527129195498412,
+          "risk": 0.0,
+          "wilson_upper_95": 0.4034786252027047
+        },
+        "0.5": {
+          "accepted": 8,
+          "clopper_pearson_upper_95": 0.3123439780663678,
+          "risk": 0.0,
+          "wilson_upper_95": 0.25272359742376327
+        },
+        "0.75": {
+          "accepted": 12,
+          "clopper_pearson_upper_95": 0.3386806684340324,
+          "risk": 0.08333333333333333,
+          "wilson_upper_95": 0.30116827943986896
+        }
+      },
+      "score": "commutator_js"
+    },
+    "replay_length": 32,
+    "same_length_unconditional_replay": {
+      "clopper_pearson_upper_95": 0.4165722807061528,
+      "errors": 3,
+      "risk": 0.1875,
+      "timing": {
+        "cuda_savings_vs_native_prefill": -0.8710203908516283,
+        "median_cuda_ms": 28.86014461517334,
+        "median_wall_ms": 28.867695499684487,
+        "path": "probe_route:32",
+        "target_token_equivalents": 33,
+        "target_token_savings_vs_native_prefill": 0.7421875,
+        "wall_savings_vs_native_prefill": -0.8705513068566506
+      },
+      "wilson_upper_95": 0.38786974244785427
+    },
+    "score": "commutator_js"
+  },
+  "risk_limit": 0.05,
+  "score_names": [
+    "commutator_js",
+    "commutator_cache_nmse",
+    "transfer_negative_margin",
+    "transfer_negative_max_probability",
+    "transfer_entropy",
+    "random_score"
+  ],
+  "target_coverage": 0.5,
+  "timing": {
+    "assumption": "source cache exists at handoff; fallback is a fresh target prefill",
+    "paths": {
+      "commutator_cache_nmse_overhead:32": {
+        "max_wall_ms": 4.072678000738961,
+        "mean_cuda_ms": 4.0450239181518555,
+        "mean_wall_ms": 4.053667749758461,
+        "median_cuda_ms": 4.039775848388672,
+        "median_wall_ms": 4.048435499498737,
+        "min_wall_ms": 4.0451219992974075,
+        "samples": 4
+      },
+      "commutator_cache_nmse_overhead:8": {
+        "max_wall_ms": 4.211638999549905,
+        "mean_cuda_ms": 4.126384019851685,
+        "mean_wall_ms": 4.135107249794601,
+        "median_cuda_ms": 4.126767873764038,
+        "median_wall_ms": 4.135557999688899,
+        "min_wall_ms": 4.0576740002506995,
+        "samples": 4
+      },
+      "commutator_js_overhead:32": {
+        "max_wall_ms": 0.20069299989700085,
+        "mean_cuda_ms": 0.1741359978914261,
+        "mean_wall_ms": 0.181395250137939,
+        "median_cuda_ms": 0.17131199687719345,
+        "median_wall_ms": 0.1784525002221926,
+        "min_wall_ms": 0.16798300021036994,
+        "samples": 4
+      },
+      "commutator_js_overhead:8": {
+        "max_wall_ms": 0.18171800002164673,
+        "mean_cuda_ms": 0.16796800121665,
+        "mean_wall_ms": 0.1751064999098162,
+        "median_cuda_ms": 0.16819199919700623,
+        "median_wall_ms": 0.17530699960843776,
+        "min_wall_ms": 0.16809400040074252,
+        "samples": 4
+      },
+      "full_transfer_action": {
+        "max_wall_ms": 23.19335799984401,
+        "mean_cuda_ms": 23.095600605010986,
+        "mean_wall_ms": 23.103501000377946,
+        "median_cuda_ms": 23.090192794799805,
+        "median_wall_ms": 23.097391500414233,
+        "min_wall_ms": 23.02586300083931,
+        "samples": 4
+      },
+      "native_target_prefill": {
+        "max_wall_ms": 15.830866000214883,
+        "mean_cuda_ms": 15.475335836410522,
+        "mean_wall_ms": 15.483110749983098,
+        "median_cuda_ms": 15.424815654754639,
+        "median_wall_ms": 15.432720500029973,
+        "min_wall_ms": 15.236135999657563,
+        "samples": 4
+      },
+      "policy__commutator_cache_nmse__full_transfer_top1_diff:32": {
+        "branches": {
+          "accepted": {
+            "mean_cuda_ms": 54.5954475402832,
+            "mean_wall_ms": 54.61063800021293,
+            "median_cuda_ms": 54.4007511138916,
+            "median_wall_ms": 54.41604600036953,
+            "samples": 4
+          },
+          "rejected": {
+            "mean_cuda_ms": 73.8188304901123,
+            "mean_wall_ms": 73.82725875004326,
+            "median_cuda_ms": 72.84519958496094,
+            "median_wall_ms": 72.85386500007007,
+            "samples": 4
+          }
+        },
+        "max_wall_ms": 79.56020900019212,
+        "mean_cuda_ms": 64.20713901519775,
+        "mean_wall_ms": 64.2189483751281,
+        "median_cuda_ms": 62.64033508300781,
+        "median_wall_ms": 62.65120599982765,
+        "min_wall_ms": 54.34914400029811,
+        "samples": 8,
+        "timing_sample_accepted_fraction": 0.5
+      },
+      "policy__commutator_cache_nmse__full_transfer_top1_diff:8": {
+        "branches": {
+          "accepted": {
+            "mean_cuda_ms": 54.831111907958984,
+            "mean_wall_ms": 54.84653774988146,
+            "median_cuda_ms": 54.73148727416992,
+            "median_wall_ms": 54.74706999984846,
+            "samples": 4
+          },
+          "rejected": {
+            "mean_cuda_ms": 70.42411041259766,
+            "mean_wall_ms": 70.43240600023637,
+            "median_cuda_ms": 70.173583984375,
+            "median_wall_ms": 70.18172500011133,
+            "samples": 4
+          }
+        },
+        "max_wall_ms": 71.77812000008998,
+        "mean_cuda_ms": 62.62761116027832,
+        "mean_wall_ms": 62.639471875058916,
+        "median_cuda_ms": 62.42707061767578,
+        "median_wall_ms": 62.43933600035234,
+        "min_wall_ms": 54.60139299975708,
+        "samples": 8,
+        "timing_sample_accepted_fraction": 0.5
+      },
+      "policy__commutator_cache_nmse__replay_top1_diff:32": {
+        "branches": {
+          "accepted": {
+            "mean_cuda_ms": 54.71540832519531,
+            "mean_wall_ms": 54.732427750423085,
+            "median_cuda_ms": 54.66815948486328,
+            "median_wall_ms": 54.683315500369645,
+            "samples": 4
+          },
+          "rejected": {
+            "mean_cuda_ms": 70.88894271850586,
+            "mean_wall_ms": 70.8973222504028,
+            "median_cuda_ms": 70.13159942626953,
+            "median_wall_ms": 70.14086650042373,
+            "samples": 4
+          }
+        },
+        "max_wall_ms": 73.59749700026441,
+        "mean_cuda_ms": 62.802175521850586,
+        "mean_wall_ms": 62.81487500041294,
+        "median_cuda_ms": 62.4072151184082,
+        "median_wall_ms": 62.418414500371,
+        "min_wall_ms": 54.436310000710364,
+        "samples": 8,
+        "timing_sample_accepted_fraction": 0.5
+      },
+      "policy__commutator_cache_nmse__replay_top1_diff:8": {
+        "branches": {
+          "accepted": {
+            "mean_cuda_ms": 55.17016887664795,
+            "mean_wall_ms": 55.18554224977379,
+            "median_cuda_ms": 54.68435287475586,
+            "median_wall_ms": 54.70008699967366,
+            "samples": 4
+          },
+          "rejected": {
+            "mean_cuda_ms": 69.39541625976562,
+            "mean_wall_ms": 69.40383800019845,
+            "median_cuda_ms": 69.39665603637695,
+            "median_wall_ms": 69.40532600037841,
+            "samples": 4
+          }
+        },
+        "max_wall_ms": 69.47003500044957,
+        "mean_cuda_ms": 62.28279256820679,
+        "mean_wall_ms": 62.29469012498612,
+        "median_cuda_ms": 63.21449661254883,
+        "median_wall_ms": 63.22618949980097,
+        "min_wall_ms": 54.22428099973331,
+        "samples": 8,
+        "timing_sample_accepted_fraction": 0.5
+      },
+      "policy__commutator_js__full_transfer_top1_diff:32": {
+        "branches": {
+          "accepted": {
+            "mean_cuda_ms": 50.74533748626709,
+            "mean_wall_ms": 50.76359074996617,
+            "median_cuda_ms": 50.70270538330078,
+            "median_wall_ms": 50.723845999982586,
+            "samples": 4
+          },
+          "rejected": {
+            "mean_cuda_ms": 66.27960205078125,
+            "mean_wall_ms": 66.28808275013398,
+            "median_cuda_ms": 66.05814743041992,
+            "median_wall_ms": 66.06641250027678,
+            "samples": 4
+          }
+        },
+        "max_wall_ms": 67.10764100080269,
+        "mean_cuda_ms": 58.51246976852417,
+        "mean_wall_ms": 58.525836750050075,
+        "median_cuda_ms": 58.458112716674805,
+        "median_wall_ms": 58.469154999329476,
+        "min_wall_ms": 50.580226000420225,
+        "samples": 8,
+        "timing_sample_accepted_fraction": 0.5
+      },
+      "policy__commutator_js__full_transfer_top1_diff:8": {
+        "branches": {
+          "accepted": {
+            "mean_cuda_ms": 51.00236797332764,
+            "mean_wall_ms": 51.01809950019742,
+            "median_cuda_ms": 50.980384826660156,
+            "median_wall_ms": 50.99540600031105,
+            "samples": 4
+          },
+          "rejected": {
+            "mean_cuda_ms": 72.18802452087402,
+            "mean_wall_ms": 72.19644824976967,
+            "median_cuda_ms": 70.88991928100586,
+            "median_wall_ms": 70.8988104997843,
+            "samples": 4
+          }
+        },
+        "max_wall_ms": 80.74541399946611,
+        "mean_cuda_ms": 61.59519624710083,
+        "mean_wall_ms": 61.60727387498355,
+        "median_cuda_ms": 58.69744110107422,
+        "median_wall_ms": 58.70866150007714,
+        "min_wall_ms": 50.907021000057284,
+        "samples": 8,
+        "timing_sample_accepted_fraction": 0.5
+      },
+      "policy__commutator_js__replay_top1_diff:32": {
+        "branches": {
+          "accepted": {
+            "mean_cuda_ms": 52.211055755615234,
+            "mean_wall_ms": 52.22727325008236,
+            "median_cuda_ms": 51.832719802856445,
+            "median_wall_ms": 51.84967049990519,
+            "samples": 4
+          },
+          "rejected": {
+            "mean_cuda_ms": 66.20966529846191,
+            "mean_wall_ms": 66.21804774999873,
+            "median_cuda_ms": 66.24494552612305,
+            "median_wall_ms": 66.25320750026731,
+            "samples": 4
+          }
+        },
+        "max_wall_ms": 66.63052099975175,
+        "mean_cuda_ms": 59.210360527038574,
+        "mean_wall_ms": 59.22266050004055,
+        "median_cuda_ms": 60.116943359375,
+        "median_wall_ms": 60.128687000087666,
+        "min_wall_ms": 50.6876330000523,
+        "samples": 8,
+        "timing_sample_accepted_fraction": 0.5
+      },
+      "policy__commutator_js__replay_top1_diff:8": {
+        "branches": {
+          "accepted": {
+            "mean_cuda_ms": 51.796112060546875,
+            "mean_wall_ms": 51.81082299986883,
+            "median_cuda_ms": 51.277809143066406,
+            "median_wall_ms": 51.29273549982827,
+            "samples": 4
+          },
+          "rejected": {
+            "mean_cuda_ms": 67.31608200073242,
+            "mean_wall_ms": 67.32480574987676,
+            "median_cuda_ms": 66.99766540527344,
+            "median_wall_ms": 67.00638799975422,
+            "samples": 4
+          }
+        },
+        "max_wall_ms": 68.7855229998604,
+        "mean_cuda_ms": 59.55609703063965,
+        "mean_wall_ms": 59.567814374872796,
+        "median_cuda_ms": 60.141361236572266,
+        "median_wall_ms": 60.153012499995384,
+        "min_wall_ms": 50.85271999996621,
+        "samples": 8,
+        "timing_sample_accepted_fraction": 0.5
+      },
+      "policy__random_score__full_transfer_top1_diff:32": {
+        "branches": {
+          "accepted": {
+            "mean_cuda_ms": 23.045495986938477,
+            "mean_wall_ms": 23.05313774991191,
+            "median_cuda_ms": 23.055312156677246,
+            "median_wall_ms": 23.062938500061136,
+            "samples": 4
+          },
+          "rejected": {
+            "mean_cuda_ms": 15.143968105316162,
+            "mean_wall_ms": 15.154597999980979,
+            "median_cuda_ms": 15.121088027954102,
+            "median_wall_ms": 15.134163500079012,
+            "samples": 4
+          }
+        },
+        "max_wall_ms": 23.085092999281187,
+        "mean_cuda_ms": 19.09473204612732,
+        "mean_wall_ms": 19.103867874946445,
+        "median_cuda_ms": 19.122655868530273,
+        "median_wall_ms": 19.130490999941685,
+        "min_wall_ms": 15.090664000126708,
+        "samples": 8,
+        "timing_sample_accepted_fraction": 0.5
+      },
+      "policy__random_score__full_transfer_top1_diff:8": {
+        "branches": {
+          "accepted": {
+            "mean_cuda_ms": 23.89622449874878,
+            "mean_wall_ms": 23.9060647502356,
+            "median_cuda_ms": 23.54963207244873,
+            "median_wall_ms": 23.561070000141626,
+            "samples": 4
+          },
+          "rejected": {
+            "mean_cuda_ms": 15.130039930343628,
+            "mean_wall_ms": 15.138056499836239,
+            "median_cuda_ms": 15.149871826171875,
+            "median_wall_ms": 15.15758999994432,
+            "samples": 4
+          }
+        },
+        "max_wall_ms": 25.53534300022875,
+        "mean_cuda_ms": 19.513132214546204,
+        "mean_wall_ms": 19.52206062503592,
+        "median_cuda_ms": 19.060080528259277,
+        "median_wall_ms": 19.069419000061316,
+        "min_wall_ms": 15.064983999764081,
+        "samples": 8,
+        "timing_sample_accepted_fraction": 0.5
+      },
+      "policy__random_score__replay_top1_diff:32": {
+        "branches": {
+          "accepted": {
+            "mean_cuda_ms": 30.001248359680176,
+            "mean_wall_ms": 30.009466000137763,
+            "median_cuda_ms": 29.463552474975586,
+            "median_wall_ms": 29.47172199992565,
+            "samples": 4
+          },
+          "rejected": {
+            "mean_cuda_ms": 15.392584085464478,
+            "mean_wall_ms": 15.400668250094895,
+            "median_cuda_ms": 15.178864002227783,
+            "median_wall_ms": 15.187284499916132,
+            "samples": 4
+          }
+        },
+        "max_wall_ms": 32.80840700062981,
+        "mean_cuda_ms": 22.696916222572327,
+        "mean_wall_ms": 22.70506712511633,
+        "median_cuda_ms": 22.215951919555664,
+        "median_wall_ms": 22.22351950013035,
+        "min_wall_ms": 15.06707800035656,
+        "samples": 8,
+        "timing_sample_accepted_fraction": 0.5
+      },
+      "policy__random_score__replay_top1_diff:8": {
+        "branches": {
+          "accepted": {
+            "mean_cuda_ms": 28.237016201019287,
+            "mean_wall_ms": 28.245013249716067,
+            "median_cuda_ms": 27.876432418823242,
+            "median_wall_ms": 27.884222499778843,
+            "samples": 4
+          },
+          "rejected": {
+            "mean_cuda_ms": 15.052527904510498,
+            "mean_wall_ms": 15.060474999927465,
+            "median_cuda_ms": 15.057519912719727,
+            "median_wall_ms": 15.06568349986992,
+            "samples": 4
+          }
+        },
+        "max_wall_ms": 29.356688999541802,
+        "mean_cuda_ms": 21.644772052764893,
+        "mean_wall_ms": 21.652744124821766,
+        "median_cuda_ms": 21.478543758392334,
+        "median_wall_ms": 21.48669999996855,
+        "min_wall_ms": 14.992051999797695,
+        "samples": 8,
+        "timing_sample_accepted_fraction": 0.5
+      },
+      "policy__transfer_entropy__full_transfer_top1_diff:32": {
+        "branches": {
+          "accepted": {
+            "mean_cuda_ms": 23.414512157440186,
+            "mean_wall_ms": 23.42893200011531,
+            "median_cuda_ms": 23.21737575531006,
+            "median_wall_ms": 23.231831500197586,
+            "samples": 4
+          },
+          "rejected": {
+            "mean_cuda_ms": 39.429359436035156,
+            "mean_wall_ms": 39.43751824999708,
+            "median_cuda_ms": 38.85315132141113,
+            "median_wall_ms": 38.86108750020867,
+            "samples": 4
+          }
+        },
+        "max_wall_ms": 41.81629300001077,
+        "mean_cuda_ms": 31.42193579673767,
+        "mean_wall_ms": 31.433225125056197,
+        "median_cuda_ms": 31.194960594177246,
+        "median_wall_ms": 31.20681099971989,
+        "min_wall_ms": 23.050048000186507,
+        "samples": 8,
+        "timing_sample_accepted_fraction": 0.5
+      },
+      "policy__transfer_entropy__full_transfer_top1_diff:8": {
+        "branches": {
+          "accepted": {
+            "mean_cuda_ms": 23.059607982635498,
+            "mean_wall_ms": 23.074003499914397,
+            "median_cuda_ms": 23.052288055419922,
+            "median_wall_ms": 23.066481499881775,
+            "samples": 4
+          },
+          "rejected": {
+            "mean_cuda_ms": 44.12766361236572,
+            "mean_wall_ms": 44.13613500014435,
+            "median_cuda_ms": 44.2390079498291,
+            "median_wall_ms": 44.24729600032151,
+            "samples": 4
+          }
+        },
+        "max_wall_ms": 46.31065099965781,
+        "mean_cuda_ms": 33.59363579750061,
+        "mean_wall_ms": 33.60506925002937,
+        "median_cuda_ms": 32.41656017303467,
+        "median_wall_ms": 32.42820900004517,
+        "min_wall_ms": 23.04593000008026,
+        "samples": 8,
+        "timing_sample_accepted_fraction": 0.5
+      },
+      "policy__transfer_entropy__replay_top1_diff:32": {
+        "branches": {
+          "accepted": {
+            "mean_cuda_ms": 51.01589584350586,
+            "mean_wall_ms": 51.02400574992316,
+            "median_cuda_ms": 50.938751220703125,
+            "median_wall_ms": 50.9458954998081,
+            "samples": 4
+          },
+          "rejected": {
+            "mean_cuda_ms": 39.13361644744873,
+            "mean_wall_ms": 39.14155699976618,
+            "median_cuda_ms": 38.38008117675781,
+            "median_wall_ms": 38.38802399968699,
+            "samples": 4
+          }
+        },
+        "max_wall_ms": 51.3084849999359,
+        "mean_cuda_ms": 45.074756145477295,
+        "mean_wall_ms": 45.08278137484467,
+        "median_cuda_ms": 46.228336334228516,
+        "median_wall_ms": 46.236869000040315,
+        "min_wall_ms": 38.21218899975065,
+        "samples": 8,
+        "timing_sample_accepted_fraction": 0.5
+      },
+      "policy__transfer_entropy__replay_top1_diff:8": {
+        "branches": {
+          "accepted": {
+            "mean_cuda_ms": 51.36429500579834,
+            "mean_wall_ms": 51.37411424993843,
+            "median_cuda_ms": 51.02916717529297,
+            "median_wall_ms": 51.036900999861246,
+            "samples": 4
+          },
+          "rejected": {
+            "mean_cuda_ms": 38.31337642669678,
+            "mean_wall_ms": 38.32161175000692,
+            "median_cuda_ms": 38.21769714355469,
+            "median_wall_ms": 38.22540999999546,
+            "samples": 4
+          }
+        },
+        "max_wall_ms": 52.62086000038835,
+        "mean_cuda_ms": 44.83883571624756,
+        "mean_wall_ms": 44.847862999972676,
+        "median_cuda_ms": 44.7153434753418,
+        "median_wall_ms": 44.723861499733175,
+        "min_wall_ms": 38.189699000213295,
+        "samples": 8,
+        "timing_sample_accepted_fraction": 0.5
+      },
+      "policy__transfer_negative_margin__full_transfer_top1_diff:32": {
+        "branches": {
+          "accepted": {
+            "mean_cuda_ms": 23.336935997009277,
+            "mean_wall_ms": 23.350812999979098,
+            "median_cuda_ms": 23.18443202972412,
+            "median_wall_ms": 23.198263500034955,
+            "samples": 4
+          },
+          "rejected": {
+            "mean_cuda_ms": 39.005319595336914,
+            "mean_wall_ms": 39.013696750089366,
+            "median_cuda_ms": 38.2313117980957,
+            "median_wall_ms": 38.23909550010285,
+            "samples": 4
+          }
+        },
+        "max_wall_ms": 41.45284900005208,
+        "mean_cuda_ms": 31.171127796173096,
+        "mean_wall_ms": 31.182254875034232,
+        "median_cuda_ms": 31.00432014465332,
+        "median_wall_ms": 31.0155864999615,
+        "min_wall_ms": 23.099299000023166,
+        "samples": 8,
+        "timing_sample_accepted_fraction": 0.5
+      },
+      "policy__transfer_negative_margin__full_transfer_top1_diff:8": {
+        "branches": {
+          "accepted": {
+            "mean_cuda_ms": 23.320096015930176,
+            "mean_wall_ms": 23.334451749633445,
+            "median_cuda_ms": 23.289600372314453,
+            "median_wall_ms": 23.30451049920157,
+            "samples": 4
+          },
+          "rejected": {
+            "mean_cuda_ms": 38.62265586853027,
+            "mean_wall_ms": 38.631204499779415,
+            "median_cuda_ms": 38.33827209472656,
+            "median_wall_ms": 38.34675949929078,
+            "samples": 4
+          }
+        },
+        "max_wall_ms": 39.52529400066851,
+        "mean_cuda_ms": 30.971375942230225,
+        "mean_wall_ms": 30.98282812470643,
+        "median_cuda_ms": 30.961535453796387,
+        "median_wall_ms": 30.971867000062048,
+        "min_wall_ms": 23.091056999874127,
+        "samples": 8,
+        "timing_sample_accepted_fraction": 0.5
+      },
+      "policy__transfer_negative_margin__replay_top1_diff:32": {
+        "branches": {
+          "accepted": {
+            "mean_cuda_ms": 53.069647789001465,
+            "mean_wall_ms": 53.0778922495756,
+            "median_cuda_ms": 51.001712799072266,
+            "median_wall_ms": 51.009516999783955,
+            "samples": 4
+          },
+          "rejected": {
+            "mean_cuda_ms": 40.097519874572754,
+            "mean_wall_ms": 40.10550475004493,
+            "median_cuda_ms": 38.78211212158203,
+            "median_wall_ms": 38.79068100013683,
+            "samples": 4
+          }
+        },
+        "max_wall_ms": 59.35123599920189,
+        "mean_cuda_ms": 46.58358383178711,
+        "mean_wall_ms": 46.59169849981026,
+        "median_cuda_ms": 47.79591941833496,
+        "median_wall_ms": 47.803371000100014,
+        "min_wall_ms": 38.17521399923862,
+        "samples": 8,
+        "timing_sample_accepted_fraction": 0.5
+      },
+      "policy__transfer_negative_margin__replay_top1_diff:8": {
+        "branches": {
+          "accepted": {
+            "mean_cuda_ms": 50.885104179382324,
+            "mean_wall_ms": 50.89005575018746,
+            "median_cuda_ms": 50.84867286682129,
+            "median_wall_ms": 50.855838500410755,
+            "samples": 4
+          },
+          "rejected": {
+            "mean_cuda_ms": 38.441304206848145,
+            "mean_wall_ms": 38.44933274967843,
+            "median_cuda_ms": 38.43646430969238,
+            "median_wall_ms": 38.44480899988412,
+            "samples": 4
+          }
+        },
+        "max_wall_ms": 51.085516000057396,
+        "mean_cuda_ms": 44.663204193115234,
+        "mean_wall_ms": 44.669694249932945,
+        "median_cuda_ms": 44.67563247680664,
+        "median_wall_ms": 44.6836224996332,
+        "min_wall_ms": 38.30349799955002,
+        "samples": 8,
+        "timing_sample_accepted_fraction": 0.5
+      },
+      "policy__transfer_negative_max_probability__full_transfer_top1_diff:32": {
+        "branches": {
+          "accepted": {
+            "mean_cuda_ms": 23.08726453781128,
+            "mean_wall_ms": 23.10156225053106,
+            "median_cuda_ms": 23.07790470123291,
+            "median_wall_ms": 23.091829000350117,
+            "samples": 4
+          },
+          "rejected": {
+            "mean_cuda_ms": 39.086960792541504,
+            "mean_wall_ms": 39.095230750035626,
+            "median_cuda_ms": 38.9278564453125,
+            "median_wall_ms": 38.93540850003774,
+            "samples": 4
+          }
+        },
+        "max_wall_ms": 40.400433000286284,
+        "mean_cuda_ms": 31.08711266517639,
+        "mean_wall_ms": 31.098396500283343,
+        "median_cuda_ms": 30.649216651916504,
+        "median_wall_ms": 30.66036750033163,
+        "min_wall_ms": 23.011529000541486,
+        "samples": 8,
+        "timing_sample_accepted_fraction": 0.5
+      },
+      "policy__transfer_negative_max_probability__full_transfer_top1_diff:8": {
+        "branches": {
+          "accepted": {
+            "mean_cuda_ms": 23.234536170959473,
+            "mean_wall_ms": 23.24864100000923,
+            "median_cuda_ms": 23.15385627746582,
+            "median_wall_ms": 23.167862500031333,
+            "samples": 4
+          },
+          "rejected": {
+            "mean_cuda_ms": 38.92683124542236,
+            "mean_wall_ms": 38.93500699996366,
+            "median_cuda_ms": 38.47764778137207,
+            "median_wall_ms": 38.48591399992074,
+            "samples": 4
+          }
+        },
+        "max_wall_ms": 40.56034400036879,
+        "mean_cuda_ms": 31.080683708190918,
+        "mean_wall_ms": 31.091823999986445,
+        "median_cuda_ms": 30.891902923583984,
+        "median_wall_ms": 30.902286499895126,
+        "min_wall_ms": 23.062121999828378,
+        "samples": 8,
+        "timing_sample_accepted_fraction": 0.5
+      },
+      "policy__transfer_negative_max_probability__replay_top1_diff:32": {
+        "branches": {
+          "accepted": {
+            "mean_cuda_ms": 51.0860481262207,
+            "mean_wall_ms": 51.094132499883926,
+            "median_cuda_ms": 51.1232795715332,
+            "median_wall_ms": 51.13123249975615,
+            "samples": 4
+          },
+          "rejected": {
+            "mean_cuda_ms": 38.81694316864014,
+            "mean_wall_ms": 38.824842250051006,
+            "median_cuda_ms": 38.62076759338379,
+            "median_wall_ms": 38.62808050007516,
+            "samples": 4
+          }
+        },
+        "max_wall_ms": 51.17888899985701,
+        "mean_cuda_ms": 44.95149564743042,
+        "mean_wall_ms": 44.959487374967466,
+        "median_cuda_ms": 45.342031478881836,
+        "median_wall_ms": 45.35057249995589,
+        "min_wall_ms": 38.27723900030833,
+        "samples": 8,
+        "timing_sample_accepted_fraction": 0.5
+      },
+      "policy__transfer_negative_max_probability__replay_top1_diff:8": {
+        "branches": {
+          "accepted": {
+            "mean_cuda_ms": 50.97484016418457,
+            "mean_wall_ms": 50.98281249956926,
+            "median_cuda_ms": 50.93561553955078,
+            "median_wall_ms": 50.94358549968092,
+            "samples": 4
+          },
+          "rejected": {
+            "mean_cuda_ms": 38.17683982849121,
+            "mean_wall_ms": 38.1849742502709,
+            "median_cuda_ms": 38.1789608001709,
+            "median_wall_ms": 38.18742600014957,
+            "samples": 4
+          }
+        },
+        "max_wall_ms": 51.265538999359705,
+        "mean_cuda_ms": 44.57583999633789,
+        "mean_wall_ms": 44.58389337492008,
+        "median_cuda_ms": 44.51286315917969,
+        "median_wall_ms": 44.52077099995222,
+        "min_wall_ms": 38.102043000435515,
+        "samples": 8,
+        "timing_sample_accepted_fraction": 0.5
+      },
+      "probe_route:32": {
+        "max_wall_ms": 29.65815100014879,
+        "mean_cuda_ms": 28.901607990264893,
+        "mean_wall_ms": 28.90967899975294,
+        "median_cuda_ms": 28.86014461517334,
+        "median_wall_ms": 28.867695499684487,
+        "min_wall_ms": 28.245173999494,
+        "samples": 4
+      },
+      "probe_route:8": {
+        "max_wall_ms": 28.409991999978956,
+        "mean_cuda_ms": 28.176176071166992,
+        "mean_wall_ms": 28.184347249862185,
+        "median_cuda_ms": 28.12712001800537,
+        "median_wall_ms": 28.135861000009754,
+        "min_wall_ms": 28.055674999450275,
+        "samples": 4
+      },
+      "transfer_entropy_overhead": {
+        "max_wall_ms": 0.11344599988660775,
+        "mean_cuda_ms": 0.09812000021338463,
+        "mean_wall_ms": 0.10479125012352597,
+        "median_cuda_ms": 0.0973920002579689,
+        "median_wall_ms": 0.10400000019217259,
+        "min_wall_ms": 0.09771900022315094,
+        "samples": 4
+      },
+      "transfer_margin_overhead": {
+        "max_wall_ms": 0.14774399915040703,
+        "mean_cuda_ms": 0.13120000064373016,
+        "mean_wall_ms": 0.14044325007489533,
+        "median_cuda_ms": 0.1313600018620491,
+        "median_wall_ms": 0.13953250027043396,
+        "min_wall_ms": 0.13496400060830638,
+        "samples": 4
+      },
+      "transfer_max_probability_overhead": {
+        "max_wall_ms": 0.10020500030805124,
+        "mean_cuda_ms": 0.08960800059139729,
+        "mean_wall_ms": 0.09591299999556213,
+        "median_cuda_ms": 0.08897599950432777,
+        "median_wall_ms": 0.09502800003247103,
+        "min_wall_ms": 0.09339099960925523,
+        "samples": 4
+      }
+    }
+  }
+}

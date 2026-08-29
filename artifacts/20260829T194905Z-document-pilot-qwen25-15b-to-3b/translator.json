@@ -1,0 +1,522 @@
+{
+  "diagnostics": [
+    {
+      "key_fit_nmse": 0.0005111272773021555,
+      "key_map_frobenius": 718.9818892496075,
+      "layer": 0,
+      "value_fit_nmse": 0.11817288378396397,
+      "value_map_frobenius": 8.84922389356242
+    },
+    {
+      "key_fit_nmse": 0.0021342477390414233,
+      "key_map_frobenius": 348.8214791675975,
+      "layer": 1,
+      "value_fit_nmse": 0.10285186993166477,
+      "value_map_frobenius": 5.8095418701724775
+    },
+    {
+      "key_fit_nmse": 0.0062250017886548974,
+      "key_map_frobenius": 74.28860450724402,
+      "layer": 2,
+      "value_fit_nmse": 0.15983779751124738,
+      "value_map_frobenius": 5.95631639955106
+    },
+    {
+      "key_fit_nmse": 0.0780600357236422,
+      "key_map_frobenius": 104.67530861617398,
+      "layer": 3,
+      "value_fit_nmse": 0.15822347499810646,
+      "value_map_frobenius": 10.296221032405821
+    },
+    {
+      "key_fit_nmse": 0.053005647522853847,
+      "key_map_frobenius": 26.239727862992705,
+      "layer": 4,
+      "value_fit_nmse": 0.19550916284578457,
+      "value_map_frobenius": 9.487244524320188
+    },
+    {
+      "key_fit_nmse": 0.1293145805739369,
+      "key_map_frobenius": 26.5956879538913,
+      "layer": 5,
+      "value_fit_nmse": 0.21405385306391697,
+      "value_map_frobenius": 9.507006692289911
+    },
+    {
+      "key_fit_nmse": 0.060980728836538774,
+      "key_map_frobenius": 32.02644695923424,
+      "layer": 6,
+      "value_fit_nmse": 0.30456087977037405,
+      "value_map_frobenius": 12.991410288707456
+    },
+    {
+      "key_fit_nmse": 0.09501186175243807,
+      "key_map_frobenius": 33.14588942061873,
+      "layer": 7,
+      "value_fit_nmse": 0.33428617600600913,
+      "value_map_frobenius": 13.343501069771738
+    },
+    {
+      "key_fit_nmse": 0.08575570346865961,
+      "key_map_frobenius": 29.933880630986714,
+      "layer": 8,
+      "value_fit_nmse": 0.396479270503686,
+      "value_map_frobenius": 14.34261125348263
+    },
+    {
+      "key_fit_nmse": 0.08018759776621322,
+      "key_map_frobenius": 30.128400219597257,
+      "layer": 9,
+      "value_fit_nmse": 0.40365581278059093,
+      "value_map_frobenius": 13.431895776694885
+    },
+    {
+      "key_fit_nmse": 0.08635962330585537,
+      "key_map_frobenius": 34.94853733515292,
+      "layer": 10,
+      "value_fit_nmse": 0.36592389138276854,
+      "value_map_frobenius": 13.70796225028302
+    },
+    {
+      "key_fit_nmse": 0.055583727475924063,
+      "key_map_frobenius": 28.42425978348248,
+      "layer": 11,
+      "value_fit_nmse": 0.3630283561484905,
+      "value_map_frobenius": 12.78825723199893
+    },
+    {
+      "key_fit_nmse": 0.07497235924940217,
+      "key_map_frobenius": 16.399746195996002,
+      "layer": 12,
+      "value_fit_nmse": 0.3577756792366784,
+      "value_map_frobenius": 12.379264450545094
+    },
+    {
+      "key_fit_nmse": 0.08700534728557875,
+      "key_map_frobenius": 19.0278185700636,
+      "layer": 13,
+      "value_fit_nmse": 0.19176531149090992,
+      "value_map_frobenius": 10.821540892113353
+    },
+    {
+      "key_fit_nmse": 0.06232515029777154,
+      "key_map_frobenius": 18.593921602432744,
+      "layer": 14,
+      "value_fit_nmse": 0.2859293994399533,
+      "value_map_frobenius": 12.150214020623347
+    },
+    {
+      "key_fit_nmse": 0.06065759879742566,
+      "key_map_frobenius": 17.6233105667849,
+      "layer": 15,
+      "value_fit_nmse": 0.22588868334603301,
+      "value_map_frobenius": 12.646301046334887
+    },
+    {
+      "key_fit_nmse": 0.0525051839857313,
+      "key_map_frobenius": 21.756352954635982,
+      "layer": 16,
+      "value_fit_nmse": 0.347580446558573,
+      "value_map_frobenius": 12.816890824899351
+    },
+    {
+      "key_fit_nmse": 0.10915368518145473,
+      "key_map_frobenius": 66.31542069941217,
+      "layer": 17,
+      "value_fit_nmse": 0.23854989309244184,
+      "value_map_frobenius": 11.72814290776192
+    },
+    {
+      "key_fit_nmse": 0.027367563595474077,
+      "key_map_frobenius": 67.98787775887759,
+      "layer": 18,
+      "value_fit_nmse": 0.29347044397523026,
+      "value_map_frobenius": 12.643899721015183
+    },
+    {
+      "key_fit_nmse": 0.07441175681207189,
+      "key_map_frobenius": 69.01505188602057,
+      "layer": 19,
+      "value_fit_nmse": 0.22846179002772776,
+      "value_map_frobenius": 12.113014202332579
+    },
+    {
+      "key_fit_nmse": 0.061430278052477624,
+      "key_map_frobenius": 74.81313064923134,
+      "layer": 20,
+      "value_fit_nmse": 0.35697810647610234,
+      "value_map_frobenius": 14.210320972473367
+    },
+    {
+      "key_fit_nmse": 0.08978335503851875,
+      "key_map_frobenius": 67.7137453911966,
+      "layer": 21,
+      "value_fit_nmse": 0.29695611397579197,
+      "value_map_frobenius": 13.087993217436642
+    },
+    {
+      "key_fit_nmse": 0.11433827625647526,
+      "key_map_frobenius": 28.024719540567734,
+      "layer": 22,
+      "value_fit_nmse": 0.3097973643054148,
+      "value_map_frobenius": 13.706359491530582
+    },
+    {
+      "key_fit_nmse": 0.0901449267226653,
+      "key_map_frobenius": 28.92339307928925,
+      "layer": 23,
+      "value_fit_nmse": 0.2669268787845215,
+      "value_map_frobenius": 10.583723283013715
+    },
+    {
+      "key_fit_nmse": 0.06959801447942021,
+      "key_map_frobenius": 22.605140214286223,
+      "layer": 24,
+      "value_fit_nmse": 0.3063824612590941,
+      "value_map_frobenius": 11.16407714234768
+    },
+    {
+      "key_fit_nmse": 0.0748095500175575,
+      "key_map_frobenius": 25.868239795172922,
+      "layer": 25,
+      "value_fit_nmse": 0.29153726653896883,
+      "value_map_frobenius": 14.80575624458297
+    },
+    {
+      "key_fit_nmse": 0.07642065409173623,
+      "key_map_frobenius": 20.95445060978797,
+      "layer": 26,
+      "value_fit_nmse": 0.33761124863965997,
+      "value_map_frobenius": 12.955789779337948
+    },
+    {
+      "key_fit_nmse": 0.01170697264607866,
+      "key_map_frobenius": 72.39815388521906,
+      "layer": 27,
+      "value_fit_nmse": 0.2681867913014784,
+      "value_map_frobenius": 14.071050224415238
+    },
+    {
+      "key_fit_nmse": 0.07612552266826768,
+      "key_map_frobenius": 21.949138610738732,
+      "layer": 28,
+      "value_fit_nmse": 0.334542373031764,
+      "value_map_frobenius": 15.339792535889904
+    },
+    {
+      "key_fit_nmse": 0.04474982205768765,
+      "key_map_frobenius": 34.16623799968711,
+      "layer": 29,
+      "value_fit_nmse": 0.2752400198358218,
+      "value_map_frobenius": 15.76382191303549
+    },
+    {
+      "key_fit_nmse": 0.0820004018521937,
+      "key_map_frobenius": 19.41379804288817,
+      "layer": 30,
+      "value_fit_nmse": 0.2554419402749832,
+      "value_map_frobenius": 22.85184086622843
+    },
+    {
+      "key_fit_nmse": 0.0737280539219698,
+      "key_map_frobenius": 23.85165071591962,
+      "layer": 31,
+      "value_fit_nmse": 0.2854331923709006,
+      "value_map_frobenius": 26.80950206677662
+    },
+    {
+      "key_fit_nmse": 0.10485790324450665,
+      "key_map_frobenius": 26.44325052919528,
+      "layer": 32,
+      "value_fit_nmse": 0.3584467776834993,
+      "value_map_frobenius": 48.50215009720632
+    },
+    {
+      "key_fit_nmse": 0.10847900294819086,
+      "key_map_frobenius": 22.240325082504825,
+      "layer": 33,
+      "value_fit_nmse": 0.3717837607339925,
+      "value_map_frobenius": 78.55153202762666
+    },
+    {
+      "key_fit_nmse": 0.09689067946763112,
+      "key_map_frobenius": 28.2399467225253,
+      "layer": 34,
+      "value_fit_nmse": 0.3915849852557916,
+      "value_map_frobenius": 32.96654366448383
+    },
+    {
+      "key_fit_nmse": 0.057424811883021315,
+      "key_map_frobenius": 33.950050214305996,
+      "layer": 35,
+      "value_fit_nmse": 0.37812543131955517,
+      "value_map_frobenius": 33.76145831355661
+    }
+  ],
+  "layer_group_policy": "contiguous_anchor_deeper_tie_v1",
+  "layer_groups": [
+    [
+      0,
+      1,
+      2,
+      3
+    ],
+    [
+      0,
+      1,
+      2,
+      3
+    ],
+    [
+      1,
+      2,
+      3,
+      4
+    ],
+    [
+      1,
+      2,
+      3,
+      4
+    ],
+    [
+      2,
+      3,
+      4,
+      5
+    ],
+    [
+      3,
+      4,
+      5,
+      6
+    ],
+    [
+      4,
+      5,
+      6,
+      7
+    ],
+    [
+      4,
+      5,
+      6,
+      7
+    ],
+    [
+      5,
+      6,
+      7,
+      8
+    ],
+    [
+      6,
+      7,
+      8,
+      9
+    ],
+    [
+      7,
+      8,
+      9,
+      10
+    ],
+    [
+      7,
+      8,
+      9,
+      10
+    ],
+    [
+      8,
+      9,
+      10,
+      11
+    ],
+    [
+      9,
+      10,
+      11,
+      12
+    ],
+    [
+      10,
+      11,
+      12,
+      13
+    ],
+    [
+      11,
+      12,
+      13,
+      14
+    ],
+    [
+      11,
+      12,
+      13,
+      14
+    ],
+    [
+      12,
+      13,
+      14,
+      15
+    ],
+    [
+      13,
+      14,
+      15,
+      16
+    ],
+    [
+      14,
+      15,
+      16,
+      17
+    ],
+    [
+      14,
+      15,
+      16,
+      17
+    ],
+    [
+      15,
+      16,
+      17,
+      18
+    ],
+    [
+      16,
+      17,
+      18,
+      19
+    ],
+    [
+      17,
+      18,
+      19,
+      20
+    ],
+    [
+      18,
+      19,
+      20,
+      21
+    ],
+    [
+      18,
+      19,
+      20,
+      21
+    ],
+    [
+      19,
+      20,
+      21,
+      22
+    ],
+    [
+      20,
+      21,
+      22,
+      23
+    ],
+    [
+      21,
+      22,
+      23,
+      24
+    ],
+    [
+      21,
+      22,
+      23,
+      24
+    ],
+    [
+      22,
+      23,
+      24,
+      25
+    ],
+    [
+      23,
+      24,
+      25,
+      26
+    ],
+    [
+      24,
+      25,
+      26,
+      27
+    ],
+    [
+      24,
+      25,
+      26,
+      27
+    ],
+    [
+      24,
+      25,
+      26,
+      27
+    ],
+    [
+      24,
+      25,
+      26,
+      27
+    ]
+  ],
+  "layer_map": [
+    0,
+    1,
+    2,
+    2,
+    3,
+    4,
+    5,
+    5,
+    6,
+    7,
+    8,
+    8,
+    9,
+    10,
+    11,
+    12,
+    12,
+    13,
+    14,
+    15,
+    15,
+    16,
+    17,
+    18,
+    19,
+    19,
+    20,
+    21,
+    22,
+    22,
+    23,
+    24,
+    25,
+    25,
+    26,
+    27
+  ],
+  "ridge": 0.01,
+  "samples": 8192,
+  "source_layers": 28,
+  "source_layers_per_target": 4,
+  "source_width": 1024,
+  "source_width_per_layer": 256,
+  "target_layers": 36,
+  "target_width": 256,
+  "translator_schema": 2
+}

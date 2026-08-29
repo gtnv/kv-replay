@@ -1,0 +1,47 @@
+{
+  "completed_utc": "2026-08-29T18:39:06.708011+00:00",
+  "config_sha256": "1d68d803e26983802ecd44068db8a257489b147c1a2b25d8171d94c72715b02a",
+  "environment": {
+    "cuda_runtime": "12.8",
+    "gpu_capability": [
+      9,
+      0
+    ],
+    "gpu_memory_bytes": 85028896768,
+    "gpu_name": "NVIDIA H100 PCIe",
+    "python": "3.10.12",
+    "torch": "2.7.0+cu128",
+    "transformers": "4.57.6"
+  },
+  "git_revision": null,
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "model_revision_requested": "main",
+  "model_revision_resolved": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "records_sha256": "ddc4585cb61fd693bfe6336e22b5df6f19c8a14d88de943842714c5335aa2411",
+  "source_sha256": {
+    "configs/control.json": "1d68d803e26983802ecd44068db8a257489b147c1a2b25d8171d94c72715b02a",
+    "configs/pilot.json": "639f3f600c8b544f673db9f385c15c78042b95e7b62e22a43c11a7cde6268db7",
+    "research/protocol.md": "be6af982e55891392743a975db5c0e54005ddee2cf1a0b79d666e6c2ee9e7630",
+    "research/question.md": "3fcf2e459f198e1d26b6fe2bdfd44e8db9180744623809ffd880255f07c4406b",
+    "research/trials/0001-commutator-pilot.md": "3303aeaed96e99ec2d9cbedbb1d1e6ff6107103643bc3755bf195858feba32df",
+    "scripts/audit_evidence.py": "5e692c50bc77dbe00a69bbec40d1265bfd8dcbd6b5b1ccdfda8f4cedc20ad3ea",
+    "scripts/bootstrap.sh": "371a7a333730d55eb8f4b18148e7adafe37590fca3479e979cde012aabe57142",
+    "scripts/run_control.py": "0ed9bb45eea3d604d7f7c39b94aaf962ae693d15ffa1816c6c362d73c52e9f8d",
+    "scripts/run_pilot.py": "668d18475837bfca0b03fdad19efa2ad0410623b73ee1955886adafdce267475",
+    "scripts/verify_environment.py": "92f98aee30f2ea552284aca067d9da377e94ba97fdbc0928920712039fd275cb",
+    "src/kv_research.egg-info/PKG-INFO": "6cc9a8e7b08a850051d4c651e2edf62192ba3bec537dfe8926755aafc5953dd6",
+    "src/kv_research.egg-info/SOURCES.txt": "a772a956003b5b73988643631b28a1abaee3541affdd72277f5899f22a6e4d6c",
+    "src/kv_research.egg-info/dependency_links.txt": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "src/kv_research.egg-info/requires.txt": "b28cb2a02c4994e5de54b7c619bcaa23c68e81a93e6b0e7ace9a4a99c2139f79",
+    "src/kv_research.egg-info/top_level.txt": "75e5a899bff56d7db48ceaf03cc2a51d86873cab791eeb9aef49d6671565fa0a",
+    "src/kv_research/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "src/kv_research/artifacts.py": "43c661e62daa07846863e6d5b6b83b0ef6a8380021952ddf6867e86737907ac1",
+    "src/kv_research/cache_ops.py": "d28e015ae38c00c716e2de9beca28b5405333d27a240e8d50b2de908a7745a0c",
+    "src/kv_research/corpus.py": "9adcf0e3db0bb4291c03e1f662e7f77c86ea3852c20e5a8db3899c03a24878cd",
+    "src/kv_research/metrics.py": "1ffde05e14e0e4b052498009463bb86b92ae20e9f40c78cd6b4f33d4ec17ab19",
+    "src/kv_research/models.py": "92e092a222f1b65325119b957a4c47f6bde2bb2feef3f23346c3518ea4425e9a",
+    "src/kv_research/translation.py": "8a0f44446e36c9b8b342e8c832b896d89303cc91f05342105eae0e9917a6da8f"
+  },
+  "started_utc": "2026-08-29T18:39:03.236671+00:00",
+  "summary_sha256": "eefb475e117e1e3054d002740099c93fa7d6a6d75ae0e9322ec09248bf8462dd"
+}

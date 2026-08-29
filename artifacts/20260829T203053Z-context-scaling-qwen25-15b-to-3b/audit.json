@@ -1,0 +1,9 @@
+{
+  "auditor_sha256": "719a0100b1755dbfae32454aed3a4d6391222c278b58077a7805d51a7f122cd2",
+  "manifest_sha256": "166e43fd6a3cbcf800cd67b5f18b3fbb60e15262e6591e57f0aa4e5c85dadddd",
+  "public_metadata_only": true,
+  "recomputed": true,
+  "records": 64,
+  "run": "artifacts/20260829T203053Z-context-scaling-qwen25-15b-to-3b",
+  "timings": 960
+}

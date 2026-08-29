@@ -1,0 +1,19 @@
+{
+  "file_matches": {
+    "data.json": true,
+    "records.jsonl": true,
+    "translator.json": true
+  },
+  "fresh_complete_policy_wall_ms": 62.66291959439201,
+  "fresh_native_wall_ms": 15.754729600303108,
+  "fresh_policy_slower_than_native": true,
+  "parent": "artifacts/20260829T195327Z-document-pilot-qwen25-15b-to-3b",
+  "parent_manifest_sha256": "381052b4466753b62c6311f7c40b10845f2b395bcb11401a7cf44ccde5461901",
+  "passed": true,
+  "reproduction": "artifacts/20260829T203748Z-document-pilot-reproduction-qwen25-15b-to-3b",
+  "reproduction_audit_match": true,
+  "reproduction_manifest_sha256": "8dce44e6c99d709e4949ff7efb90db9df055a8a2a2c37ee4b4a6a0bce7b2337c",
+  "summary_without_timing_match": true,
+  "translator_file_sha256_match": true,
+  "translator_tensor_match": true
+}

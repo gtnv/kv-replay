@@ -1,0 +1,51 @@
+{
+  "source_model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "source_revision": "main",
+  "source_control_run": "artifacts/20260829T193816Z-control-qwen25-15b",
+  "target_model_id": "Qwen/Qwen2.5-3B-Instruct",
+  "target_revision": "main",
+  "target_control_run": "artifacts/20260829T193857Z-control-qwen25-3b",
+  "attention_backend": "sdpa",
+  "dataset_id": "Salesforce/wikitext",
+  "dataset_config": "wikitext-103-raw-v1",
+  "dataset_revision": "main",
+  "translator_split": "train",
+  "calibration_split": "train",
+  "test_split": "train",
+  "document_fold_modulus": 3,
+  "partition_folds": {
+    "translator": 0,
+    "calibration": 1,
+    "test": 2
+  },
+  "minimum_source_rows": {
+    "translator": 1000,
+    "calibration": 1000,
+    "test": 1000
+  },
+  "text_field": "text",
+  "sequence_length": 256,
+  "source_layers_per_target": 4,
+  "translator_sequences": 32,
+  "calibration_sequences": 128,
+  "test_sequences": 256,
+  "replay_lengths": [8, 32, 64, 65],
+  "primary_analysis": {
+    "replay_length": 64,
+    "score": "commutator_js",
+    "label": "full_transfer_top1_diff",
+    "baseline_score": "transfer_negative_margin",
+    "equal_compute_replay_length": 65,
+    "statistic": "paired_bootstrap_average_precision_difference"
+  },
+  "ridge": 0.01,
+  "risk_limit": 0.05,
+  "target_coverage": 0.5,
+  "bootstrap_repetitions": 2000,
+  "bootstrap_seed": 2718,
+  "timing_examples": 4,
+  "timing_warmup": 2,
+  "timing_repeats": 5,
+  "seed": 1729,
+  "run_name": "document-pilot-qwen25-15b-to-3b"
+}

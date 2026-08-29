@@ -1,0 +1,9 @@
+{
+  "bf16_rope_nmse_limit": 0.001953125,
+  "failure_count": 0,
+  "failures": [],
+  "max_backend_js": 5.281280755298212e-05,
+  "max_native_chunk_js": 3.51830703948508e-06,
+  "max_rope_roundtrip_nmse": 7.996028232725402e-09,
+  "passed": true
+}

@@ -1,0 +1,81 @@
+{
+  "bootstrap.json_sha256": "ca5dedcbf1d32b9f04761ae55f8bb4a42b58a646839cc801f4f0694fc9a988d6",
+  "completed_utc": "2026-08-29T19:40:46.575813+00:00",
+  "config_relative": "configs/preflight.json",
+  "config_sha256": "089acc877fb670b45cae56106a85a316a096154a24b9585cdbeba1d9c1533e54",
+  "controls": [
+    {
+      "manifest_sha256": "92a7c555cea3c33acac68977b2faaa134769abe9d00cfd9cc98f13b3229bad1c",
+      "model_revision_resolved": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "records_sha256": "7a20fd5ca7ae580a4df2e7d39bd2fa563bf143dff0fe4f9495fdd4e728c8aee7",
+      "run": "artifacts/20260829T193816Z-control-qwen25-15b",
+      "summary_sha256": "2e4db176c2f948349d9362e7b9c86fd65bd873159facf501c7b3ca85f5d5618f"
+    },
+    {
+      "manifest_sha256": "35772962b5ad9152c6abee26a730f6342896adcca2b449523310c427ee39cd3f",
+      "model_revision_resolved": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+      "records_sha256": "3adf967b94e4c8cc4754370978afa9861146593eef033cf8c9a1dc04a8b16138",
+      "run": "artifacts/20260829T193857Z-control-qwen25-3b",
+      "summary_sha256": "cb91d3a3d0d1ac39b57901769b13190f70c64f86e201fcf3650e88811a75c1cd"
+    }
+  ],
+  "data_sha256": "442839ecfacf1ba9676512d50f156a55c329e4938f975b7a5102fbdfcfae1590",
+  "dataset_id": "Salesforce/wikitext",
+  "dataset_revision_requested": "main",
+  "dataset_revision_resolved": "b08601e04326c79dfdd32d625aee71d232d685c3",
+  "environment": {
+    "cuda_runtime": "12.8",
+    "gpu_capability": [
+      9,
+      0
+    ],
+    "gpu_memory_bytes": 85028896768,
+    "gpu_name": "NVIDIA H100 PCIe",
+    "python": "3.10.12",
+    "torch": "2.7.0+cu128",
+    "transformers": "4.57.6"
+  },
+  "git_revision": null,
+  "pip-freeze.txt_sha256": "bc987e0e1fee8d49dbeb58dc413b296ac4dd78723066168580be8417f8c1cf9a",
+  "records_sha256": "62e4bf849c0ab89a510f82ccd04ca70c82bf978f73ec980fe06671aeff03e7ba",
+  "source_model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "source_revision_requested": "main",
+  "source_revision_resolved": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "source_sha256": {
+    ".gitignore": "30cbae6109de0b0078838247fffb7cd7a112fa3e3606208b9dfcac2bb789d428",
+    "README.md": "2765420dfe122a3af13e079c774afa9b2e2248395beb1bae7610a8c1baeed915",
+    "configs/control-target.json": "eacaa0cea1af0a887411323303716a0b3c11b0898444cc70d76b9a7d22bdbdb9",
+    "configs/control.json": "ac2e87531df06716c947bb114c1304417f562fe20436dfadf5a0e35b7e34d6ed",
+    "configs/pilot-single-layer.json": "5ce8dc93a8ac5d599296fbe0c0d57a0d191939b653f4daa65da0f60d01f0052c",
+    "configs/pilot.json": "1ee598dd6d90f640c6253fba6fd0be5ec129311591765b9f9dc89bbb776698dc",
+    "configs/preflight.json": "089acc877fb670b45cae56106a85a316a096154a24b9585cdbeba1d9c1533e54",
+    "pyproject.toml": "0b1e32a2e359ad17cdc7fcfecd4b10ec95fe8163c3fbc5acf0db92f8684f525d",
+    "research/protocol.md": "006fc3541613b445b1aa2fdf375351f54a5e914629201a8f416af762f6646639",
+    "research/question.md": "3fcf2e459f198e1d26b6fe2bdfd44e8db9180744623809ffd880255f07c4406b",
+    "research/trials/0001-commutator-pilot.md": "9290c0d5e134865130807fb265744ae9c72851ffb442cf6c9ab37f8c827b0688",
+    "research/trials/0002-independent-documents.md": "5af3c950fb28461bc59c2cf75a0df9333f358a30c00a401149fbf3041fb2de6c",
+    "scripts/audit_evidence.py": "8024f974895e60b9448d68c4993780246f60694236b6ca08fe1a00e6d99799cf",
+    "scripts/bootstrap.sh": "371a7a333730d55eb8f4b18148e7adafe37590fca3479e979cde012aabe57142",
+    "scripts/run_control.py": "515b20d7c819a7ed91704599d6b60ab8797fb970ba1c71c7a045070f18e1cb5d",
+    "scripts/run_pilot.py": "46c1c15677e3eeb7cf7064a444c85f524ebe6fb2bcc559dadbd346cfaacd5943",
+    "scripts/verify_environment.py": "92f98aee30f2ea552284aca067d9da377e94ba97fdbc0928920712039fd275cb",
+    "src/kv_research/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "src/kv_research/artifacts.py": "80f989b2c9a1f7572ced6c6ca41b2e05d8e919aa9072c896041837434686b92b",
+    "src/kv_research/cache_ops.py": "cb7ac99c5e3a460de5e721075d546a51f81b43dddf521cefb483c5f1294dfe95",
+    "src/kv_research/control_evidence.py": "8c08c45c498d6ad8f3282d09513839e52f0635242ffb9f5d98733e811407197f",
+    "src/kv_research/corpus.py": "05c491999edcd400d5bfaaa6f12da1be799554984785d87a009b753a5255a560",
+    "src/kv_research/metrics.py": "639a026022f67d8ebe0378462598c7eeb6e5447eefba28e1c1983c7de397a6fb",
+    "src/kv_research/models.py": "a59cfbeeae9abd98d39b8532c6fe903b94514e95642f2e341e3b13b69ce2ab76",
+    "src/kv_research/timing.py": "36d5ba04be0d6767796b11704295c763d1bbdd67952bcb54c2530ab638030591",
+    "src/kv_research/translation.py": "2657f64d72f89c714b2544d98a08c9fdf952a56fa4363141b3b61d6ca3c2c57a"
+  },
+  "started_utc": "2026-08-29T19:40:26.988211+00:00",
+  "status": "invalid_native_control",
+  "summary_sha256": "10662fe9bf621d167bfd1f074caaf88fa927d2d2b28a56dfb60d0606e081f6c4",
+  "target_model_id": "Qwen/Qwen2.5-3B-Instruct",
+  "target_revision_requested": "main",
+  "target_revision_resolved": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+  "tokenizer_sha256": "d3c860a69a0cb2a68c1c8f795deb5bb14426288effc64b10fccae542c1642592",
+  "translator_report_sha256": "c7432f4d352099a5ef8f10aa6967241da26e37866357a8943808a3a4fead3c67",
+  "translator_sha256": "192a47d4cfa8efce5f56306f6931cc0fda011a31c779bfbe3bfb10aef1c7b31d"
+}

@@ -1,0 +1,13 @@
+{
+  "bf16_rope_nmse_limit": 2.384185791015625e-07,
+  "failure_count": 0,
+  "failures": [],
+  "max_backend_js": 5.281280755298212e-05,
+  "max_identity_continuation_nmse": 3.151803929319269e-21,
+  "max_identity_prefix_nmse": 3.415925078256945e-21,
+  "max_native_chunk_cache_nmse": 2.7651429703583418e-06,
+  "max_native_chunk_js": 8.530867489753291e-06,
+  "max_rope_roundtrip_nmse": 2.571174785209125e-15,
+  "native_cache_nmse_limit": 0.001,
+  "passed": true
+}

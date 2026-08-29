@@ -1,0 +1,17 @@
+{
+  "bf16_rope_nmse_limit": 2.384185791015625e-07,
+  "failure_count": 0,
+  "failures": [],
+  "identity_continuation_bound": "native_execution_dominance",
+  "max_backend_js": 2.666161526576616e-05,
+  "max_identity_cache_limit_fraction": 0.0,
+  "max_identity_continuation_nmse": 4.228048586688529e-21,
+  "max_identity_logit_js": 2.3354229661265435e-09,
+  "max_identity_prefix_nmse": 4.296175195139527e-21,
+  "max_identity_suffix_nmse": 0.0,
+  "max_native_chunk_cache_nmse": 3.5898146990353907e-06,
+  "max_native_chunk_js": 5.366255209082738e-07,
+  "max_rope_roundtrip_nmse": 2.6586647429345097e-15,
+  "native_cache_nmse_limit": 0.001,
+  "passed": true
+}

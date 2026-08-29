@@ -1,0 +1,16 @@
+{
+  "bf16_rope_nmse_limit": 2.384185791015625e-07,
+  "failure_count": 2,
+  "failures": [
+    "identity continuation exceeded its numerical floor at 1024/64/k1",
+    "identity continuation exceeded its numerical floor at 1024/64/k4"
+  ],
+  "max_backend_js": 7.954192824399797e-07,
+  "max_identity_continuation_nmse": 4.120605250817424e-06,
+  "max_identity_prefix_nmse": 5.463850492500299e-20,
+  "max_native_chunk_cache_nmse": 0.00017293479488556416,
+  "max_native_chunk_js": 5.008141670259647e-07,
+  "max_rope_roundtrip_nmse": 2.8138547049153494e-15,
+  "native_cache_nmse_limit": 0.001,
+  "passed": false
+}

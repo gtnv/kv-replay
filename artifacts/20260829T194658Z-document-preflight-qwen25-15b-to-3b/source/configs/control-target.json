@@ -1,0 +1,11 @@
+{
+  "model_id": "Qwen/Qwen2.5-3B-Instruct",
+  "revision": "main",
+  "attention_backend": "sdpa",
+  "native_cache_nmse_limit": 0.001,
+  "identity_layers_per_target": [1, 4],
+  "lengths": [128, 256, 512],
+  "replay_lengths": [1, 8, 32, 64, 65],
+  "seed": 1729,
+  "run_name": "control-qwen25-3b"
+}
